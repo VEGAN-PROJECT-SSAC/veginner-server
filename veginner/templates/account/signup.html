@@ -1,0 +1,38 @@
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Veginner | 회원 가입</title>
+</head>
+<body>
+<h2>회원 가입</h2>
+<form method="post" action="{% url 'index' %}">
+    {% csrf_token %}
+    <ul>
+        <div>
+            {{ form.email }}
+        </div>
+        <div>
+            {{ form.username }}
+        </div>
+        <div>
+            {{ form.nickname|attr:"placeholder:닉네임" }}
+        </div>
+        <div>
+            {{ form.password1 }}
+        </div>
+        <div>
+            {{ form.password2 }}
+        </div>
+        <button class="cp-button" type="submit">가입하기</button>
+    </ul>
+    <ul>
+        <div>
+            이미 회원이신가요? <a class="link" href="{% url 'account_login' %}">로그인</a>
+            비밀번호 reset <a class="link" href="{% url 'account_reset_password' %}">비밀번호 재설정</a>
+        </div>
+    </ul>
+</form>
+</body>
+{% endblock %}

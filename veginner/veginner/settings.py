@@ -39,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'User',
     'Mypage',
+    'Post',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -68,6 +74,16 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+)
 
 WSGI_APPLICATION = 'veginner.wsgi.application'
 
@@ -105,16 +121,19 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
+SITE_ID = 1
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -122,4 +141,34 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Auth settings
+
 AUTH_USER_MODEL = 'User.User'
+
+# Email settings
+# 이게 이메일을 어떤 식으로 발송할 건지에 대한 설정이에용 console로 보내겠다!
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Account settings
+
+ACCOUNT_SIGNUP_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+ACCOUNT_LOGOUT_ON_GET = True
+# 만약 username 없이 email로 갈 거면 아래의 설정들 켜면 됨
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = True
+ACCOUNT_SIGNUP_FORM_CLASS = 'User.forms.SignupForm'
+# 계정의 회원가입 폼을 User 앱의 forms.py의 SignupForm을 사용하겠따
+ACCOUNT_EMAIL_VARIFICATION = 'optional'
+# 이메일 인증은 선택적으로 하겠다
+
+# post image upload
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+

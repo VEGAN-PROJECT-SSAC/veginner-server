@@ -1,0 +1,21 @@
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Veginner | 로그인</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <ul>
+        <div>
+            {{ form.login }}
+        </div>
+        <div>
+            {{ form.password1 }}
+        </div>
+        <button class="cp-button" type="submit">로그인</button>
+    </ul>
+</form>
+</body>
+{% endblock %}
