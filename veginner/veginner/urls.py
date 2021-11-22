@@ -24,7 +24,7 @@ urlpatterns = [
     url('^admin/', admin.site.urls),
     # user app
     path('', include('User.urls')),
-    # allauth
+    # allauth.
     path(
         'email-confirmation-done/',
         TemplateView.as_view(template_name='account.email_confirmation_done.html'),
