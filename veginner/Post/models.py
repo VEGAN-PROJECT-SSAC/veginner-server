@@ -27,10 +27,13 @@ class Post(models.Model):
     image = models.ImageField(null=False, verbose_name='음식 사진', upload_to='')
     content = TextField(verbose_name='내용')
     write_time = models.DateTimeField(auto_now=True, verbose_name="작성 시간")
+    like = models.ManyToManyField(User, related_name='likes', blank=True)
+    @property
+    def like_count(self):
+        return self.like.count() #likes 컬럼의 값의 갯수를 센다
     def __str__(self):
         return str(self.writer) + ' ' + str(self.write_time)
     class Meta:
         db_table = 'Post'
         verbose_name = '포스트'
         verbose_name_plural = '포스트'
-

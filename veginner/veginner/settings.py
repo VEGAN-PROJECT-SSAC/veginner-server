@@ -153,17 +153,19 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_SIGNUP_REDIRECT_URL = 'index'
 LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'index'
+#LOGOUT_REDIRECT_URL = 'index'
 ACCOUNT_LOGOUT_ON_GET = True
 # 만약 username 없이 email로 갈 거면 아래의 설정들 켜면 됨
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_FORM_CLASS = 'User.forms.SignupForm'
-# 계정의 회원가입 폼을 User 앱의 forms.py의 SignupForm을 사용하겠따
+SESSION_COOKIE_AGE = 3600
 ACCOUNT_EMAIL_VARIFICATION = 'optional'
-# 이메일 인증은 선택적으로 하겠다
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'account_email_confirmation_done'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'account_email_confirmation_done'
 
 # post image upload
 MEDIA_URL = '/media/'
