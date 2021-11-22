@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content%}
+
+<h2>LOGIN</h2>
+<div class="d-flex justify-content-center">
+    <form method="post">
+        {% csrf_token %}
+        <label>Email address</label>
+        <div>{{ form.login }}</div>
+        <label>Password</label>
+        <div>{{ form.password }}</div>
+        <button type="submit">LOGIN</button>
+    </form>
+</div>
+<div>
+    <p>비회원이신가요?<a href="{% url 'account_signup' %}">회원 가입하기</a></p>
+</div>
+{% endblock content %}

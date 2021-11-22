@@ -1,0 +1,26 @@
+<header class="d-flex justify-content-between bg-warning">
+    <div>
+        LOGO
+    </div>
+    <navbar class="d-flex justify-content-between">
+        <div>
+            {% if user.is_authenticated %}
+            <p>안녕하세여 {{user.nickname}}님 로그인 됐다 지금</p>
+            <p><a href="{% url 'account_change_password' %}">비밀번호 스스로 변경한다면</a></p>
+            {% else %}
+            <p>로그아웃된 상태</p>
+            {% endif %}
+        </div>
+        <div>
+            <a href="#">About</a>
+            <a href="#">Community</a>
+            {% if user.is_authenticated %}
+            <a href="#">MyPage</a>
+            <a href="{% url 'account_logout' %}">로그아웃</a>
+            {% else %}
+            <a href="{% url 'account_signup' %}">회원가입</a>
+            <a href="{% url 'account_login' %}">로그인</a>
+            {% endif %}
+        </div>
+    </navbar>
+</header>
