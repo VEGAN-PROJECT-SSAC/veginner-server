@@ -1,20 +1,59 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-{% block content%}
+{% block contents %}
 
-<h2>LOGIN</h2>
-<div class="d-flex justify-content-center">
-    <form method="post">
-        {% csrf_token %}
-        <label>Email address</label>
-        <div>{{ form.login }}</div>
-        <label>Password</label>
-        <div>{{ form.password }}</div>
-        <button type="submit">LOGIN</button>
-    </form>
-</div>
-<div>
-    <p>비회원이신가요?<a href="{% url 'account_signup' %}">회원 가입하기</a></p>
-</div>
-{% endblock content %}
+<section class="vh-100">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black" style="border-radius: 25px; height: 68vh;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">로그인</p>
+
+                                <form class="mx-1 mx-md-4" method="post">
+                                    {% csrf_token %}
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="floatingInput">Email</label>
+                                            {{ form.login|attr:"class:floatingInput form-control"}}
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="floatingInput">Password</label>
+                                            {{ form.password|attr:"class:floatingInput form-control"}}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <p>아직 회원이 아니신가요?<a href="{% url 'account_signup' %}">회원 가입하기</a></p>
+                                        <p>비밀번호를 잊어버리셨나요?<a href="{% url 'account_reset_password' %}">비밀번호 찾기</a></p>
+                                    </div>
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button class="btn btn-success btn-lg" type="submit">Register</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                <img alt="Sample image"
+                                     class="img-fluid" src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-registration/draw1.png">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock contents %}

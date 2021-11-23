@@ -1,3 +1,12 @@
+:root {
+    --green1-900: #1c3e37;
+    --green2-900: #224735;
+    --green2-800: #2d634d;
+    --green2-100: #b7ddd2;
+    --green2-50: #e2f1ed;
+    --semi-white: #ebf3eb;
+}
+
 * {
     box-sizing: border-box;
 }

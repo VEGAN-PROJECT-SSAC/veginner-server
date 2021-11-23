@@ -21,10 +21,13 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/main.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/header.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/user.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/mypage.css' %}" rel="stylesheet"/>
+
 
     <title>Veginner</title>
 </head>
-<body>
+<body class="container-fluid p-0">
 {% include "header.html" %}
 
 {% block contents %} {% endblock contents %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block contents %}
+
+<section class="mypage-section">
+    <div>마이페이지</div>
+    <a href="{% url 'monthlyreport' %}">월별 통계</a>
+    <a href="{% url 'myinfo' %}">내 정보</a>
+    <a href="{% url 'myposting' %}">내 글 보기</a>
+
+    <h3>월별 통계</h3>
+
+</section>
+
+{% endblock contents %}

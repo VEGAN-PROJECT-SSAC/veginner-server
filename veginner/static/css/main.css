@@ -1,0 +1,28 @@
+@import url('./base.css');
+
+.main-section {
+    height: 1000px;
+    padding: 0 200px;
+}
+
+.main-section1 {
+    background-color: var(--green1-900);
+}
+
+.main-section2 {
+    background-color: #fff;
+}
+
+.main-section3 {
+    background-color: var(--semi-white);
+}
+
+.section1-title {
+    color: var(--semi-white);
+    font-size: 6rem;
+}
+
+.section1-subtitle {
+    color: var(--semi-white);
+    font-size: 2rem;
+}

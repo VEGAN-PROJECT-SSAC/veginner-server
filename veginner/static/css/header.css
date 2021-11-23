@@ -1,14 +1,26 @@
+@import url('./base.css');
+
 header {
-    background-color: #52734D;
-    color: #ebf3eb;
+    background-color: var(--green1-900);
+    height: 100px;
+    padding: 0 200px;
+}
+
+.isLogin {
+    color: var(--semi-white);
 }
 
 .menu-item {
-
+    color: var(--semi-white);
 }
 
-a {
-    text-decoration: none;
 
+.logo {
+    font-size: 2rem;
+    color: var(--semi-white);
 }
 
+.login-status {
+    font-size: 14px;
+    font-weight: 200;
+}
