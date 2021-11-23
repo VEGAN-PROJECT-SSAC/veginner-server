@@ -24,6 +24,9 @@ urlpatterns = [
     url('^admin/', admin.site.urls),
     # user app
     path('', include('User.urls')),
+    path('', include('Post.urls')),
+    path('', include('Mypage.urls')),
+
     # allauth.
     path(
         'email-confirmation-done/',
