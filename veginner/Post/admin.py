@@ -2,8 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import Post
-from .models import Vegan_type
+from .models import Post, Vegan_type
 
 # Register your models here.
 admin.site.register(Post)
