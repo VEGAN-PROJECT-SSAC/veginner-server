@@ -1,4 +1,4 @@
-<header class="d-flex justify-content-between bg-warning">
+<header class="d-flex justify-content-between">
     <div>
         LOGO
     </div>
@@ -12,14 +12,14 @@
             {% endif %}
         </div>
         <div>
-            <a href="#">About</a>
-            <a href="#">Community</a>
+            <a class="menu-item" href="#">About</a>
+            <a class="menu-item" href="#">Community</a>
             {% if user.is_authenticated %}
-            <a href="#">MyPage</a>
-            <a href="{% url 'account_logout' %}">로그아웃</a>
+            <a class="menu-item" href="#">MyPage</a>
+            <a class="menu-item" href="{% url 'account_logout' %}">로그아웃</a>
             {% else %}
-            <a href="{% url 'account_signup' %}">회원가입</a>
-            <a href="{% url 'account_login' %}">로그인</a>
+            <a class="menu-item" href="{% url 'account_signup' %}">회원가입</a>
+            <a class="menu-item" href="{% url 'account_login' %}">로그인</a>
             {% endif %}
         </div>
     </navbar>

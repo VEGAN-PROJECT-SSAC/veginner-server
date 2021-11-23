@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'User',
     'Mypage',
     'Post',
+    'sweetify',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -142,6 +143,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# possible options: 'sweetalert', 'sweetalert2' - default is 'sweetalert2'
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 
 # Auth settings
 

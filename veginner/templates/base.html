@@ -19,11 +19,14 @@
     <!-- CSS -->
     {% load static %}
     <link href="{% static 'css/base.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/main.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/header.css' %}" rel="stylesheet"/>
 
-    <title>Veginner {% block page_title %}{% endblock page_title %}</title>
+    <title>Veginner</title>
 </head>
 <body>
 {% include "header.html" %}
 
+{% block contents %} {% endblock contents %}
 </body>
 </html>
