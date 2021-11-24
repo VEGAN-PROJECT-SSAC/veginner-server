@@ -3,24 +3,29 @@
 header {
     background-color: var(--green1-900);
     height: 100px;
-    padding: 0 200px;
 }
 
-.isLogin {
-    color: var(--semi-white);
+.logo {
+    color: var(--green2-50);
+    font-size: 2rem;
+    font-weight: 700;
+
+}
+
+.about-login {
+    color: var(--green2-50);
+    font-size: 13px;
+    font-weight: 200;
 }
 
 .menu-item {
-    color: var(--semi-white);
+    color: var(--green2-50);
+    font-weight: 500;
 }
 
 
-.logo {
-    font-size: 2rem;
-    color: var(--semi-white);
+a:link, a:visited, a:active, a:hover {
+    text-decoration: none;
 }
 
-.login-status {
-    font-size: 14px;
-    font-weight: 200;
-}
+

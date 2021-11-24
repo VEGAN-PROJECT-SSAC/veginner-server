@@ -1,10 +1,25 @@
 :root {
     --green1-900: #1c3e37;
+    --green1-800: #225a52;
+    --green1-700: #256961;
+    --green1-600: #297970;
+    --green1-500: #2c857c;
+    --green1-400: #3b978f;
+    --green1-300: #56a9a2;
+    --green1-200: #82c1bd;
+    --green1-100: #b2d9d7;
+    --green1-50: #e0efef;
+
     --green2-900: #224735;
     --green2-800: #2d634d;
-    --green2-100: #b7ddd2;
-    --green2-50: #e2f1ed;
-    --semi-white: #ebf3eb;
+    --green2-700: #5c8456;
+    --green2-600: #679661;
+    --green2-500: #70a46a;
+    --green2-400: #82b17e;
+    --green2-300: #96bf93;
+    --green2-200: #b2d0b1;
+    --green2-100: #cfe2ce;
+    --green2-50: #ebf3eb;
 }
 
 * {
@@ -13,27 +28,6 @@
 
 body {
     /* 가운데 설정 */
-    margin: 0 auto;
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
-}
-
-a {
-    all: unset;
-}
-
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
-    text-decoration: none;
-}
-
-a:active {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none;
 }
 
