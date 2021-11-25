@@ -1,0 +1,16 @@
+@import url('./base.css');
+
+.community-post-btn {
+    border: 1px solid var(--green1-900);
+    background-color: #fff;
+    color: var(--green1-900);
+
+}
+
+.community-post-btn:hover {
+    color: var(--green1-900);
+    font-weight: 500;
+    box-shadow: 0px 0px 10px -3px rgba(28,62,55,0.8);
+    -webkit-box-shadow: 0px 0px 10px -3px rgba(28,62,55,0.8);
+    -moz-box-shadow: 0px 0px 10px -3px rgba(28,62,55,0.8);
+}

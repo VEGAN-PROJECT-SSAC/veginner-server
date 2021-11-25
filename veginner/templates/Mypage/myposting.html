@@ -3,14 +3,35 @@
 {% load widget_tweaks %}
 {% block contents %}
 
-<section class="mypage-section">
-    <div>마이페이지</div>
-    <a href="{% url 'monthlyreport' %}">월별 통계</a>
-    <a href="{% url 'myinfo' %}">내 정보</a>
-    <a href="{% url 'myposting' %}">내 글 보기</a>
+<section class="container">
+    <div class="mypage-header d-flex justify-content-between mt-5">
+        <div>
+            <h3>내가 쓴 글</h3>
+        </div>
 
-    <h3>내 글 보기</h3>
+        <!-- Mypage Menu Btn-->
+        <div class="mypage-menu-box btn-group">
+            <button type="button" class="mypage-menu-btn btn dropdown-toggle" data-bs-toggle="dropdown">
+                <!-- <i class="fas fa-bars"></i>-->
+                Menu
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'monthlyreport' %}">월별 통계</a></li>
+                <li>
+                </li>
+                <li><a class="dropdown-item" href="{% url 'myinfo' %}">내 정보</a></li>
+                <li>
+                </li>
+                <li><a class="dropdown-item" href="{% url 'myposting' %}">내가 쓴 글</a></li>
+            </ul>
+        </div>
 
+    </div>
+    <div>
+        여기에 내가 쓴 글 보여주기
+    </div>
 </section>
+
+
 
 {% endblock contents %}

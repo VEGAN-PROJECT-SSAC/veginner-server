@@ -1,5 +1,27 @@
 @import url('./base.css');
 
-.mypage-section {
-    padding: 0 200px;
+/* monthlyreport.html, myinfo.html, myposting.html */
+
+.mypage-menu-box {
+    position: fixed;
+    top: 140px;
+    right: 80px;
+    z-index: 10;
+}
+
+.mypage-menu-item {
+    color: var(--navy-900);
+}
+
+.mypage-menu-btn {
+    border: 1px solid rgba(28,62,55,0.5);
+    background-color: #fff;
+    color: var(--green2-900);
+
+    box-shadow: 0px 0px 10px -3px rgba(28,62,55,0.8);
+    -webkit-box-shadow: 0px 0px 10px -3px rgba(28,62,55,0.8);
+    -moz-box-shadow: 0px 0px 10px -3px rgba(28,62,55,0.8);
+}
+.mypage-menu-btn:hover {
+    color: var(--green2-900);
 }

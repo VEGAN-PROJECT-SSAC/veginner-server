@@ -5,27 +5,22 @@ header {
     height: 100px;
 }
 
-.logo {
+.logo, .logo:hover {
     color: var(--green2-50);
     font-size: 2rem;
     font-weight: 700;
-
 }
 
-.about-login {
+.about-login, .about-login:hover {
     color: var(--green2-50);
     font-size: 13px;
     font-weight: 200;
 }
 
-.menu-item {
+
+.menu-item, .menu-item:hover {
     color: var(--green2-50);
     font-weight: 500;
-}
-
-
-a:link, a:visited, a:active, a:hover {
-    text-decoration: none;
 }
 
 

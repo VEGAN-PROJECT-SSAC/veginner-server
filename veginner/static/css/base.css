@@ -1,5 +1,5 @@
 :root {
-    --green1-900: #1c3e37;
+    --green1-900: #1c3e37; /* main */
     --green1-800: #225a52;
     --green1-700: #256961;
     --green1-600: #297970;
@@ -11,7 +11,7 @@
     --green1-50: #e0efef;
 
     --green2-900: #224735;
-    --green2-800: #2d634d;
+    --green2-800: #2d634d; /* sub*/
     --green2-700: #5c8456;
     --green2-600: #679661;
     --green2-500: #70a46a;
@@ -20,6 +20,8 @@
     --green2-200: #b2d0b1;
     --green2-100: #cfe2ce;
     --green2-50: #ebf3eb;
+
+    --navy-900: #1c233e;
 }
 
 * {
@@ -31,3 +33,6 @@ body {
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
 }
 
+a:link, a:visited, a:active, a:hover {
+    text-decoration: none;
+}
