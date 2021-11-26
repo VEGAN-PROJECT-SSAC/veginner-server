@@ -13,96 +13,141 @@
 
     {% if user.is_authenticated %}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header p-3 community_header text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Add Post</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-3">
                     <h2>{{user.nickname}}님의 식단 추가</h2>
-                    <form action="{% url 'community' %}" id="post_submit" method="post">
+                    <form action="{% url 'community' %}" id="post_submit" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <!--                        <label for="recipient-name" class="col-form-label">Food name:</label>-->
-                            <!--                        <input type="text" class="form-control" id="recipient-name">-->
-                            {{form.as_p}}
-                            <input type="hidden" value="{{user.nickname}}" name="username">
+                            <div class="d-flex justify-content-center flex-row align-items-center mb-4">
+                                <div class="form-outline flex-fill mb-0 mt-3">
+                                    <i class="fas fa-calendar-check fa-lg me-3 fa-fw"></i>
+                                    <label class="form-label" for="floatingInput">날짜</label>
+                                    {{ form.date|attr:"class:floatingInput form-control"}}
+                                </div>
+                            </div>
                         </div>
-                        <!--                    <div class="mb-3">-->
-                        <!--                        <label for="message-text" class="col-form-label">Content:</label>-->
-                        <!--                        <textarea class="form-control" id="message-text"></textarea>-->
-                        <!--                    </div>-->
+                        <div class="mb-3">
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <div class="form-outline flex-fill mb-0 mt-3">
+                                    <i class="fas fa-utensils fa-lg me-3 fa-fw"></i>
+                                    <label class="form-label" for="floatingInput">음식 이름</label>
+                                    {{ form.food_name|attr:"class:floatingInput form-control"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <div class="form-outline flex-fill mb-0">
+                                    <i class="fas fa-sticky-note fa-lg me-3 fa-fw"></i>
+                                    <label class="form-label" for="floatingInput">내용</label>
+                                    {{ form.content|attr:"class:floatingInput form-control"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row d-flex flex-row align-items-center mb-4">
+                                <div class="col-6 form-outline">
+                                    <i class="fas fa-leaf fa-lg me-3 fa-fw"></i>
+                                    <label class="form-label" for="floatingInput">비건 유형</label>
+                                    {{ form.post_vegan_type|attr:"class:floatingInput form-control"}}
+                                </div>
+                                <div class="col-6 form-outline">
+                                    <i class="fas fa-file fa-lg me-3 fa-fw"></i>
+                                    <label class="form-label" for="floatingInput">파일 선택</label>
+                                    {{ form.image|attr:"class:floatingInput form-control"}}
+                                </div>
+                        </div>
+                            <input type="hidden" value="{{user.nickname}}" name="writer">
+                        </div>
+                        <div class="modal-footer p-2">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn community_btn" id="post_btn">Add post</button>
+                        </div>
                     </form>
-                    <!--            </div>-->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" id="post_btn">Add post</button>
-                    </div>
-                    <!--                sweetalert2 CDN-->
-                    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                    <script>
-                        console.log("script 들어옴")
-                        $("#post_btn").click(function (e) {
-                            console.log(e);
-                            console.log("폼 전송 전");
-                            let post_form = $("#post_submit");
-                            console.log(post_form);
-                            Swal.fire({
-                                title: "폼 전송?",
-                                icon: 'question',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: '예매 취소'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    Swal.fire({
-                                        text: '성공적으로 보냈습니다!',
-                                        icon: 'success',
-                                        confirmButtonColor: '#3085d6',
-                                        confirmButtonText: '확인'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            post_form.submit();
-                                        }
-                                    });
-                                }
-                            });
-                        });
-                        // $(function(){
-                        //     $('#post_submit').on('submit', function(e){
-                        //         e.preventDefault();
-                        //         console.log("ajax들어오기전");
-                        //         $.ajax({
-                        //             url: '{% url "posting" %}',
-                        //             type: 'POST',
-                        //             data: $("#post_submit").serialize(),
-                        //             success: function(data){
-                        //                 alert("Fail");
-                        //             }
-                        //         });
-                        //     });
-                        // });
-                    </script>
                 </div>
             </div>
         </div>
-        {% else %}
-        <!--login alert 창 띄워 주면 됨-->
-        <h3>(임시)너는 지금 글 쓸 권한이 없다/ 로그인해야만 포스팅할 수 있습니다 + 로그인 페이지로 redirect</h3>
-        {% endif %}
-        <div class="d-flex justify-content-center">
-            {% for p in post %}
-            <div>
-                <p>Writer | {{ p.writer.nickname }}</p>
-                <p>Vegan_type | {{ p.post_vegan_type }}</p>
-                <p>Date | {{ p.date}}</p>
-                <p>Title | {{ p.food_name }}</p>
-                <p>Content | {{ p.content }}</p>
-                <img src="media/{{ p.image }}" alt="" width="200px" height="250px">
-            </div>
-            {% endfor %}
+    </div>
+    {% else %}
+    <!--login alert 창 띄워 주면 됨-->
+    <h3>(임시)너는 지금 글 쓸 권한이 없다/ 로그인해야만 포스팅할 수 있습니다 + 로그인 페이지로 redirect</h3>
+    {% endif %}
+    <div class="d-flex justify-content-center">
+        {% for v in vegan %}
+        <div>
+            <p>Writer | {{ v.writer.nickname }}</p>
+            <p>Vegan_type | {{ v.post_vegan_type }}</p>
+            <p>Date | {{ v.date}}</p>
+            <p>Title | {{ v.food_name }}</p>
+            <p>Content | {{ v.content }}</p>
+            <img src="media/{{ v.image }}" alt="" width="200px" height="250px">
         </div>
+        {% endfor %}
+        {% for s in semi %}
+        <div>
+            <p>Writer | {{ s.writer.nickname }}</p>
+            <p>Vegan_type | {{ s.post_vegan_type }}</p>
+            <p>Date | {{ s.date}}</p>
+            <p>Title | {{ s.food_name }}</p>
+            <p>Content | {{ s.content }}</p>
+            <img src="media/{{ s.image }}" alt="" width="200px" height="250px">
+        </div>
+        {% endfor %}
+    </div>
+
+    <!--                sweetalert2 CDN-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--    jquery validate-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        console.log("script 들어옴")
+        $("#post_btn").click(function (e) {
+            console.log("폼 전송 전");
+            // validation();
+            if($("#post_submit").valid()){
+                Swal.fire({
+                    title: "폼 전송?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '폼 전송'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            text: '성공적으로 보냈습니다!',
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: '확인'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $("#post_submit").submit();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+        // $(function(){
+        //     $('#post_submit').on('submit', function(e){
+        //         e.preventDefault();
+        //         console.log("ajax들어오기전");
+        //         $.ajax({
+        //             url: '{% url "posting" %}',
+        //             type: 'POST',
+        //             data: $("#post_submit").serialize(),
+        //             success: function(data){
+        //                 alert("Fail");
+        //             }
+        //         });
+        //     });
+        // });
+    </script>
 </section>
 {% endblock contents %}

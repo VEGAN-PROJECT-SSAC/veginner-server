@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+from User.models import User
 
 # Create your views here.
 def myinfo(req):

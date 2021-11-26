@@ -14,3 +14,22 @@
     -webkit-box-shadow: 0px 0px 10px -3px rgba(28,62,55,0.8);
     -moz-box-shadow: 0px 0px 10px -3px rgba(28,62,55,0.8);
 }
+
+    /* Add Post error-messages */
+input#id_food_name {
+    border: 1px solid #2d634d;
+    border-radius: 4px;
+}
+#id_food_name-error, #id_content-error, #id_image-error {
+    color: var(--green1-900);
+    font-weight: bolder;
+    margin-top: 5px;
+}
+
+.community_btn, .community_header {
+    background-color: var(--green1-900);
+    color: white;
+}
+.community_btn:hover {
+    color: white;
+}
