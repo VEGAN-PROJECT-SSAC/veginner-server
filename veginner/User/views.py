@@ -6,7 +6,8 @@ from allauth.account.views import PasswordChangeView
 
 # Create your views here.
 def index(req):
-    return render(req, 'main.html')
+    context = { 'mainHeaderBGColor' : 'main-header', 'mainHeaderFontColor' : 'main-header-font' } # main page's header bg-color: green color
+    return render(req, 'main.html', context)
 
 class CustomPasswordChangeView(PasswordChangeView):
     def get_success_url(self):

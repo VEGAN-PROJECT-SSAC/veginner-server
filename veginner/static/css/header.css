@@ -1,26 +1,54 @@
 @import url('./base.css');
 
 header {
-    background-color: var(--green1-900);
+    background-color: #fff;
     height: 100px;
 }
 
+/* Main pages's header bg-color: green */
+.main-header {
+    background-color: var(--green1-900);
+}
+
+.main-header-font {
+    color: var(--green1-50);
+}
+
+/* Other page's header bg-color: white */
 .logo, .logo:hover {
-    color: var(--green2-50);
+    color: var(--green2-900);
     font-size: 2rem;
     font-weight: 700;
 }
 
 .about-login, .about-login:hover {
-    color: var(--green2-50);
+    color: var(--green2-900);
     font-size: 13px;
-    font-weight: 200;
+    font-weight: 300;
 }
 
-
 .menu-item, .menu-item:hover {
-    color: var(--green2-50);
+    color: var(--green2-900);
     font-weight: 500;
 }
 
+.main-menu-btn {
+    /* border: 1px solid rgba(28,62,55,0.5); */
+    background-color: var(--green2-50);
+    color: var(--green2-900);
+}
 
+.main-menu-btn:hover {
+    color: var(--green2-900);
+}
+
+.main-menu-item {
+    color: var(--green2-900);
+    font-weight: 500;
+}
+
+.main-submenu-item {
+    color: var(--green2-800);
+    font-weight: 500;
+    font-size: 0.8em;
+}

@@ -31,6 +31,7 @@
 body {
     /* 가운데 설정 */
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    color: var(--navy-900);
 }
 
 a:link, a:visited, a:active, a:hover {
