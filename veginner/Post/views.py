@@ -5,32 +5,41 @@ from .models import Vegan_type, Post
 from User.models import User
 from .forms import PostForm
 import sweetify
+import datetime
 
 # Create your views here.
 def community(req):
     print(req.session.session_key)
     print(req.session.get(req.session.session_key))
-    vegan = Post.objects.filter(post_vegan_type=1)
-    if req.method == 'POST':
-        nickname=req.POST.get("username")
-        print("community post 들어옴")
-        form = PostForm(req.POST)
-        print(form)
-        if form.is_valid():
-#             form.cleaned_data.get("")
-            form.instance.writer = User.objects.get(nickname=nickname)
+    v_type = [1, 2, 3, 4]
+    sv_type = [5, 6, 7]
+    vegan = Post.objects.filter(post_vegan_type__in=v_type)
+    semi_vegan = Post.objects.filter(post_vegan_type__in=sv_type)
 
-#             user = authenticate(req, writer)
-            form.save()
+    if req.method == 'POST':
+#         nickname=req.POST.get("username")
+        print("community post 들어옴")
+#         form.instance.writer = User.objects.get(nickname=form["writer"].value)
+        form = PostForm(req.POST, req.FILES)
+        if form.is_valid():
+            post = Post()
+            post.writer = User.objects.get(nickname=req.POST.get("writer"))
+            post.date = form.cleaned_data["date"]
+            post.food_name = form.cleaned_data["food_name"]
+            post.post_vegan_type = Vegan_type.objects.get(vegan_type=form.cleaned_data["post_vegan_type"])
+            post.image = form.cleaned_data["image"]
+            post.content = form.cleaned_data["content"]
+            post.save()
             print("폼저장")
         else:
-            form.instance.writer = User.objects.get(nickname=nickname)
-            form.save()
+            print("유효성 또 실패")
+            sweetify.warning(req, form.non_field_errors(), timer=1200)
         return redirect("community")
     else:
         form = PostForm()
         context = {
-            "post": vegan,
+            "vegan": vegan,
+            "semi": semi_vegan,
             "form": form
         }
         return render(req, 'Post/community.html', context)
