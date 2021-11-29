@@ -30,6 +30,7 @@ input#id_food_name {
     background-color: var(--green1-900);
     color: white;
 }
-.community_btn:hover {
+.community_btn:hover, .community-list-btn:hover {
     color: white;
 }
+
