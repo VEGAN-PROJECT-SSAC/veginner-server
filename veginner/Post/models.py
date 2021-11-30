@@ -18,7 +18,7 @@ class Vegan_type(models.Model):
     ]
     vegan_sort = models.CharField(max_length=2, choices=VEGAN_SORT_CHOICES)
     def __str__(self):
-        return str(self.vegan_id) + ' ' + str(self.vegan_type)
+        return str(self.vegan_type) + ' ' + str(self.vegan_id)
     class Meta:
         db_table = 'Vegan_type'
         verbose_name = '비건 타입'

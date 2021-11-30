@@ -11,8 +11,8 @@ import datetime
 def community(req):
     print(req.session.session_key)
     print(req.session.get(req.session.session_key))
-    v_type = [1, 2, 3, 4]
-    sv_type = [5, 6, 7]
+    v_type = [8, 9, 10, 11]
+    sv_type = [12, 13, 14]
     vegan = Post.objects.filter(post_vegan_type__in=v_type)
     semi_vegan = Post.objects.filter(post_vegan_type__in=sv_type)
 
@@ -43,13 +43,17 @@ def community(req):
             "form": form
         }
         return render(req, 'Post/community.html', context)
-#     post = Post.objects.filter(post_vegan_type="Vegan")
-
+def sortpost(req, pk):
+    exh = get_objects_or_404(Post, pk=pk)
+    pass
 def posting(req):
     form = PostForm()
 #     req.POST.get()
     form.save()
     sweetify.info(req, "성공적으로 보내졌습니다.", timer=1200)
+
+
+
     return redirect("community")
 def about(req):
     return render(req, 'Post/about.html')
