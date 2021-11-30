@@ -2,26 +2,167 @@
 {% load static %}
 
 {% block contents %}
-<section class="main-section main-section1">
-    <div class="container">
-        <div class="section1-title">
-            Lorem ipsum dolormet, fugiat perspiciatis?
+<section class="main-section main-section1 ">
+    <div class="container d-flex flex-column justify-content-center main-section1-container">
+        <div class="section1-title d-flex justify-content-between align-items-center">
+            <div>
+                <div>
+                    Let's Begin!
+                </div>
+                <div class="typing-animation">
+                    Let's Vegan!
+                </div>
+            </div>
+            <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    class="d-none d-xl-block"
+                    frameborder="0" height="315"
+                    src="https://www.youtube.com/embed/ANUoAdXfA60?controls=0"
+                    title="YouTube video player" width="560"></iframe>
         </div>
-        <div class="section1-subtitle">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate dolores exercitationem harum laborum
+        <div class="section1-subtitle my-5">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate dolores exerc itationem harum
+            laborum
             qui repellendus voluptatum?
         </div>
+        <div class="main-section1-contents">
+            <button class="main-section1-btn btn p-3">Get Started</button>
+        </div>
     </div>
 </section>
+
 <section class="main-section main-section2">
-    <div class="container">
-    여기는 메인 섹션2
+    <div class="container d-flex flex-column justify-content-center main-section2-container">
+        <div class="main-section2-title mb-5">
+            Today's Hot Posting
+        </div>
+        <div class="main-section2-contents">
+            <div class="card-list-container row">
+                <div class="card-container col-md-6 col-lg-3">
+                    <div class="card-item card box-shadow">
+                        <img alt="Card image cap" class="card-img-top openmodal"
+                             data-bs-target="#detailModal" data-bs-toggle="modal"
+                             data-bs-whatever="@mdo" data-holder-rendered="true"
+                             src="media/3Y5A6541.jpg"
+                             style="height: 225px; width: 100%; display: block;">
+                        <div class="card-body">
+                            <h5 class="card-title">맛있는게 제일 좋아</h5>
+                            <p class="card-text">키키키</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-secondary {{v.post_id}}" type="button">
+                                        닉네임
+                                    </button>
+                                    <button class="btn btn-sm community-list-btn btn-outline-secondary {{v.post_id}}"
+                                            type="button">
+                                        Vegan
+                                    </button>
+                                </div>
+                                <small class="text-muted d-md-none d-lg-block {{v.post_id}}">
+                                    21/12/25
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-container col-md-6 col-lg-3">
+                    <div class="card-item card box-shadow">
+                        <img alt="Card image cap" class="card-img-top openmodal"
+                             data-bs-target="#detailModal" data-bs-toggle="modal"
+                             data-bs-whatever="@mdo" data-holder-rendered="true"
+                             src="media/3Y5A6541.jpg"
+                             style="height: 225px; width: 100%; display: block;">
+                        <div class="card-body">
+                            <h5 class="card-title">맛있는게 제일 좋아</h5>
+                            <p class="card-text">키키키</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-secondary {{v.post_id}}" type="button">
+                                        닉네임
+                                    </button>
+                                    <button class="btn btn-sm community-list-btn btn-outline-secondary {{v.post_id}}"
+                                            type="button">
+                                        Vegan
+                                    </button>
+                                </div>
+                                <small class="text-muted d-md-none d-lg-block {{v.post_id}}">
+                                    21/12/25
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-container d-none d-md-block col-md-6 col-lg-3">
+                    <div class="card-item card box-shadow">
+                        <img alt="Card image cap" class="card-img-top openmodal"
+                             data-bs-target="#detailModal" data-bs-toggle="modal"
+                             data-bs-whatever="@mdo" data-holder-rendered="true"
+                             src="media/3Y5A6541.jpg"
+                             style="height: 225px; width: 100%; display: block;">
+                        <div class="card-body">
+                            <h5 class="card-title">맛있는게 제일 좋아</h5>
+                            <p class="card-text">키키키</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-secondary {{v.post_id}}" type="button">
+                                        닉네임
+                                    </button>
+                                    <button class="btn btn-sm community-list-btn btn-outline-secondary {{v.post_id}}"
+                                            type="button">
+                                        Vegan
+                                    </button>
+                                </div>
+                                <small class="text-muted d-md-none d-lg-block {{v.post_id}}">
+                                    21/12/25
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-container d-none d-md-block col-md-6 col-lg-3">
+                    <div class="card-item card box-shadow">
+                        <img alt="Card image cap" class="card-img-top openmodal"
+                             data-bs-target="#detailModal" data-bs-toggle="modal"
+                             data-bs-whatever="@mdo" data-holder-rendered="true"
+                             src="media/3Y5A6541.jpg"
+                             style="height: 225px; width: 100%; display: block;">
+                        <div class="card-body">
+                            <h5 class="card-title">맛있는게 제일 좋아</h5>
+                            <p class="card-text">키키키</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-secondary {{v.post_id}}" type="button">
+                                        닉네임
+                                    </button>
+                                    <button class="btn btn-sm community-list-btn btn-outline-secondary {{v.post_id}}"
+                                            type="button">
+                                        Vegan
+                                    </button>
+                                </div>
+                                <small class="text-muted d-md-none d-lg-block {{v.post_id}}">
+                                    21/12/25
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </section>
+
 <section class="main-section main-section3">
     <div class="container">
-    여기는 메인 섹션3
+        여기는 메인 섹션3
     </div>
 </section>
+
+{% if isMain %}
+{% include "footer.html" %}
+{% endif %}
 
 {% endblock contents %}
