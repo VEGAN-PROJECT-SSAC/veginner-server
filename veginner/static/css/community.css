@@ -34,3 +34,6 @@ input#id_food_name {
     color: white;
 }
 
+.contentHeight {
+    height: 70px;
+}
