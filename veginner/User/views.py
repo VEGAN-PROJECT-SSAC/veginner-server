@@ -4,9 +4,8 @@ from django.shortcuts import render
 from django.urls import reverse
 from allauth.account.views import PasswordChangeView
 
-# Create your views here.
 def index(req):
-    context = { 'mainHeaderBGColor' : 'main-header', 'mainHeaderFontColor' : 'main-header-font' } # main page's header bg-color: green color
+    context = { 'mainHeaderBGColor' : 'main-header', 'mainHeaderFontColor' : 'main-header-font', 'isMain': True } # main page's header bg-color: green color
     return render(req, 'main.html', context)
 
 class CustomPasswordChangeView(PasswordChangeView):
