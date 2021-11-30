@@ -1,7 +1,13 @@
+{% load static %}
 <header class="{{ mainHeaderBGColor }} d-flex align-contents-center">
     <div class="container d-flex justify-content-between align-items-center">
         <div>
             <a class="logo" href="{% url 'index' %}">
+                {% if isMain %}
+                <img alt="logo" class="me-1" src="{% static 'image/logo-white.png' %}">
+                {% else %}
+                <img alt="logo" class="me-1" src="{% static 'image/logo-green.png' %}">
+                {% endif %}
                 <span class="{{ mainHeaderFontColor }}">Veginner</span>
             </a>
         </div>
