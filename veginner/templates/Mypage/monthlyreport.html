@@ -24,29 +24,74 @@
 
     </div>
     <div class="fs-1">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur beatae eius inventore obcaecati odit
-        quo soluta, ut? Accusamus adipisci aliquid eius fugit itaque molestiae reprehenderit. Debitis deleniti qui
-        sit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur beatae eius inventore obcaecati
-        odit
-        quo soluta, ut? Accusamus adipisci aliquid eius fugit itaque molestiae reprehenderit. Debitis deleniti qui
-        sit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur beatae eius inventore obcaecati
-        odit
-        quo soluta, ut? Accusamus adipisci aliquid eius fugit itaque molestiae reprehenderit. Debitis deleniti qui
-        sit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur beatae eius inventore obcaecati
-        odit
-        quo soluta, ut? Accusamus adipisci aliquid eius fugit itaque molestiae reprehenderit. Debitis deleniti qui
-        sit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur beatae eius inventore obcaecati
-        odit
-        quo soluta, ut? Accusamus adipisci aliquid eius fugit itaque molestiae reprehenderit. Debitis deleniti qui
-        sit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur beatae eius inventore obcaecati
-        odit
-        quo soluta, ut? Accusamus adipisci aliquid eius fugit itaque molestiae reprehenderit. Debitis deleniti qui
-        sit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur beatae eius inventore obcaecati
-        odit
-        quo soluta, ut? Accusamus adipisci aliquid eius fugit itaque molestiae reprehenderit. Debitis deleniti qui
-        sit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur beatae eius inventore obcaecati
-        odit
-        quo soluta, ut? Accusamus adipisci aliquid eius fugit itaque molestiae reprehenderit. Debitis deleniti qui sit.
+        <div id="container"></div>
+        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+        <script type="text/javascript">
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Your Monthly Report'
+                },
+                xAxis: {
+                    categories: ["myReport"]
+                },
+                series: [{
+                    name: 'Vegan',
+                    data: [
+                        {% for vegan in dataset %}{{ vegan.Vegan_count }}{% endfor %}
+                    ],
+                    color: 'green'
+                }, {
+                    name: 'Lacto',
+                    data: [
+                        {% for vegan in dataset %}{{ vegan.Lacto_count }}{% endfor %}
+                    ],
+                    color: 'yellow'
+                }, {
+                    name: 'Ovo,
+                    data: [
+                        {% for vegan in dataset %}{{ vegan.Ovo_count }}{% endfor %}
+                    ],
+                    color: 'black'
+                }, {
+                    name: 'Lacto_Ovo',
+                    data: [
+                        {% for vegan in dataset %}{{ vegan.Lacto_Ovo_count }}{% endfor %}
+                    ],
+                    color: 'white'
+                }, {
+                    name: 'Pesco',
+                    data: [
+                        {% for vegan in dataset %}{{ vegan.Pesco_count }}{% endfor %}
+                    ],
+                    color: 'blue'
+                },{
+                    name: 'Pollo',
+                    data: [
+                        {% for vegan in dataset %}{{ vegan.Pollo_count }}{% endfor %}
+                    ],
+                    color: 'grey'
+                }, {
+                    name: 'Flexitarian',
+                    data: [{% for vegan in dataset %}{{ vegan.Flexitarian_count }}{% endfor %}
+                    ],
+                    color: 'red'
+                }
+                ]
+            // [{
+            //     name: 'Year 1800',
+            //     data: [107, 31, 635, 203, 2]
+            // }, {
+            //     name: 'Year 1900',
+            //     data: [133, 156, 947, 408, 6]
+            // }, {
+            //     name: 'Year 2012',
+            //     data: [1052, 954, 4250, 740, 38]
+            // }]
+            });
+        </script>
     </div>
 </section>
 
