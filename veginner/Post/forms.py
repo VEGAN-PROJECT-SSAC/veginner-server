@@ -6,7 +6,7 @@ POST_SORT_CHOICES = [
     ("Vegan", "Vegan"),
     ("Lacto", "Lacto"),
     ("Ovo", "Ovo"),
-    ("Lacto Ovo", "Lacto Ovo"),
+    ("Lacto-Ovo", "Lacto-Ovo"),
     ("Pesco", "Pesco"),
     ("Pollo", "Pollo"),
     ("Flexitarian", "Flexitarian")
@@ -16,7 +16,7 @@ POST_SORT_CHOICES = [
 class PostForm(forms.Form):
     date = forms.DateField(initial=datetime.date.today(), widget=NumberInput(attrs={'type': 'date'}), label='date', required=True)
     food_name = forms.CharField(max_length=50, label='food_name', required=True)
-    content = forms.CharField(widget=forms.Textarea, label='content', required=True)
+    content = forms.CharField(widget=forms.Textarea(attrs={'rows':4}), label='content', required=True)
     post_vegan_type = forms.ChoiceField(choices=POST_SORT_CHOICES, label='post_vegan_type', required=True)
     image = forms.ImageField(label='image', required=True)
 

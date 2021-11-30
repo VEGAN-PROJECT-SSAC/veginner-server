@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include('Post.urls')),
     path('', include('Mypage.urls')),
 
+
     # allauth.
     path(
         'email-confirmation-done/',

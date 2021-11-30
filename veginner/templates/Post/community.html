@@ -11,6 +11,78 @@
         </button>
     </div>
 
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-3 community_header text-white">
+                    <h5 class="modal-title" id="detailModalLabel">여기에 음식 이름 | 닉네임?</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3">
+                    <h2>{{user.nickname}}얘는 수정할 수 있음</h2>
+                    <form action="#" id="detail_post" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-center flex-row align-items-center mb-4">
+                                <div class="form-outline flex-fill mb-0 mt-3">
+                                    <i class="fas fa-calendar-check fa-lg me-3 fa-fw"></i>
+                                    <label class="form-label" for="floatingInput">날짜</label>
+                                    {{ form.date|attr:"class:floatingInput form-control"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <div class="form-outline flex-fill mb-0 mt-2">
+                                    <i class="fas fa-utensils fa-lg me-3 fa-fw"></i>
+                                    <label class="form-label" for="floatingInput">음식 이름</label>
+                                    {{ form.food_name|attr:"class:floatingInput form-control"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <div class="form-outline flex-fill mb-0">
+                                    <i class="fas fa-sticky-note fa-lg me-3 fa-fw"></i>
+                                    <label class="form-label" for="floatingInput">내용</label>
+                                    {{ form.content|attr:"class:floatingInput form-control"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <div class="form-outline flex-fill mb-0">
+                                    <i class="fas fa-sticky-note fa-lg me-3 fa-fw"></i>
+                                    <label class="form-label" for="floatingInput">이미지</label>
+                                    <img class="card-img-top" alt="Card image cap" style="height: 100%; width: 100px; display: block;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row d-flex flex-row align-items-center mb-4">
+                                <div class="col-6 form-outline">
+                                    <i class="fas fa-leaf fa-lg me-3 fa-fw"></i>
+                                    <label class="form-label" for="floatingInput">비건 유형</label>
+                                    {{ form.post_vegan_type|attr:"class:floatingInput form-control"}}
+                                </div>
+                                <div class="col-6 form-outline">
+                                    <i class="fas fa-file fa-lg me-3 fa-fw"></i>
+                                    <label class="form-label" for="floatingInput">파일 선택</label>
+                                    {{ form.image|attr:"class:floatingInput form-control"}}
+                                </div>
+                            </div>
+                            <input type="hidden" value="{{user.nickname}}" name="writer">
+                        </div>
+                        <div class="modal-footer p-2">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn community_btn" id="detail_btn">Add post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% if user.is_authenticated %}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -34,7 +106,7 @@
                         </div>
                         <div class="mb-3">
                             <div class="d-flex flex-row align-items-center mb-4">
-                                <div class="form-outline flex-fill mb-0 mt-3">
+                                <div class="form-outline flex-fill mb-0 mt-2">
                                     <i class="fas fa-utensils fa-lg me-3 fa-fw"></i>
                                     <label class="form-label" for="floatingInput">음식 이름</label>
                                     {{ form.food_name|attr:"class:floatingInput form-control"}}
@@ -83,50 +155,50 @@
         <div class="container">
             <div class="row">
                 {% for v in vegan %}
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-3 All {{v.post_vegan_type.vegan_sort}}">
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" alt="Card image cap" style="height: 225px; width: 100%; display: block;" src="media/{{ v.image }}" data-holder-rendered="true">
+                        <img class="card-img-top openmodal {{v.post_id}}" alt="Card image cap" style="height: 225px; width: 100%; display: block;" src="media/{{ v.image }}" data-holder-rendered="true"data-bs-toggle="modal" data-bs-target="#detailModal"
+                             data-bs-whatever="@mdo" id="{{v.post_id}}">
                         <div class="card-body">
-                            <h5 class="card-title">{{ v.food_name }}</h5>
-                            <p class="card-text">{{ v.content }}</p>
+                            <h5 class="card-title {{v.post_id}}">{{ v.food_name }}</h5>
+                            <p class="card-text {{v.post_id}}">{{ v.content }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">{{ v.writer.nickname }}</button>
-                                    <button type="button" class="btn btn-sm community-list-btn btn-outline-secondary">{{ v.post_vegan_type }}</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary {{v.post_id}}">{{ v.writer.nickname }}</button>
+                                    <button type="button" class="btn btn-sm community-list-btn btn-outline-secondary {{v.post_id}}">{{ v.post_vegan_type|truncatewords:1|cut:" …" }}</button>
                                 </div>
-                                <small class="text-muted">{{ v.date }}</small>
+                                <small class="text-muted d-md-none d-lg-block {{v.post_id}}">{{ v.date|date:"y/m/d" }}</small>
+                                <div class="d-none">{{v.date|date:"Y-m-d"}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
+                {% for s in semi %}
+                <div class="col-md-4 col-lg-3 All {{s.post_vegan_type.vegan_sort}}">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top openmodal {{s.post_id}}" alt="Card image cap" style="height: 225px; width: 100%; display: block;" src="media/{{ s.image }}" data-holder-rendered="true"data-bs-toggle="modal" data-bs-target="#detailModal"
+                             data-bs-whatever="@mdo" id="{{s.post_id}}">
+                        <div class="card-body">
+                            <h5 class="card-title {{s.post_id}}">{{ s.food_name }}</h5>
+                            <p class="card-text {{s.post_id}}">{{ s.content }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary {{s.post_id}}">{{ s.writer.nickname }}</button>
+                                    <button type="button" class="btn btn-sm community-list-btn btn-outline-secondary {{s.post_id}}">{{ s.post_vegan_type|truncatewords:1|cut:" …" }}</button>
+                                </div>
+                                <small class="text-muted d-md-none d-lg-block {{s.post_id}}">{{ s.date|date:"y/m/d" }}</small>
+                                <div class="d-none">{{s.date|date:"Y-m-d"}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <button type="button" class="sortType community-post-btn btn" id="All"><a href="{% url 'community' %}">All</a></button>
+                <button type="button" class="sortType community-post-btn btn" id="V">Vegan</button>
+                <button type="button" class="sortType community-post-btn btn" id="SV">Semi Vegan</button>
             </div>
         </div>
-    </div>
-
-
-
-<!--    <div class="d-flex justify-content-center">
-        {% for v in vegan %}
-        <div>
-            <p>Writer | {{ v.writer.nickname }}</p>
-            <p>Vegan_type | {{ v.post_vegan_type }}</p>
-            <p>Date | {{ v.date}}</p>
-            <p>Title | {{ v.food_name }}</p>
-            <p>Content | {{ v.content }}</p>
-            <img src="media/{{ v.image }}" alt="" width="200px" height="250px">
-        </div>
-        {% endfor %}-->
-        {% for s in semi %}
-        <div>
-            <p>Writer | {{ s.writer.nickname }}</p>
-            <p>Vegan_type | {{ s.post_vegan_type }}</p>
-            <p>Date | {{ s.date}}</p>
-            <p>Title | {{ s.food_name }}</p>
-            <p>Content | {{ s.content }}</p>
-            <img src="media/{{ s.image }}" alt="" width="200px" height="250px">
-        </div>
-        {% endfor %}
     </div>
 
     <!--                sweetalert2 CDN-->
@@ -162,20 +234,35 @@
                 });
             }
         });
-        // $(function(){
-        //     $('#post_submit').on('submit', function(e){
-        //         e.preventDefault();
-        //         console.log("ajax들어오기전");
-        //         $.ajax({
-        //             url: '{% url "posting" %}',
-        //             type: 'POST',
-        //             data: $("#post_submit").serialize(),
-        //             success: function(data){
-        //                 alert("Fail");
-        //             }
-        //         });
-        //     });
-        // });
+        $(".openmodal").click(function(e){
+            const card_id = e.target.id;
+            $("#id_food_name").attr("value", $("h5."+card_id).html());
+            $("#id_date").attr("value", $("small."+card_id).siblings(".d-none").html());
+            $("#id_content").val($("p."+card_id).html());
+            $("#id_content").parents().siblings(".mb-3").find("img").attr("src", $("#"+card_id).attr("src"));
+            $("#id_post_vegan_type").val($("button."+card_id+":last").html()).prop("selected", true);
+        });
+        $(".sortType").click(function(e){
+            const sort_id = e.target.id;
+            console.log(sort_id);
+            if (sort_id == "V") {
+                console.log("V임");
+                $(".album").find(".SV").addClass("d-none");
+                if($(".album").find(".V").hasClass("d-none")){
+                    $(".album").find(".V").removeClass("d-none");
+                }
+            }else if(sort_id == "SV"){
+                console.log("SV임");
+                $(".album").find(".V").addClass("d-none");
+                if($(".album").find(".SV").hasClass("d-none")) {
+                    $(".album").find(".SV").removeClass("d-none");
+                }
+            }else {
+                if($(".album").find(".All").hasClass("d-none")){
+                    $(".album").find(".All").removeClass("d-none");
+                }
+            }
+        });
     </script>
 </section>
 {% endblock contents %}
