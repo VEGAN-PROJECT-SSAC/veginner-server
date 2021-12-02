@@ -7,5 +7,6 @@ urlpatterns = [
     path('mypage/myinfo', views.myinfo, name='myinfo'),
     path('mypage/myposting', views.myposting, name='myposting'),
     path('mypage/monthlyreport', views.monthlyreport, name='monthlyreport'),
-
+    path('mypage/monthlyreport/data/', views.chart_data, name='chart_data'),
+#     path('mypage/monthlyreport/test/', views.chart_test, name='chart_test'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
