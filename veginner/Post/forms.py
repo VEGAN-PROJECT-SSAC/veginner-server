@@ -23,7 +23,7 @@ class PostForm(forms.Form):
     def clean(self):
         now = datetime.date.today()
         form_data = self.cleaned_data
-        if now > form_data["date"]:
+        if now < form_data["date"]:
             raise forms.ValidationError("오늘 날짜까지 입력할 수 있습니다.")
         if 'date' in self._errors:
             raise forms.ValidationError("date 에러")
