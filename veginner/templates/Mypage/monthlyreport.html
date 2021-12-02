@@ -24,62 +24,103 @@
 
     </div>
     <div class="fs-1">
-        <div id="container"></div>
-        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+        <figure class="highcharts-figure">
+            <div id="container"></div>
+            <p class="highcharts-description">
+                미치겠다.. 일단 전체 글까지는 띄ㅡ운 것 같애!!!!
+            </p>
+        </figure>
         <script type="text/javascript">
             Highcharts.chart('container', {
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: 'Your Monthly Report'
+                    text: 'My Monthly Report'
                 },
                 xAxis: {
-                    categories: ["myReport"]
-                },
-                series: [{
-                    name: 'Vegan',
-                    data: [
-                        {% for vegan in dataset %}{{ vegan.Vegan_count }}{% endfor %}
-                    ],
-                    color: 'green'
-                }, {
-                    name: 'Lacto',
-                    data: [
-                        {% for vegan in dataset %}{{ vegan.Lacto_count }}{% endfor %}
-                    ],
-                    color: 'yellow'
-                }, {
-                    name: 'Ovo,
-                    data: [
-                        {% for vegan in dataset %}{{ vegan.Ovo_count }}{% endfor %}
-                    ],
-                    color: 'black'
-                }, {
-                    name: 'Lacto_Ovo',
-                    data: [
-                        {% for vegan in dataset %}{{ vegan.Lacto_Ovo_count }}{% endfor %}
-                    ],
-                    color: 'white'
-                }, {
-                    name: 'Pesco',
-                    data: [
-                        {% for vegan in dataset %}{{ vegan.Pesco_count }}{% endfor %}
-                    ],
-                    color: 'blue'
-                },{
-                    name: 'Pollo',
-                    data: [
-                        {% for vegan in dataset %}{{ vegan.Pollo_count }}{% endfor %}
-                    ],
-                    color: 'grey'
-                }, {
-                    name: 'Flexitarian',
-                    data: [{% for vegan in dataset %}{{ vegan.Flexitarian_count }}{% endfor %}
-                    ],
-                    color: 'red'
-                }
-                ]
+                    categories: {{ categories|safe }}
+            },
+            series: [{
+                name: 'Vegan',
+                data: {{ Vegan_series }},
+            color: 'green'
+            }, {
+                name: 'Lacto',
+                    data: {{ Lacto_series }},
+                color: 'yellow'
+            }, {
+                name: 'Ovo',
+                    data: {{ Ovo_series }},
+                color: 'white'
+            }, {
+                name: 'Lacto-Ovo',
+                    data: {{ Lacto_Ovo_series }},
+                color: 'grey'
+            }, {
+                name: 'Pesco',
+                    data: {{ Pesco_series }},
+                color: 'blue'
+            }, {
+                name: 'Pollo',
+                    data: {{ Pollo_series }},
+                color: 'orange'
+            }, {
+                name: 'Flexitarian',
+                    data: {{ Flexitarian_series }},
+                color: 'red'
+            }]
+            });
+                // series: [
+                //     {
+                //     name: 'Vegan',
+                //     data: [
+                //         {% for vegan in dataset %}{{ vegan.Vegan_count }}{% endfor %}
+                //     ],
+                //     color: 'green'
+                // }, {
+                //     name: 'Lacto',
+                //     data: [
+                //         {% for vegan in dataset %}{{ vegan.Lacto_count }}{% endfor %}
+                //     ],
+                //     color: 'yellow'
+                // }, {
+                //     name: 'Ovo,
+                //     data: [
+                //         {% for vegan in dataset %}{{ vegan.Ovo_count }}{% endfor %}
+                //     ],
+                //     color: 'black'
+                // }, {
+                //     name: 'Lacto_Ovo',
+                //     data: [
+                //         {% for vegan in dataset %}{{ vegan.Lacto_Ovo_count }}{% endfor %}
+                //     ],
+                //     color: 'white'
+                // }, {
+                //     name: 'Pesco',
+                //     data: [
+                //         {% for vegan in dataset %}{{ vegan.Pesco_count }}{% endfor %}
+                //     ],
+                //     color: 'blue'
+                // },{
+                //     name: 'Pollo',
+                //     data: [
+                //         {% for vegan in dataset %}{{ vegan.Pollo_count }}{% endfor %}
+                //     ],
+                //     color: 'grey'
+                // }, {
+                //     name: 'Flexitarian',
+                //     data: [
+                //         {% for vegan in dataset %}{{ vegan.Flexitarian_count }}{% endfor %}
+                //     ],
+                //     color: 'red'
+                // }
+                // ]
             // [{
             //     name: 'Year 1800',
             //     data: [107, 31, 635, 203, 2]
@@ -90,7 +131,7 @@
             //     name: 'Year 2012',
             //     data: [1052, 954, 4250, 740, 38]
             // }]
-            });
+            //             });
         </script>
     </div>
 </section>
