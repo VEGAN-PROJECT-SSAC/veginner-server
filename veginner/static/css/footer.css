@@ -27,3 +27,35 @@ a:link, a:visited, a:active, a:hover {
 /*footer {*/
 /*    background-color: var(--green2-50);*/
 /*}*/
+
+/* md: 768px */
+@media (max-width: 768px) {
+    .footer-slogan {
+        font-size: 0.8em;
+    }
+
+    .copyright {
+        font-size: 0.5em;
+        font-weight: 300;
+    }
+
+    .about-team {
+        font-size: 0.5em;
+        font-weight: 300;
+    }
+
+    .sns {
+        font-size: 1em;
+    }
+
+    a.footer-logo > img {
+        width: 25px;
+    }
+
+
+    /* Other page's header bg-color: white */
+    .logo, .logo:hover {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+}
