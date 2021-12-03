@@ -39,3 +39,8 @@ input#id_food_name {
 .contentHeight {
     height: 70px;
 }
+
+/* post modal */
+.modal-info-icon {
+    color: #bbb;
+}
