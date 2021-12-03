@@ -16,42 +16,46 @@
                 Menu
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'monthlyreport' %}">월별 통계</a></li>
+                <li><a class="dropdown-item" href="{% url 'calendar' %}">월별 통계</a></li>
                 <li><a class="dropdown-item" href="{% url 'myinfo' %}">내 정보</a></li>
                 <li><a class="dropdown-item" href="{% url 'myposting' %}">내가 쓴 글</a></li>
             </ul>
         </div>
 
     </div>
-    <div class="fs-1">
-<!--        <script src="https://code.highcharts.com/highcharts.js"></script>-->
-<!--        <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
-<!--        <script src="https://code.highcharts.com/modules/export-data.js"></script>-->
-<!--        <script src="https://code.highcharts.com/modules/accessibility.js"></script>-->
-        <script src="https://code.highcharts.com/highcharts.src.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-        <figure class="highcharts-figure">
-            <div id="container" data-url="{% url 'chart_data' %}"></div>
-            <p class="highcharts-description">
-                미치겠다.. 일단 전체 글까지는 띄ㅡ운 것 같애!!!!
-            </p>
-        </figure>
-        <script>
-            $.ajax({
-                url: $("#container").attr("data-url"),
-                dataType: 'json',
-                success: function (data) {
-                    Highcharts.chart("container", data);
-                }
-            });
-        </script>
-        <script>
-            Highcharts.setOptions({
-                colors: ['yellow', 'orange', '#5c8456', '#679661', 'blue', '#82b17e', 'red']
-            })
-        </script>
+    <div class="container">
+{{calendar}}
+        </div>
     </div>
+<!--    <div class="fs-1">-->
+<!--&lt;!&ndash;        <script src="https://code.highcharts.com/highcharts.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;        <script src="https://code.highcharts.com/modules/exporting.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;        <script src="https://code.highcharts.com/modules/export-data.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;        <script src="https://code.highcharts.com/modules/accessibility.js"></script>&ndash;&gt;-->
+<!--        <script src="https://code.highcharts.com/highcharts.src.js"></script>-->
+<!--        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+
+<!--        <figure class="highcharts-figure">-->
+<!--            <div id="container" data-url="{% url 'chart_data' %}"></div>-->
+<!--            <p class="highcharts-description">-->
+<!--                미치겠다.. 일단 전체 글까지는 띄ㅡ운 것 같애!!!!-->
+<!--            </p>-->
+<!--        </figure>-->
+<!--        <script>-->
+<!--            $.ajax({-->
+<!--                url: $("#container").attr("data-url"),-->
+<!--                dataType: 'json',-->
+<!--                success: function (data) {-->
+<!--                    Highcharts.chart("container", data);-->
+<!--                }-->
+<!--            });-->
+<!--        </script>-->
+<!--        <script>-->
+<!--            Highcharts.setOptions({-->
+<!--                colors: ['#224735', '#2d634d', '#5c8456', '#70a46a', '#96bf93', '#b2d0b1', '#b2d9d7']-->
+<!--            })-->
+<!--        </script>-->
+<!--    </div>-->
 </section>
 
 {% endblock contents %}
