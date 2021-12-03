@@ -16,11 +16,9 @@
                 <div class="d-none d-lg-block">
                     {% if user.is_authenticated %}
                     <a class="about-login ms-2" href="{% url 'myinfo' %}">
-                        <span class="{{ mainHeaderFontColor }}">{{user.nickname}}님</span>
+                        <span class="{{ mainHeaderFontColor }}">{{user.nickname}}님, 환영합니다!</span>
                     </a>
-                    <a class="about-login ms-2" href="{% url 'account_change_password' %}">
-                        <span class="{{ mainHeaderFontColor }}">비밀번호 변경</span>
-                    </a>
+
                     {% endif %}
                 </div>
 
