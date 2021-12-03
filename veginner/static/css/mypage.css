@@ -27,6 +27,11 @@
     color: var(--green2-900);
 }
 
+.mypage-header h3 {
+    color: var(--green2-900);
+}
+
+/* myinfo.html */
 .myinfo-username {
     color: var(--green2-900);
     font-size: 1.2rem;
@@ -127,4 +132,66 @@
 
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
+}
+
+/* myposting.html */
+.myposting-table-row {
+    height: 40px;
+    line-height: 40px;
+}
+
+.myposting-table-head {
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: var(--green2-100);
+    color: var(--green2-900);
+}
+
+.myposting-table-body {
+    font-size: 0.95rem;
+    height: 30px;
+    line-height: 30px;
+    color: var(--green2-900);
+    transition: all 0.25s ease-in;
+}
+
+.myposting-table-body:hover {
+    cursor: pointer;
+    font-weight: 500;
+    background-color: var(--yellow-50);
+    color: var(--green2-900);
+}
+
+.myposting-table-body-none {
+    font-size: 0.95rem;
+    height: 200px;
+    line-height: 200px;
+    color: var(--green2-900);
+}
+
+.body-none-link {
+    font-weight: 500;
+}
+
+.myposting-table-body > div { /* width 좁아질 때 말줄임표 */
+    width: 25%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+    .myposting-table-head {
+        font-size: 0.9rem;
+    }
+
+    .myposting-table-body {
+        font-size: 0.8rem;
+        height: 25px;
+        line-height: 25px;
+    }
+
+    .myposting-table-body > div { /* width 좁아질 때 말줄임표 */
+        width: 33%;
+    }
 }

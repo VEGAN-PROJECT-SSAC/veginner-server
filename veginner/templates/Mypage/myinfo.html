@@ -46,20 +46,17 @@
                             <input class="form-control" id="myinfo-nickname" type="text" value="{{user.nickname}}">
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-3">
                         <div class="col-3">
                             <label class="myinfo-label" for="myinfo-password">password</label>
                         </div>
-                        <div class="col-9"><input class="form-control" id="myinfo-password" type="password"
-                                                  value="{{user.password}}"></div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-3">
-                            <label class="myinfo-label" for="myinfo-password-confirm">password confirm</label>
+                        <div class="col-9">
+                            <a href="{% url 'account_change_password' %}">
+                                <span>비밀번호 변경하기</span>
+                            </a>
                         </div>
-                        <div class="col-9"><input class="form-control" id="myinfo-password-confirm" type="text"
-                                                  value="{{user.password}}"></div>
                     </div>
+
                 </div>
                 <div class="d-flex justify-content-center mt-4">
                     <button class="btn myinfo-btn" type="submit">정보 변경하기</button>
