@@ -33,7 +33,7 @@ class Post(models.Model):
     post_vegan_type = models.ForeignKey(Vegan_type, on_delete=models.CASCADE, verbose_name='비건 종류', null=False)
     image = models.ImageField(null=False, verbose_name='음식 사진', upload_to='')
     content = TextField(verbose_name='내용')
-    write_time = models.DateTimeField(auto_now=True, verbose_name="작성 시간")
+    write_time = models.DateTimeField(auto_now_add=True, verbose_name="작성 시간")
     like = models.ManyToManyField(User, related_name='likes', blank=True)
     @property
     def like_count(self):
