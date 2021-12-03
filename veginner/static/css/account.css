@@ -1,0 +1,15 @@
+/* login page, signup page */
+section.login-section, section.signup-section, section.pwchange-section {
+    height: calc(100vh - 100px);
+}
+
+section.login-section button, section.signup-section button, section.pwchange-section button {
+    background-color: var(--green2-900);
+    color: var(--green2-50);
+}
+
+section.login-section button:hover, section.signup-section button:hover, section.pwchange-section button:hover {
+    color: var(--green2-50);
+
+}
+

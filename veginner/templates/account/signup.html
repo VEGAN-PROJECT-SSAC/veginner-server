@@ -3,7 +3,7 @@
 {% load widget_tweaks %}
 {% block contents %}
 
-<section class="vh-100">
+<section class="signup-section">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">
@@ -11,7 +11,6 @@
                     <div class="card-body p-md-5">
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">회원가입</p>
 
                                 <form class="mx-1 mx-md-4" method="post">
@@ -20,34 +19,30 @@
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="floatingInput">Email</label>
-                                            {{ form.email|attr:"class:floatingInput form-control"}}
+                                            {{ form.email|attr:"class:form-control"}}
                                         </div>
                                     </div>
-
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="floatingInput">Nickname</label>
-                                            {{ form.nickname|attr:"class:floatingInput form-control"}}
+                                            {{ form.nickname|attr:"placeholder:닉네임"|add_class:"form-control" }}
                                         </div>
                                     </div>
-
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="floatingInput">Password</label>
-                                            {{ form.password1|attr:"class:floatingInput form-control"}}
+                                            {{ form.password1|attr:"class:form-control"}}
                                         </div>
                                     </div>
-
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="floatingInput">Confirm Password</label>
-                                            {{ form.password2|attr:"class:floatingInput form-control"}}
+                                            {{ form.password2|attr:"class:form-control"}}
                                         </div>
                                     </div>
-
                                     <div class="form-check d-flex justify-content-center mb-5">
                                         <input
                                                 class="form-check-input me-2"
@@ -60,22 +55,20 @@
                                         </label>
                                     </div>
                                     <div>
-                                        <p>이미 회원이신가요?<a href="{% url 'account_login' %}">로그인 하기</a></p>
-                                        <p>비밀번호를 잊어버리셨나요?<a href="{% url 'account_reset_password' %}">비밀번호 찾기</a></p>
+                                        <p>이미 회원이신가요?<a href="{% url 'account_login' %}">&nbsp;로그인 하기</a></p>
+                                        <p>비밀번호를 잊어버리셨나요?<a href="{% url 'account_reset_password' %}">&nbsp;비밀번호 찾기</a>
+                                        </p>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button class="btn btn-success btn-lg" type="submit">Register</button>
+                                        <button class="btn btn-lg" type="submit">Register</button>
                                     </div>
-
                                 </form>
 
                             </div>
-                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
+                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2  p-md-2 p-xl-5">
                                 <img alt="Sample image"
                                      class="img-fluid"
-                                     src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-registration/draw1.png">
-
+                                     src="{% static 'image/signup-vegan.png' %}">
                             </div>
                         </div>
                     </div>
