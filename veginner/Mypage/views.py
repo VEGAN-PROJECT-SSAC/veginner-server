@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.db.models import Count, Q
 from django.shortcuts import render
@@ -14,7 +14,7 @@ from django.views import generic
 
 from Post.models import Vegan_type, Post
 from User.models import User
-from Post.utils import Calendar
+from Mypage.utils import Calendar
 
 
 # Create your views here.
@@ -87,10 +87,17 @@ class CalendarView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         d = get_date(self.request.GET.get('day', None))
-        cal = Calendar(d.year, d.month)
+        user = self.request.user
+        print('여기', user)
+        cal = Calendar(d.year, d.month, user)
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal)
         return context
+
+    def get(self, request, *args, **kwargs):
+        myCalSession = Session.objects.get(pk=request.session.session_key).get_decoded()["_auth_user_id"]
+        request.session['myCalSession'] = myCalSession
+        return super().get(request, *args, **kwargs)
 
 def get_date(req_day):
     if req_day:
@@ -98,6 +105,64 @@ def get_date(req_day):
         return date(year, month, day=1)
     return datetime.today()
 
+#     model = Post
+#     template_name = 'Mypage/calendar.html'
+# #     session = Session.objects.get(pk=request.session.session_key).get_decoded()["_auth_user_id"]
+# #     print(session.session_key)
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         d = get_date(self.request.GET.get('day', None))
+#         cal = Calendar(d.year, d.month)
+#         html_cal = cal.formatmonth(withyear=True)
+#         context['calendar'] = mark_safe(html_cal)
+#         context['myCalSession'] = self.request.session['myCalSession']
+#         return context
+#
+#     def get(self, request, *args, **kwargs):
+#         myCalSession = Session.objects.get(pk=request.session.session_key).get_decoded()["_auth_user_id"]
+#         print(myCalSession)
+#         request.session['myCalSession'] = myCalSession
+#         return super().get(request, *args, **kwargs)
+#
+# def get_date(req_day):
+#     if req_day:
+#         year, month = (int(x) for x in req_day.split('-'))
+#         return date(year, month, day=1)
+#     return datetime.today()
+
+#         d = get_date(self.request.GET.get('month', None))
+#         context['prev_month'] = prev_month(d)
+#         context['next_month'] = next_month(d)
+#         return month
+
+# prev_month, next_month를 매개 변수로 사용
+# 버튼을 누르면 해달 날짜가 요청됨 + self.req.GET.get 방식으로 들고 옴
+# def prev_month(d):
+#     first = d.replace(day=1)
+#     prev_month = first - timedelta(days=1)
+#     month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+#     return month
+#
+# def next_month(d):
+#     days_in_month = calendar.monthrange(d.year, d.month)[1]
+#     last = d.replace(day=days_in_month)
+#     next_month = last + timedelta(days=1)
+#     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+#     return month
+#
+#
+# def event(req, post_id=None):
+#     instance = Post()
+#     if post_id:
+#         instance = get_object_or_404(Post, pk=post_id)
+#     else:
+#         instance = Post()
+#     form = PostForm(req.POST or None, instance=instance)
+#     if req.POST and form.is_valid():
+#         form.save()
+#         return HttpResponseRedirect(reverse('cal:calendar'))
+#     return render(req, 'Post/community.html', {'form': form})
 
 
 

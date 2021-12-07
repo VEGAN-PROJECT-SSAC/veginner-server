@@ -28,15 +28,35 @@
     font-size: 16px;
 }
 
-ul {
+ul.calendar-ul {
     height: 100%;
     padding: 0px 5px 0px 20px;
 }
 
-li {
-    list-style:none;
+li.calendar-li {
+    list-style: none;
 }
+
 .Vegan {
     background-color: var(--green2-900);
     color: var(--green2-50);
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.btn {
+    outline: none;
+    color: black;
+    background-color: transparent;
+    box-shadow: 0 0 0 0;
+}
+
+.clearfix {
+    margin: 15px;
 }
