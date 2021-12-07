@@ -9,6 +9,8 @@ import sweetify
 import datetime
 from django.contrib.sessions.models import Session
 from django.db.models import Count
+from django.core.paginator import Paginator
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def community(req):
@@ -55,33 +57,15 @@ def community(req):
                 posts = post_value.annotate(like_count=Count('like')).order_by('-like_count','-write_time')
             else:
                 posts = post_value.order_by('-write_time')
-        # ordering
-#         if order == 'Recent':# 8000/community?sort=Vegan&order=Recent
-#             # post = Post.objects.annotate(like=Count(''))
-#             post = Post.objects.order_by('-write_time')
-#         elif order == 'Likes':
-# #             post = Post.objects.values_list('post_vegan_type').annotate(like_count=Count('like')).order_by('-like_count','-write_time')
-#             post = Post.objects.values('post_id', 'writer__nickname', 'food_name', 'post_vegan_type__vegan_type', 'date', 'image', 'content').annotate(like_count=Count('like')).order_by('-like_count','-write_time')
-#             post = Post.objects.annotate(like_count=Count('like')).order_by('-like_count','-write_time').distinct('post_id')
-#             post = Post.objects.order_by('-like','-write_time').values('writer', 'food_name').distinct()
-#             print(Post.objects.values('like_count'))
-#             post = Post.objects.annotate(like_count=Count('like')).order_by('-like_count','-write_time')[0]
-#             post = Post.objects.order_by('-like')
-#             for l in likes:
-#                 print(l)
-#             print(Post.objects.annotate(like_count=Count('like')))
-#             print(Post.objects.get(post_id=1017).like.count())
-#             like_count = Post.objects.order_by('-like_count')
-#             print(like_count)
-#             posting = Post.objects.prefetch_related('User_set').annotate(like_count=Count('like')).order_by('-like_count','-write_time')
-#             print(posting)
-#             print(Post.objects.all().order_by('like').distinct('post_id'))
         print(posts)
+        paginator = Paginator(posts, 12)
+        post_list = paginator.get_page(page)
         context = {
-            "post": posts,
+            "post": post_list,
             "form": form
         }
         return render(req, 'Post/community.html', context)
+
 def posting(req):
     form = PostForm()
     form.save()
@@ -91,5 +75,25 @@ def posting(req):
 def about(req):
     return render(req, 'Post/about.html')
 
-def detail(req):
-    return render(req, 'Post/detail.html')
+def detail(req,post_id):
+    post_detail = get_object_or_404(Post, pk=post_id)
+    return render(req, 'Post/detail.html', {'post': post_detail})
+
+def delete(req,post_id):
+    selected_post = Post.objects.get(post_id=post_id)
+    selected_post.delete()
+    return redirect("community")
+
+def update(req,post_id):
+    update_post = Post.objects.get(post_id = post_id)
+    if req.method == "POST":
+        update_post.date = req.POST['date']
+        update_post.food_name = req.POST['food_name']
+        update_post.content = req.POST["content"]
+        update_post.post_vegan_type = Vegan_type.objects.get(vegan_type=req.POST["post_vegan_type"])
+        update_post.save()
+        return redirect('detail',post_id)
+
+    else:
+        update_postForm = PostForm
+        return render(req, 'Post/detail.html', {'form':update_postForm})
