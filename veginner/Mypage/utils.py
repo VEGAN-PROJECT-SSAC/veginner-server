@@ -21,7 +21,7 @@ class Calendar(HTMLCalendar):
         d = ''
         # 문자열{변수}문자열 사용할 때 쓰는 파이썬 f-string 함수입니다
         for event in events_per_day:
-            d += f'<li class="{event.post_vegan_type.vegan_type}"> {event.food_name} | {event.post_vegan_type} </li>'
+            d += f'<li class="{event.post_vegan_type.vegan_type}"> {event.writer} | {event.post_vegan_type} </li>'
 
         if day != 0:
             return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
@@ -37,8 +37,12 @@ class Calendar(HTMLCalendar):
     # formats a month as a table
     # filter events by year and month
     def formatmonth(self, withyear=True):
-        Posts = Post.objects.filter(Q(date__year=self.year, date__month=self.month))
-        print(Posts)
+        Posts = Post.objects.values('post_id').filter(date__year=self.year, date__month=self.month)
+        print(self.year)
+        print(self.month)
+        print("나는 포스트 필터한거",Posts)
+        All = Post.objects.values('post_id').all()
+        print("모두", All)
 #         events = Post.objects.filter(date__year=self.year, date__month=self.month)
         cal = f'<table border="0" cellpadding="0" cellspacing="0" class="calendar">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
