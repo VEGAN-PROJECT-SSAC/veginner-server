@@ -179,35 +179,69 @@
             <div class="row">
                 {% for v in post %}
                 <div class="col-md-4 col-lg-3 All {{v.post_vegan_type.vegan_sort}}">
-                    <div class="card mb-4 box-shadow">
+                    <div class="card-item card-item-main card mb-4 box-shadow">
                         <img alt="Card image cap" class="card-img-top openmodal {{v.post_id}}"
                              data-bs-target="#detailModal" data-bs-toggle="modal"
                              data-bs-whatever="@mdo" data-holder-rendered="true" id="{{v.post_id}}"
-                             src="media/{{ v.image }}" style="height: 225px; width: 100%; display: block;">
+                             src="media/{{ v.image }}"
+                             style="height: 225px; width: 100%; display: block;">
                         <div class="card-body">
-                            <h5 class="card-title {{v.post_id}}">{{ v.food_name }}</h5>
-                            <h5 class="card-title {{v.post_id}}">{{ v.post_id }}</h5>
-                            <h5 class="card-title {{v.post_id}}">{{ v.like_count }}</h5>
-                            <p class="card-text {{v.post_id}}">{{ v.content|truncatechars:20 }}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button class="btn btn-sm btn-outline-secondary {{v.post_id}}" type="button">
-                                        {{ v.writer__nickname }}
-                                    </button>
-                                    <button class="btn btn-sm community-list-btn btn-outline-secondary {{v.post_id}}"
-                                            type="button">
-                                        {{ v.post_vegan_type__vegan_type|truncatewords:1|cut:" …" }}
-                                    </button>
+                            <div class="card-item-detail-1 d-flex justify-content-between align-items-start">
+                                <div class="card-item-detail-box">
+                                    <div class="card-item-title {{v.post_id}}">{{ v.food_name }}</div>
+                                    <div class="mt-1">
+                                        {% if v.post_vegan_type__vegan_type == 'Vegan' %}
+                                        <span class="card-item-type card-item-type-8 {{v.post_id}}"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Lacto' %}
+                                        <span class="card-item-type card-item-type-9 {{v.post_id}}"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Ovo' %}
+                                        <span class="card-item-type card-item-type-10 {{v.post_id}}"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Lacto-Ovo' %}
+                                        <span class="card-item-type card-item-type-11 {{v.post_id}}"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Pesco' %}
+                                        <span class="card-item-type card-item-type-12 {{v.post_id}}"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Pollo' %}
+                                        <span class="card-item-type card-item-type-13 {{v.post_id}}"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Flexitarian' %}
+                                        <span class="card-item-type card-item-type-14 {{v.post_id}}"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% endif%}
+                                    </div>
                                 </div>
-                                <small class="text-muted d-md-none d-lg-block {{v.post_id}}">
-                                    {{ v.date|date:"y/m/d" }}
-                                </small>
-                                <div class="d-none">{{v.date|date:"Y-m-d"}}</div>
+                                <button class="btn card-item-likeBtn p-0"><i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="card-item-detail-2 d-flex justify-content-between mt-3">
+                                <div class="card-item-nickname {{v.post_id}}">
+                                    {{ v.writer__nickname }} 님
+                                </div>
+                                <div class="card-item-date {{v.post_id}}">
+                                    {{ v.date|date:"y.m.d" }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
+
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center">
+                    {% if post.has_previous %}
+                    <span>
+                        <a href="?page=1"><i class="fas fa-chevron-left"></i></a>
+                        <a href="?page={{post.previous_page_number}}"><i class="fas fa-angle-left"></i></a>
+
+                    </span>
+                    {% endif %}
+                    <span class="mx-2">{{ post.number }}&nbsp;/&nbsp;{{ post.paginator.num_pages }}</span>
+                    {% if post.has_next %}
+                    <span>
+                        <a href="?page={{post.next_page_number}}"><i class="fas fa-angle-right"></i></a>
+                        <a href="?page={{post.paginator.num_pages}}"><i class="fas fa-chevron-right"></i></a>
+                    </span>
+                    {% endif %}
+                </div>
+
+
                 <button class="sortType community-post-btn btn" id="All" type="button"><a href="{% url 'community' %}">All</a>
                 </button>
                 <button class="sortType community-post-btn btn" id="V" type="button">Vegetarian</button>
@@ -307,6 +341,10 @@
             } else {
                 $('.order-Default').prop('selected', 'selected')
             }
+            var sort = getUrlParameter('sort');
+            console.log(sort);
+            var page = getUrlParameter('page');
+            console.log(page);
         });
     </script>
 </section>
