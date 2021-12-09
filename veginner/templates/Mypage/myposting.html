@@ -60,7 +60,7 @@
         {% for post in my_posts %}
         <div class="row myposting-table-row myposting-table-body my-2"
              onclick="location.href='../community/detail/{{post.post_id}}'">
-            <div class="col-4 col-md-3 text-md-center">{{post.write_time|date:'y-m-d'}}</div>
+            <div class="col-4 col-md-3 text-md-center">{{post.date|date:'y-m-d'}}</div>
             <div class="col-4 col-md-3 text-md-center">{{post.food_name}}</div>
             <div class="col-4 col-md-3 text-md-center">{{post.post_vegan_type|truncatewords:1|cut:" …"}}</div>
             <div class="d-none d-md-block col-md-3 text-center">{{post.like_count}}</div>

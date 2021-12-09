@@ -2,15 +2,17 @@
 from __future__ import unicode_literals
 
 import json
-from datetime import datetime, timedelta
+import calendar
+from datetime import datetime, timedelta, date
 
 from django.db.models import Count, Q
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.sessions.models import Session
 from django.utils.safestring import mark_safe
 from django.core.paginator import Paginator
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.views import generic
+from django.urls import reverse
 
 from Post.models import Vegan_type, Post
 from User.models import User
@@ -32,27 +34,7 @@ def myposting(req):
 
     return render(req, 'Mypage/myposting.html', {'my_posts' : my_posts})
 
-#   @pagination
-#   paginator = Paginator(post_list, 6)
-#   page = req.GET.get('page')
-#
-#   if page is None:
-#       page = 1
-#   else:
-#       page = int(page)
-#
-#   firstPage = (page//10) * 10 +1   # 페이지 시작
-#   LastPage = firstPage+10           # 페이지 끝
-#   my_post = paginator.get_page(page) # 페이지 번호 인자로 넘겨주기
-#   count = [1,2,3]
-#   if LastPage > my_post.paginator.num_pages:
-#   LastPage = my_post.paginator.num_pages+1
-#   pageRange = range(firstPage,LastPage)
-#
 def monthlyreport(req):
-#     c = calendar.HTMLCalendar().formatmonth(datetime.today().year, datetime.today().month)
-#     print(c)
-#     return render(req, 'Mypage/monthlyreport.html', {'c': mark_safe(c)})
     return render(req, 'Mypage/monthlyreport.html')
 
 def chart_data(req):
@@ -81,6 +63,41 @@ def chart_data(req):
     return JsonResponse(chart)
 
 class CalendarView(generic.ListView):
+#     model = Post
+#     template_name = 'Mypage/calendar.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         d = get_date(self.request.GET.get('month', None))
+#         cal = Calendar(d.year, d.month)
+#         html_cal = cal.formatmonth(withyear=True)
+#         context['calendar'] = mark_safe(html_cal)
+#         context['prev_month'] = prev_month(d)
+#         context['next_month'] = next_month(d)
+#         return context
+#
+# def get_date(req_month):
+#     if req_month:
+#         year, month = (int(x) for x in req_month.split('-'))
+#         return date(year, month, day=1)
+#     return datetime.today()
+#
+# def prev_month(d):
+#     first = d.replace(day=1)
+#     prev_month = first - timedelta(days=1)
+#     month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+#     return month
+#
+# def next_month(d):
+#     days_in_month = calendar.monthrange(d.year, d.month)[1]
+#     last = d.replace(day=days_in_month)
+#     next_month = last + timedelta(days=1)
+#     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+#     return month
+
+
+
+####################### 원래 얘..
     model = Post
     template_name = 'Mypage/calendar.html'
 
@@ -104,181 +121,4 @@ def get_date(req_day):
         year, month = (int(x) for x in req_day.split('-'))
         return date(year, month, day=1)
     return datetime.today()
-
-#     model = Post
-#     template_name = 'Mypage/calendar.html'
-# #     session = Session.objects.get(pk=request.session.session_key).get_decoded()["_auth_user_id"]
-# #     print(session.session_key)
 #
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         d = get_date(self.request.GET.get('day', None))
-#         cal = Calendar(d.year, d.month)
-#         html_cal = cal.formatmonth(withyear=True)
-#         context['calendar'] = mark_safe(html_cal)
-#         context['myCalSession'] = self.request.session['myCalSession']
-#         return context
-#
-#     def get(self, request, *args, **kwargs):
-#         myCalSession = Session.objects.get(pk=request.session.session_key).get_decoded()["_auth_user_id"]
-#         print(myCalSession)
-#         request.session['myCalSession'] = myCalSession
-#         return super().get(request, *args, **kwargs)
-#
-# def get_date(req_day):
-#     if req_day:
-#         year, month = (int(x) for x in req_day.split('-'))
-#         return date(year, month, day=1)
-#     return datetime.today()
-
-#         d = get_date(self.request.GET.get('month', None))
-#         context['prev_month'] = prev_month(d)
-#         context['next_month'] = next_month(d)
-#         return month
-
-# prev_month, next_month를 매개 변수로 사용
-# 버튼을 누르면 해달 날짜가 요청됨 + self.req.GET.get 방식으로 들고 옴
-# def prev_month(d):
-#     first = d.replace(day=1)
-#     prev_month = first - timedelta(days=1)
-#     month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
-#     return month
-#
-# def next_month(d):
-#     days_in_month = calendar.monthrange(d.year, d.month)[1]
-#     last = d.replace(day=days_in_month)
-#     next_month = last + timedelta(days=1)
-#     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
-#     return month
-#
-#
-# def event(req, post_id=None):
-#     instance = Post()
-#     if post_id:
-#         instance = get_object_or_404(Post, pk=post_id)
-#     else:
-#         instance = Post()
-#     form = PostForm(req.POST or None, instance=instance)
-#     if req.POST and form.is_valid():
-#         form.save()
-#         return HttpResponseRedirect(reverse('cal:calendar'))
-#     return render(req, 'Post/community.html', {'form': form})
-
-
-
-# def chart_test(req):
-#     import pandas as pd
-#     import numpy as np
-#
-#     mySession = Session.objects.get(pk=req.session.session_key).get_decoded()["_auth_user_id"]
-#     dataset = Post.objects \
-#         .values('post_vegan_type').filter(writer=mySession) \
-#         .annotate(Total_count=Count('post_vegan_type'))
-#
-#     df = pd.DataFrame(dataset, columns=["Vegan"])
-#
-#     X = df.iloc[1:,:]
-#     y = df.iloc[:,0]
-#
-#     from sklearn.model_selection import train_test_split
-#     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.20)
-#
-#     from sklearn.preprocessing import StandardScaler
-#     scaler = StandardScaler()
-#     scaler.fit(X_train)
-#
-#     X_train = scaler.transform(X_train)
-#     X_test = scaler.transform(X_test)
-#
-#     from sklearn.neighbors import KNeighborsRegressor
-#     classifier =  KNeighborsRegressor(n_neighbors=5)
-#     classifier.fit(X_train, y_train)
-#
-#     y_pred = classifier.predict(X_test)
-#     mape = np.mean(abs(y_pred - y_test)/y_test)
-#     print(mape)
-#
-#     return render(req, 'Mypage/monthlyreport.html')
-
-#def monthlyreport(req):
-#     mySession = Session.objects.get(pk=req.session.session_key).get_decoded()["_auth_user_id"]
-#     dataset = Post.objects \
-#         .values('post_vegan_type').filter(writer=mySession) \
-#         .annotate(Vegan_count=Count('post_vegan_type', filter=Q(post_vegan_type=8)), Lacto_count=Count('post_vegan_type', filter=Q(post_vegan_type=9)), Ovo_count=Count('post_vegan_type', filter=Q(post_vegan_type=10)), Lacto_Ovo_count=Count('post_vegan_type', filter=Q(post_vegan_type=11)),Pesco_count=Count('post_vegan_type', filter=Q(post_vegan_type=12)),Pollo_count=Count('post_vegan_type', filter=Q(post_vegan_type=13)), Flexitarian_count=Count('post_vegan_type', filter=Q(post_vegan_type=14)))
-#
-#     categories = list()
-#     Vegan_series_data = list()
-#     Lacto_series_data = list()
-#     Ovo_series_data = list()
-#     Lacto_Ovo_series_data = list()
-#     Pesco_series_data = list()
-#     Pollo_series_data = list()
-#     Flexitarian_series_data = list()
-#
-#     for vegan in dataset:
-#         categories.append('%s Class' % vegan['post_vegan_type'])
-#         Vegan_series_data.append(vegan['Vegan_count'])
-#         Lacto_series_data.append(vegan['Lacto_count'])
-#         Ovo_series_data.append(vegan['Ovo_count'])
-#         Lacto_Ovo_series_data.append(vegan['Lacto_Ovo_count'])
-#         Pesco_series_data.append(vegan['Pesco_count'])
-#         Pollo_series_data.append(vegan['Pollo_count'])
-#         Flexitarian_series_data.append(vegan['Flexitarian_count'])
-#
-#     Vegan_series = {
-#         'name': 'Vegan',
-#         'data': Vegan_series_data,
-#         'color': 'green'
-#     }
-#
-#     Lacto_series = {
-#         'name': 'Lacto',
-#         'data': Lacto_series_data,
-#         'color': 'grey'
-#         }
-#
-#     Ovo_series = {
-#         'name': 'Ovo',
-#         'data': Ovo_series_data,
-#         'color': 'yellow'
-#         }
-#
-#     Lacto_Ovo_series = {
-#         'name': 'Lacto-Ovo',
-#         'data': Lacto_Ovo_series_data,
-#         'color': 'lightgreen'
-#         }
-#
-#     Pesco_series = {
-#         'name': 'Pesco',
-#         'data': Pesco_series_data,
-#         'color': 'blue'
-#         }
-#
-#     Pollo_series = {
-#         'name': 'Pollo',
-#         'data': Pollo_series_data,
-#         'color': 'orange'
-#         }
-#
-#     Flexitarian_series = {
-#         'name': 'Flexitarian',
-#         'data': Flexitarian_series_data,
-#         'color': 'red'
-#         }
-#
-#     chart = {
-#         'chart': {'type': 'column'},
-#         'title': {'text': 'My Monthly Report'},
-#         'xAxis': {'categories': categories},
-#         'series': [Vegan_series, Lacto_series, Ovo_series, Lacto_Ovo_series, Pesco_series, Pollo_series, Flexitarian_series]
-#     }
-#
-#     dump = json.dumps(chart)
-#
-#     print(Session.objects.get(pk=req.session.session_key).get_decoded()["_auth_user_id"])
-#     print("여기",Post.objects.values('writer').filter(writer=mySession))
-#     print(Post.objects.values('post_vegan_type'))
-#     print('쿼리셋 생김')
-#
-#     return render(req, 'Mypage/monthlyreport.html', {'chart': dump})
