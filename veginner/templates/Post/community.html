@@ -11,88 +11,27 @@
                 type="button">글쓰기
         </button>
     </div>
-    <select id="order-select" onchange="location = this.value;">
-        <option class="order-Default" value="?order=Default">--정렬--</option>
-        <option class="order-Recent" value="?order=Recent">최신순</option>
-        <option class="order-Likes" value="?order=Likes">좋아요순</option>
-        <!--        {% if user.is_authenticated %}-->
-        <!--        <option class="sort-mypost" value="?sort=mypost">내가쓴글</option>-->
-        <!--        {% endif %}-->
-    </select>
-    <button class="community-post-btn btn" type="button">Vegan</button>
-    <div aria-hidden="true" aria-labelledby="detailModalLabel" class="modal fade" id="detailModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header p-3 community_header text-white">
-                    <h5 class="modal-title" id="detailModalLabel">내 식단 등록</h5>
-                    <button aria-label="Close" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            type="button"></button>
-                </div>
-                <div class="modal-body p-3">
-                    <h2>Veginner {{user.nickname}}</h2>
-                    <form action="#" enctype="multipart/form-data" id="detail_post" method="post">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-center flex-row align-items-center mb-4">
-                                <div class="form-outline flex-fill mb-0 mt-3">
-                                    <i class="fas fa-calendar-check fa-lg me-1 fa-fw"></i>
-                                    <label class="form-label" for="floatingInput">날짜</label>
-                                    {{ form.date|attr:"class:floatingInput form-control"}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <div class="form-outline flex-fill mb-0 mt-2">
-                                    <i class="fas fa-utensils fa-lg me-1 fa-fw"></i>
-                                    <label class="form-label" for="floatingInput">음식 이름</label>
-                                    {{ form.food_name|attr:"class:floatingInput form-control"}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <div class="form-outline flex-fill mb-0">
-                                    <i class="fas fa-sticky-note fa-lg me-1 fa-fw"></i>
-                                    <label class="form-label" for="floatingInput">내용</label>
-                                    {{ form.content|attr:"class:floatingInput form-control"}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <div class="form-outline flex-fill mb-0">
-                                    <i class="fas fa-sticky-note fa-lg me-1 fa-fw"></i>
-                                    <label class="form-label" for="floatingInput">이미지</label>
-                                    <img alt="Card image cap" class="card-img-top"
-                                         style="height: 100%; width: 100px; display: block;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row d-flex flex-row align-items-center mb-4">
-                                <div class="col-6 form-outline">
-                                    <i class="fas fa-leaf fa-lg me-1 fa-fw"></i>
-                                    <label class="form-label" for="floatingInput">비건 유형</label>
-                                    {{ form.post_vegan_type|attr:"class:floatingInput form-control"}}
-                                </div>
-                                <div class="col-6 form-outline">
-                                    <i class="fas fa-file fa-lg me-1 fa-fw"></i>
-                                    <label class="form-label" for="floatingInput">파일 선택</label>
-                                    {{ form.image|attr:"class:floatingInput form-control"}}
-                                </div>
-                            </div>
-                            <input name="writer" type="hidden" value="{{user.nickname}}">
-                        </div>
-                        <div class="modal-footer p-2">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                            <button class="btn community_btn" id="detail_btn" type="button">Add post</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="d-flex justify-content-start mt-3">
+        <select id="order-select" onchange="location = this.value;" style="width: 100px; margin-right: 10px;">
+            <option class="order-Default" value="?order=Default">--정렬--</option>
+            <option class="order-Recent" value="?order=Recent">최신순</option>
+            <option class="order-Likes" value="?order=Likes">좋아요순</option>
+            <!--        {% if user.is_authenticated %}-->
+            <!--        <option class="sort-mypost" value="?sort=mypost">내가쓴글</option>-->
+            <!--        {% endif %}-->
+        </select>
+        <select id="sort-select" onchange="location = this.value;" style="width: 100px;">
+            <option class="sort-Default" value="?">--분류--</option>
+            <option class="sort-Vegan" value="?">Vegan</option>
+            <option class="sort-Lacto" value="?">Lacto</option>
+            <option class="sort-Ovo" value="?">Ovo</option>
+            <option class="sort-Lacto-Ovo" value="?">Lacto-Ovo</option>
+            <option class="sort-Pesco" value="?">Pesco</option>
+            <option class="sort-Pollo" value="?">Pollo</option>
+            <option class="sort-Flexitarian" value="?">Flexitarian</option>
+        </select>
     </div>
+
 
     {% if user.is_authenticated %}
     <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" tabindex="-1">
@@ -177,12 +116,14 @@
     <div class="album py-5">
         <div class="container">
             <div class="row">
+
                 {% for v in post %}
                 <div class="col-md-4 col-lg-3 All {{v.post_vegan_type.vegan_sort}}">
                     <div class="card-item card-item-main card mb-4 box-shadow">
                         <img alt="Card image cap" class="card-img-top openmodal {{v.post_id}}"
                              data-bs-target="#detailModal" data-bs-toggle="modal"
                              data-bs-whatever="@mdo" data-holder-rendered="true" id="{{v.post_id}}"
+                             onclick="location.href='./community/detail/{{v.post_id}}'"
                              src="media/{{ v.image }}"
                              style="height: 225px; width: 100%; display: block;">
                         <div class="card-body">
@@ -207,12 +148,20 @@
                                         {% endif%}
                                     </div>
                                 </div>
-                                <button class="btn card-item-likeBtn p-0"><i class="fas fa-heart"></i>
-                                </button>
+                                {% if v.post_id in me_like_list %}
+                                <p class="card-item-likeBtn p-0 like" name="{{ v.post_id }}" value="Like"><i
+                                        class="fas fa-heart heart-click"></i>
+                                </p>
+                                {% else %}
+                                <p class="card-item-likeBtn p-0 like" name="{{ v.post_id }}" value="Like"><i
+                                        class="far fa-heart heart-cancel"></i>
+                                </p>
+                                {% endif %}
+                                <p class="ms-1" id="count{{ v.post_id }}">{{ v.like_count }}</p>
                             </div>
                             <div class="card-item-detail-2 d-flex justify-content-between mt-3">
                                 <div class="card-item-nickname {{v.post_id}}">
-                                    {{ v.writer__nickname }} 님
+                                    <span>{{ v.writer__nickname }}</span>님
                                 </div>
                                 <div class="card-item-date {{v.post_id}}">
                                     {{ v.date|date:"y.m.d" }}
@@ -224,28 +173,40 @@
                 {% endfor %}
 
                 <!-- Pagination -->
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center my-3">
                     {% if post.has_previous %}
                     <span>
-                        <a href="?page=1"><i class="fas fa-chevron-left"></i></a>
-                        <a href="?page={{post.previous_page_number}}"><i class="fas fa-angle-left"></i></a>
-
+                        <span class="fs-5 mx-1">
+                            <a class="pagenation-icon" href="?page=1"><i class="fas fa-angle-double-left"></i></a>
+                        </span>
+                        <span class="fs-5 mx-1">
+                            <a class="pagenation-icon" href="?page={{post.previous_page_number}}"><i
+                                    class="fas fa-angle-left"></i></a>
+                        </span>
                     </span>
                     {% endif %}
-                    <span class="mx-2">{{ post.number }}&nbsp;/&nbsp;{{ post.paginator.num_pages }}</span>
+                    <span class="page-box fs-5 mx-3">
+                        <span class="page-current">
+                            {{ post.number }}
+                        </span>
+                        &nbsp;/&nbsp;
+                        <span class="page-total">
+                            {{ post.paginator.num_pages }}
+                        </span>
+                    </span>
                     {% if post.has_next %}
                     <span>
-                        <a href="?page={{post.next_page_number}}"><i class="fas fa-angle-right"></i></a>
-                        <a href="?page={{post.paginator.num_pages}}"><i class="fas fa-chevron-right"></i></a>
+                        <span class="fs-5 mx-1">
+                            <a class="pagenation-icon" href="?page={{post.next_page_number}}"><i
+                                    class="fas fa-angle-right"></i></a>
+                        </span>
+                        <span class="fs-5 mx-1">
+                            <a class="pagenation-icon" href="?page={{post.paginator.num_pages}}"><i
+                                    class="fas fa-angle-double-right"></i></a>
+                        </span>
                     </span>
                     {% endif %}
                 </div>
-
-
-                <button class="sortType community-post-btn btn" id="All" type="button"><a href="{% url 'community' %}">All</a>
-                </button>
-                <button class="sortType community-post-btn btn" id="V" type="button">Vegetarian</button>
-                <button class="sortType community-post-btn btn" id="SV" type="button">Semi Vegetarian</button>
             </div>
         </div>
     </div>
@@ -317,6 +278,12 @@
         });
 
         // get url query string
+        const url = new URL(window.location.href);
+        console.log(url);
+        const urlParams = url.searchParams;
+        console.log(urlParams);
+        // document.write(urlParams.get('sort'));
+        // document.write(urlParams.get('order'));
         var getUrlParameter = function getUrlParameter(sParam) {
             var sPageURL = decodeURIComponent(window.location.search.substring(1)),
                 sURLVariables = sPageURL.split('&'),
@@ -342,10 +309,44 @@
                 $('.order-Default').prop('selected', 'selected')
             }
             var sort = getUrlParameter('sort');
-            console.log(sort);
+
             var page = getUrlParameter('page');
-            console.log(page);
+
         });
+
+        // 좋아요 버튼 처리
+        // 버튼 클릭 > ajax통신 (like url로 전달) > views의 like 메소드에서 리턴하는 값 전달받기 > 성공시 콜백 호출
+        $('.like').click(function () {
+            var pk = $(this).attr('name') // 클릭한 요소의 attribute 중 name의 값을 가져온다.
+            $.ajax({
+                type: "POST", // 데이터를 전송하는 방법을 지정한다.
+                url: "/ajaxlike", // 통신할 url을 지정한다.
+                data: {
+                    'pk': pk,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                }, // 서버로 데이터를 전송할 때 이 옵션을 사용한다.
+                dataType: "json", // 서버측에서 전송한 데이터를 어떤 형식의 데이터로서 해석할 것인가를 지정한다. 없으면 알아서 판단한다.
+                // 서버측에서 전송한 데이터 views.py like 메소드
+                // context = {'likes_count' : post.total_likes, 'message' : message}
+                // json.dump(context)를 통해서 json 형식으로 전달된다.
+
+                success: function (response) { // 성공했을 때 호출할 콜백을 지정한다.
+                    id = $(this).attr('name')
+                    $('#count' + pk).html(response.likes_count);
+                    heart = $("#count" + pk).siblings(".card-item-likeBtn").children("i")
+                    if (response.state == 'cancel') {
+                        heart.attr("class", "far fa-heart heart-cancel")
+                    } else {
+                        heart.attr("class", "fas fa-heart heart-click")
+                    }
+                },
+                error: function (request, status, error) {
+                    alert("로그인이 필요합니다");
+                    window.location.replace("/login/");
+                    // alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            });
+        })
     </script>
 </section>
 {% endblock contents %}

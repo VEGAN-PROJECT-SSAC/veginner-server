@@ -240,26 +240,34 @@
 }
 
 .card-item-type-12 {
-    background-color: var(--green2-500);
-
+    background-color: var(--yellow-300);
+    color: var(--yellow-50);
 }
 
 .card-item-type-13 {
-    background-color: var(--green2-400);
-
+    background-color: var(--yellow-400);
+    color: var(--yellow-50);
 }
 
 .card-item-type-14 {
-    background-color: var(--green2-300);
-
+    background-color: var(--red-400);
+    color: var(--red-50);
 }
 
 .card-item-nickname, .card-item-date {
     font-size: 14px;
 }
 
-.btn.card-item-likeBtn {
-    color: #ffc3ad;
+.heart-click {
+    color: var(--red-500);
+}
+
+.heart-cancel {
+    color: var(--navy-900);
+}
+
+.card-item-likeBtn:hover {
+    cursor: pointer;
 }
 
 

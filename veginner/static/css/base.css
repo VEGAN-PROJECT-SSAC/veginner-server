@@ -28,6 +28,10 @@
     --yellow-200: #f7d670;
     --yellow-100: #fbe6a9;
     --yellow-50: #fdf5dd;
+
+    --red-500: #ff200c;
+    --red-400: #ff5436;
+    --red-50: #ffe7e6;
 }
 
 * {

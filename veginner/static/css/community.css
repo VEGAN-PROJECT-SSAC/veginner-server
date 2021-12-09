@@ -44,3 +44,39 @@ input#id_food_name {
 .modal-info-icon {
     color: #bbb;
 }
+
+div.card-item-nickname {
+    font-size: 0.8rem;
+}
+
+div.card-item-nickname > span {
+    font-weight: 500;
+}
+
+div.card-item-date {
+    font-size: 0.8rem;
+}
+
+/* pagenation */
+a.pagenation-icon:link > i, a.pagenation-icon:visited > i, a.pagenation-icon:active > i {
+    text-decoration: none;
+    color: var(--navy-900);
+}
+
+a.pagenation-icon:hover > i {
+    color: var(--green2-700);
+    /*background-color: var(--green2-50);*/
+    text-shadow: 0 0 15px var(--green2-300);
+}
+
+.page-current, .page-total {
+    font-weight: 500;
+}
+
+.page-box {
+    color: var(--green2-700);
+}
+
+span.card-item-type {
+    cursor: pointer;
+}
