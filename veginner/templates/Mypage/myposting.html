@@ -9,7 +9,7 @@
             <h3>내가 쓴 글</h3>
         </div>
         <!-- Mypage Menu Btn-->
-        <div class="mypage-menu-box btn-group bg-primary">
+        <div class="mypage-menu-box btn-group">
             <button class="mypage-menu-btn btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
                 <!-- <i class="fas fa-bars"></i>-->
                 Menu
@@ -31,9 +31,6 @@
 
         <figure class="highcharts-figure">
             <div data-url="{% url 'chart_data' %}" id="container"></div>
-            <p class="highcharts-description">
-                미치겠다.. 일단 전체 글까지는 띄ㅡ운 것 같애!!!!
-            </p>
         </figure>
         <script>
             $.ajax({
@@ -61,7 +58,8 @@
         <!-- table body -->
         {% if my_posts %}
         {% for post in my_posts %}
-        <div class="row myposting-table-row myposting-table-body my-2">
+        <div class="row myposting-table-row myposting-table-body my-2"
+             onclick="location.href='../community/detail/{{post.post_id}}'">
             <div class="col-4 col-md-3 text-md-center">{{post.write_time|date:'y-m-d'}}</div>
             <div class="col-4 col-md-3 text-md-center">{{post.food_name}}</div>
             <div class="col-4 col-md-3 text-md-center">{{post.post_vegan_type|truncatewords:1|cut:" …"}}</div>
