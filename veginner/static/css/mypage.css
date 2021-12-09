@@ -2,11 +2,8 @@
 
 /* monthlyreport.html, myinfo.html, myposting.html */
 
-.mypage-menu-box {
-    position: fixed;
-    top: 140px;
-    right: 80px;
-    z-index: 10;
+h3 {
+    font-weight: 600;
 }
 
 .mypage-menu-item {

@@ -10,6 +10,10 @@ a.logo > img {
     width: 55px;
 }
 
+a.logo span {
+    font-family: 'Cabin', sans-serif;
+}
+
 /* Main pages's header bg-color: green */
 .main-header {
     background-color: var(--green1-900);
