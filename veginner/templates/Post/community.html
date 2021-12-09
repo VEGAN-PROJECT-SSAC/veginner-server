@@ -13,7 +13,7 @@
     </div>
     <div class="d-flex justify-content-start mt-3">
         <select id="order-select" onchange="location = this.value;" style="width: 100px; margin-right: 10px;">
-            <option class="order-Default" value="?order=Default">--정렬--</option>
+            <option class="order-Default" value="?">--정렬--</option>
             <option class="order-Recent" value="?order=Recent">최신순</option>
             <option class="order-Likes" value="?order=Likes">좋아요순</option>
             <!--        {% if user.is_authenticated %}-->
@@ -22,13 +22,13 @@
         </select>
         <select id="sort-select" onchange="location = this.value;" style="width: 100px;">
             <option class="sort-Default" value="?">--분류--</option>
-            <option class="sort-Vegan" value="?">Vegan</option>
-            <option class="sort-Lacto" value="?">Lacto</option>
-            <option class="sort-Ovo" value="?">Ovo</option>
-            <option class="sort-Lacto-Ovo" value="?">Lacto-Ovo</option>
-            <option class="sort-Pesco" value="?">Pesco</option>
-            <option class="sort-Pollo" value="?">Pollo</option>
-            <option class="sort-Flexitarian" value="?">Flexitarian</option>
+            <option class="sort-Vegan" value="?sort=Vegan">Vegan</option>
+            <option class="sort-Lacto" value="?sort=Lacto">Lacto</option>
+            <option class="sort-Ovo" value="?sort=Ovo">Ovo</option>
+            <option class="sort-Lacto-Ovo" value="?sort=Lacto-Ovo">Lacto-Ovo</option>
+            <option class="sort-Pesco" value="?sort=Pesco">Pesco</option>
+            <option class="sort-Pollo" value="?sort=Pollo">Pollo</option>
+            <option class="sort-Flexitarian" value="?sort=Flexitarian">Flexitarian</option>
         </select>
     </div>
 
@@ -309,7 +309,11 @@
                 $('.order-Default').prop('selected', 'selected')
             }
             var sort = getUrlParameter('sort');
-
+            if (sort == 'Vegan'){
+                $('.sort-Vegan').prop('selected', 'selected')
+            }else if(order == 'Lacto'){
+                $('.sort-Lacto').prop('selected', 'selected')
+            }
             var page = getUrlParameter('page');
 
         });
