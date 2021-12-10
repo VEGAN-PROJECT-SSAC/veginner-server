@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from User.views import CustomPasswordChangeView
+from django.views.static import serve
+from django.urls import re_path
 
 urlpatterns = [
     # admin
@@ -40,6 +42,10 @@ urlpatterns = [
         name='account_password_change'
     ),
     path('', include('allauth.urls')),
+#
+#
+#     # media, static setting
+#     re_path(r'^media/(?P<path>.*)$', serve, {'document_root':settings.MEDIA_ROOT}),
     ]
 
 # django 기본 제공 템플릿 view를 사용하면 따로 views.py에서 정의 안 ㅎ해 줘도 되어서 걍 렌더링만 해 줄 거라

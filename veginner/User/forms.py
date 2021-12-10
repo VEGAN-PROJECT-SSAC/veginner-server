@@ -10,4 +10,5 @@ class SignupForm(forms.ModelForm):
         user.nickname = self.cleaned_data["nickname"]
         user.save()
 
+
 # cleaned_data로 form의 data 들고 옴
