@@ -13,3 +13,10 @@ section.login-section button:hover, section.signup-section button:hover, section
 
 }
 
+.error-message {
+    color: var(--red-500);
+    font-size: 10.5px;
+    font-weight: bold;
+    line-height: 1.7;
+}
+

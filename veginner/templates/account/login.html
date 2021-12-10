@@ -27,6 +27,9 @@
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="floatingInput">Password</label>
                                             {{ form.password|attr:"class:form-control"}}
+                                            {% for error in form.password.errors %}
+                                            <div class="error-message">{{ error }}</div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                     <div>
