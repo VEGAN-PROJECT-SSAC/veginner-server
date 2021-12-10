@@ -20,10 +20,9 @@
     font-size: 1.6em;
 }
 
-a:link, a:visited, a:active, a:hover {
-    text-decoration: none;
+a.fa-github{
+    color: var(--green2-900);
 }
-
 /*footer {*/
 /*    background-color: var(--green2-50);*/
 /*}*/
