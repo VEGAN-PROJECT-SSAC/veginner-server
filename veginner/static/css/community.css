@@ -80,3 +80,7 @@ a.pagenation-icon:hover > i {
 span.card-item-type {
     cursor: pointer;
 }
+
+textarea:read-only{
+    background-color: white !important;
+}
