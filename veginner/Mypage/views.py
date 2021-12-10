@@ -6,7 +6,8 @@ import calendar
 from datetime import datetime, timedelta, date
 
 from django.db.models import Count, Q
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.sessions.models import Session
 from django.utils.safestring import mark_safe
 from django.core.paginator import Paginator
@@ -17,11 +18,25 @@ from django.urls import reverse
 from Post.models import Vegan_type, Post
 from User.models import User
 from Mypage.utils import Calendar
-
+from .forms import UserChangeForm
 
 # Create your views here.
 def myinfo(req):
-    return render(req, 'Mypage/myinfo.html')
+    mySession = Session.objects.get(pk=req.session.session_key).get_decoded()["_auth_user_id"]
+    user = User.objects.filter(user_id=mySession)
+
+    if req.method == 'POST':
+        form = UserChangeForm(req.POST, instance=req.user)
+        if form.is_valid():
+            form.save()
+            return redirect('myinfo')
+
+    else:
+        form = UserChangeForm(instance=req.user)
+        context = {
+            'form': form
+        }
+        return render(req, 'Mypage/myinfo.html', context)
 
 def myposting(req):
     mySession = Session.objects.get(pk=req.session.session_key).get_decoded()["_auth_user_id"]

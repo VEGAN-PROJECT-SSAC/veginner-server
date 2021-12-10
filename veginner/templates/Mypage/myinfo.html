@@ -26,7 +26,9 @@
 
     <div class="d-flex justify-content-center">
         <div class="w-100">
-            <form action="">
+
+            <form action="" method="POST">
+                {% csrf_token %}
                 <div class="myinfo-username mb-4">{{user.nickname}}</div>
                 <div>
                     <div class="row mt-2">
@@ -38,14 +40,20 @@
                             <div class="myinfo-warning">이메일은 변경 불가능합니다.</div>
                         </div>
                     </div>
+
                     <div class="row mt-2">
                         <div class="col-3">
                             <label class="myinfo-label" for="myinfo-nickname">nickname</label>
                         </div>
                         <div class="col-9">
-                            <input class="form-control" id="myinfo-nickname" type="text" value="{{user.nickname}}">
+                            {{ form.nickname|attr:"class:floatingInput form-control"|attr:"myinfo-id:nickname"}}
+                            <script>
+                                document.getElementById('myinfo-nickname').setAttribute('value',"{{user.nickname}}");
+                            </script>
                         </div>
                     </div>
+
+
                     <div class="row mt-3">
                         <div class="col-3">
                             <label class="myinfo-label" for="myinfo-password">password</label>
