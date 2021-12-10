@@ -4,174 +4,204 @@
 {% block contents %}
 
 <section class="container">
-    <div class="mypage-header d-flex justify-content-between mt-5">
-        <h3>DETAIL</h3>
-    </div>
 
     {% if form %}
-    <form enctype="multipart/form-data" id="post_submit" method="post">
-        {% csrf_token %}
+        <div class="mypage-header d-flex justify-content-between mt-5">
+            <h3>EDIT</h3>
+        </div>
 
-        <div class="mb-3">
-            <div class="d-flex justify-content-center flex-row align-items-center mb-4">
-                <div class="form-outline flex-fill mb-0 mt-3">
-                    <i class="fas fa-calendar-check fa-lg me-1 fa-fw"></i>
-                    <label class="form-label" for="floatingInput">날짜</label>
-                        {{ form.date|attr:"class:floatingInput form-control"|attr:"id:date"}}
-                        <script>
-                            document.getElementById('date').value = stringToDate('{{post.date}}','yyyy-MM-dd','-');
-                        </script>
-                        </script>
+        <div class="p-3 community_header text-white rounded-top">
+            <h2 class="modal-title">Veginner {{post.writer.nickname}}</h2>
+        </div>
+
+        <form enctype="multipart/form-data" id="post_submit" method="post">
+            <div class="p-3 border border-top-0 rounded-bottom">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <div class="d-flex justify-content-center flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0 mt-2">
+                            <i class="fas fa-calendar-check fa-lg me-1 fa-fw"></i>
+                            <label class="form-label mb-2">날짜</label>
+                            <div>
+                                {{ form.date|attr:"class:floatingInput form-control"|attr:"id:date"}}
+                            </div>
+
+                            <script>
+                                function formatDate(date) {
+                                    var year = date.slice(0, 4);
+                                    var month = date.slice(6, 8);
+                                    month = month.replace(/\s/g, "");
+                                    var day = date.slice(9, 11);
+                                    day = day.replace(/\s/g, "");
+
+                                    if (month.length < 2)
+                                        month = '0' + month;
+                                    if (day.length < 2)
+                                        day = '0' + day;
+
+                                    var date = year + '-' + month + '-' + day;
+
+                                    return date;
+                                }
+
+                                document.getElementById('date').value = formatDate('{{post.date}}');
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0 mt-2">
+                            <i class="fas fa-utensils fa-lg me-1 fa-fw"></i>
+                            <label class="form-label" for="floatingInput">음식 이름</label>
+                            {{ form.food_name|attr:"class:floatingInput form-control"|attr:"id:food_name"}}
+                            <script>
+                                document.getElementById('food_name').setAttribute('value',"{{post.food_name}}");
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                            <i class="fas fa-sticky-note fa-lg me-1 fa-fw"></i>
+                            <label class="form-label" for="floatingInput">내용</label>
+                            {{ form.content|attr:"class:floatingInput form-control"|attr:"id:content"}}
+                            <script>
+                                document.getElementById('content').setAttribute('value',"{{post.content}}");
+                                document.getElementById('content').setAttribute('placeholder',"{{post.content}}");
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row d-flex flex-row align-items-center mb-4">
+                        <div class="col-6 form-outline">
+                            <label class="form-label" for="floatingInput">
+                                <i class="fas fa-leaf fa-lg me-1 fa-fw"></i>비건 유형
+                                <span data-placement="top" data-toggle="tooltip" title="Vegan: 채소, Lacto: 우유, Ovo: 계란, Lacto-Ovo: 우유&계란, Pesco: 생선, Pollo: 닭, Flexitarian: 육식">
+                                            <i class="modal-info-icon fas fa-info-circle"></i>
+                                        </span>
+                            </label>
+                            {{ form.post_vegan_type|attr:"class:floatingInput form-control"|attr:"id:vegan_type"}}
+                            <script>
+                                document.getElementById('vegan_type').setAttribute('value',"{{post.post_vegan_type.vegan_type}}");
+                                $('#vegan_type').val('{{post.post_vegan_type.vegan_type}}').prop("selected",true);
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <img class="mb-4" src="{{ post.image.url }}" style="height: 500px; width: 500px; display: block;">
                 </div>
             </div>
-        </div>
 
-        <div class="mb-3">
-            <div class="d-flex flex-row align-items-center mb-4">
-                <div class="form-outline flex-fill mb-0 mt-2">
-                    <i class="fas fa-utensils fa-lg me-1 fa-fw"></i>
-                    <label class="form-label" for="floatingInput">음식 이름</label>
-                        {{ form.food_name|attr:"class:floatingInput form-control"|attr:"id:food_name"}}
-                        <script>
-                            document.getElementById('food_name').setAttribute('value',"{{post.food_name}}");
-                        </script>
-                </div>
+            <div class="py-2 text-end">
+                <button class="btn btn-secondary m-1" type="button" onclick="location.href='../../detail/{{ post.post_id }}'">CANCEL</button>
+                <button class="btn community_btn m-1" type="submit">POST</button>
             </div>
-        </div>
-
-        <div class="mb-3">
-            <div class="d-flex flex-row align-items-center mb-4">
-                <div class="form-outline flex-fill mb-0">
-                    <i class="fas fa-sticky-note fa-lg me-1 fa-fw"></i>
-                    <label class="form-label" for="floatingInput">내용</label>
-                    {{ form.content|attr:"class:floatingInput form-control"|attr:"id:content"}}
-                    <script>
-                        document.getElementById('content').setAttribute('value',"{{post.content}}");
-                        document.getElementById('content').setAttribute('placeholder',"{{post.content}}");
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <img src="{{ post.image.url }}" style="height: 500px; width: 500px; display: block;">
-        </div>
-
-        <div class="mb-3">
-            <div class="row d-flex flex-row align-items-center mb-4">
-                <div class="col-6 form-outline">
-
-                    <label class="form-label" for="floatingInput">
-                        <i class="fas fa-leaf fa-lg me-1 fa-fw"></i>비건 유형
-                        <span data-placement="top" data-toggle="tooltip" title="Vegan: 채소, Lacto: 우유, Ovo: 계란, Lacto-Ovo: 우유&계란, Pesco: 생선, Pollo: 닭, Flexitarian: 육식">
-                            <i class="modal-info-icon fas fa-info-circle"></i>
-                        </span>
-                    </label>
-
-                    {{ form.post_vegan_type|attr:"class:floatingInput form-control"|attr:"id:vegan_type"}}
-                    <script>
-                        document.getElementById('vegan_type').setAttribute('value',"{{post.post_vegan_type.vegan_type}}");
-                        $('#vegan_type').val('{{post.post_vegan_type.vegan_type}}').prop("selected",true);
-                    </script>
-
-                </div>
-            </div>
-            <input name="writer" type="hidden" value="{{user.nickname}}">
-        </div>
-
-        <div class="modal-footer p-2">
-            <button class="btn btn-secondary" type="button" onclick="location.href='../../detail/{{ post.post_id }}'">Close</button>
-            <button class="btn community_btn" type="submit">Post</button>
-        </div>
-    </form>
+        </form>
 
     {% else %}
-        <div>
-            <div class="p-3 community_header text-white">
-                <h5 class="modal-title" id="exampleModalLabel">디테일 보기이잉</h5>
-            </div>
-
-            <h2>Veginner {{post.writer.nickname}}</h2>
-            <div class="mb-3">
-                <div class="d-flex justify-content-center flex-row align-items-center mb-4">
-                    <div class="form-outline flex-fill mb-0 mt-3">
-                        <i class="fas fa-calendar-check fa-lg me-1 fa-fw"></i>
-                        날짜 {{ post.date }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="d-flex flex-row align-items-center mb-4">
-                    <div class="form-outline flex-fill mb-0 mt-2">
-                        <i class="fas fa-utensils fa-lg me-1 fa-fw"></i>
-                        <label class="form-label" for="floatingInput">음식 이름</label>
-                        {{ post.food_name }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="d-flex flex-row align-items-center mb-4">
-                    <div class="form-outline flex-fill mb-0">
-                        <i class="fas fa-sticky-note fa-lg me-1 fa-fw"></i>
-                        <label class="form-label" for="floatingInput">내용</label>
-                        {{ post.content|safe }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="row d-flex flex-row align-items-center mb-4">
-                    <div class="col-6 form-outline">
-                        <label class="form-label" for="floatingInput"></label>
-                            <i class="fas fa-leaf fa-lg me-1 fa-fw"></i>비건 유형
-                            <span data-placement="top" data-toggle="tooltip"
-                                  title="Vegan: 채소, Lacto: 우유, Ovo: 계란, Lacto-Ovo: 우유&계란, Pesco: 생선, Pollo: 닭, Flexitarian: 육식">
-                                <i class="modal-info-icon fas fa-info-circle"></i>
-                            </span>
-                    </div>
-                </div>
-            </div>
-
-            <script>
-                $(function () {
-                    $('[data-toggle="tooltip"]').tooltip()
-                })
-            </script>
-
-            </label>
-            {{ post.post_vegan_type.vegan_type}}
+        <div class="mypage-header d-flex justify-content-between mt-5">
+            <h3>DETAIL</h3>
         </div>
 
         <div>
-            <img src="{{ post.image.url }}" style="height: 500px; width: 500px; display: block;">
-        </div>
-
-
-        <div class="modal-footer p-2">
-            <a href="{% url 'community' %}"><button class="btn btn-secondary" type="button">목록으로</button></a>
-        </div>
-
-        {% if user == post.writer %}
-            <div class="p-2">
-                <a href="{% url 'update' post.post_id %}"><button class="btn btn-secondary" type="button">수정</button></a>
-                <button class="btn btn-secondary" type="button" onclick="alert_del();">삭제</button>
+            <div class="p-3 community_header text-white rounded-top">
+                <h2 class="modal-title">Veginner {{post.writer.nickname}}</h2>
             </div>
 
-            <script>
-                function alert_del(){
-                    var alert = confirm('게시글을 정말로 삭제하시겠습니까?');
-                    if(alert){
-                        window.location.href = "{% url 'delete' post.post_id %}"
-                        alert("성공적으로 삭제되었습니다.");
+            <div class="p-3 border border-top-0 rounded-bottom">
+
+                <div class="mb-3">
+                    <div class="d-flex justify-content-center flex-row align-items-center mb-4">
+                        <div class="flex-fill mb-0 mt-2">
+                            <i class="fas fa-calendar-check fa-lg me-1 fa-fw"></i>
+                            <label class="mb-2">날짜</label>
+                            <div class="border rounded-2 py-2 px-3">
+                                {{ post.date }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="flex-fill mb-0 mt-2">
+                            <i class="fas fa-utensils fa-lg me-1 fa-fw"></i>
+                            <label class="mb-2">음식 이름</label>
+                            <div class="border rounded-2 py-2 px-3">
+                                {{ post.food_name }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="flex-fill mb-0">
+                            <i class="fas fa-sticky-note fa-lg me-1 fa-fw"></i>
+                            <label class="mb-2">내용</label>
+                            <textarea name="content" cols="40" rows="4" class="floatingInput form-control" required="" id="id_content">{{ post.content|safe }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="flex-fill mb-0">
+                            <i class="fas fa-leaf fa-lg me-1 fa-fw"></i>
+                            <label class="mb-2">비건 유형
+                                <span data-placement="top" data-toggle="tooltip" title="Vegan: 채소, Lacto: 우유, Ovo: 계란, Lacto-Ovo: 우유&계란, Pesco: 생선, Pollo: 닭, Flexitarian: 육식">
+                                        <i class="modal-info-icon fas fa-info-circle"></i>
+                                    </span>
+
+                                <script>
+                                    $(function () {
+                                        $('[data-toggle="tooltip"]').tooltip()
+                                    })
+                                </script>
+                            </label>
+                            <div class="border rounded-2 py-2 px-3">
+                                {{ post.post_vegan_type.vegan_type}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div>
+                    <img class="mb-4" src="{{ post.image.url }}" style="height: 500px; width: 500px; display: block;">
+                </div>
+            </div>
+
+            <div class="py-2 text-end">
+
+                {% if user == post.writer %}
+                <a href="{% url 'update' post.post_id %}"><button class="btn btn-primary m-1" type="button">EDIT</button></a>
+                <button class="btn btn-danger" type="button" onclick="alert_del();">DELETE</button>
+
+                <script>
+                    function alert_del(){
+                        var alert = confirm('게시글을 정말로 삭제하시겠습니까?');
+                        if(alert){
+                            window.location.href = "{% url 'delete' post.post_id %}"
+                            alert("성공적으로 삭제되었습니다.");
+                        }
                     }
-                }
-            </script>
-        {% endif %}
+                </script>
 
+                {% endif %}
+                <a href="{% url 'community' %}"><button class="btn community_btn m-1" type="button" id="post_btn">CLOSE</button></a>
+            </div>
+        </div>
     {% endif %}
-
 </section>
 
 {% endblock contents %}
