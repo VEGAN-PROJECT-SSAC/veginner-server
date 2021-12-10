@@ -1,48 +1,47 @@
 @import url('./base.css');
 
 .about-container {
-    height: 1000px;
+    height: 100vh;
 }
 
 /* container-1 */
 .about-container-1 {
-    border: 5px solid aliceblue;
     font-weight: 700;
     font-size: 2.5rem;
+    color: white;
+    text-shadow: 3px 3px 6px rgb(0 0 0 / 80%);
 
-    /*background-image: url('image/about-container-1.jpeg');*/
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../image/about-container-1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 /* container-2 */
 .about-container-2 {
-    border: 5px solid papayawhip;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .about-container-2 .about-start-msg {
     color: var(--green2-900);
+    text-shadow: 0px 0px 2px var(--green2-100);
 }
 
 .about-container-2 .about-start-msg::before {
     content: '\f10d';
     font-family: FontAwesome;
-    font-size: 1.3rem;
+    font-size: 1rem;
     vertical-align: top;
     margin-right: 5px;
-    /*line-height: 40px; !* height와 동일한 값 설정시 가운데 위치*!*/
-    /*color: #fff;*/
 }
 
 .about-container-2 .about-start-msg::after {
     content: '\f10e';
     font-family: FontAwesome;
-    font-size: 1.3rem;
+    font-size: 1rem;
     vertical-align: top;
     margin-left: 5px;
-
-    /*line-height: 40px; !* height와 동일한 값 설정시 가운데 위치*!*/
-    /*color: #fff;*/
 }
 
 .about-container-2 .about-start-import {
@@ -51,45 +50,95 @@
 
 /* container-3 */
 .about-container-3 {
-    border: 5px solid aliceblue;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 2rem;
+}
+
+.about-container-3 .about-start-import {
+    color: var(--green2-900);
+    text-shadow: 0px 0px 2px var(--green2-100);
 }
 
 /* container-4 */
 .about-container-4 {
-    border: 5px solid papayawhip;
     font-weight: 700;
     font-size: 2.5rem;
+    color: var(--green2-900);
+}
+
+.about-container-4 .article-maintitle::before {
+    content: '\f10d';
+    font-family: FontAwesome;
+    font-size: 1rem;
+    vertical-align: top;
+    margin-right: 5px;
+}
+
+.about-container-4 .article-maintitle::after {
+    content: '\f10e';
+    font-family: FontAwesome;
+    font-size: 1rem;
+    vertical-align: top;
+    margin-right: 5px;
+}
+
+.about-container-4 div.article-title-box {
+    width: 40vw;
+}
+
+.about-container-4 img.article-title {
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    border-radius: 5px;
 }
 
 /* container-5 */
 .about-container-5 {
-    border: 5px solid aliceblue;
     font-weight: 700;
     font-size: 2.5rem;
+}
+
+.about-container-5 img.vegan-type-img {
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    border-radius: 5px;
+    width: 35vw;
 }
 
 .about-container-5 .vegan-type-desc {
     font-weight: 400;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }
 
 /* container-6 */
 .about-container-6 {
-    border: 5px solid papayawhip;
     font-weight: 700;
     font-size: 2.5rem;
 }
 
-.about-container-6 .about-veginner {
-    font-weight: 400;
-    font-size: 1.3rem;
+.about-container-6 .about-veginner-box {
+    width: 50%;
+    height: 30vh;
+    background-color: var(--green2-50);
+    color: var(--green1-900);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.about-container-6 i.about-container-6-icons {
+    font-size: 2.5rem;
+}
+
+.about-container-6 .about-veginner {
+    height: 40%;
+    font-weight: 400;
+    font-size: 1.4rem;
+    /*background-color: pink;*/
+}
+
 
 /* container-7 */
 .about-container-7 {
-    border: 5px solid aliceblue;
     font-weight: 700;
     font-size: 2.5rem;
 }
@@ -113,16 +162,108 @@
     font-size: 1.2rem;
 }
 
+.about-container-7 .member-intro .developer-role,
+.about-container-7 .member-intro .developer-email {
+    font-size: 1rem;
+}
+
 .about-container-7 .member-intro .developer-role::before {
     content: '\f5fc';
     font-family: FontAwesome;
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-right: 5px;
 }
 
 .about-container-7 .member-intro .developer-email::before {
     content: '\f0e0';
     font-family: FontAwesome;
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-right: 5px;
+}
+
+@media (max-width: 1199px) {
+    .about-container-6 .about-veginner {
+        font-size: 1.8vw;
+    }
+}
+
+@media (max-width: 991px) {
+    /* width < lg */
+    .about-container-1 {
+        font-size: 4.5vw;
+    }
+
+    .about-container-2 {
+        font-size: 3vw;
+    }
+
+    .about-container-2 .about-start-msg::before {
+        margin-right: 2px;
+        font-size: 3vw;
+    }
+
+    .about-container-2 .about-start-msg::after {
+        margin-right: 2px;
+        font-size: 3vw;
+    }
+
+    .about-container-3 {
+        font-size: 3vw;
+    }
+
+    .about-container-4 {
+        font-size: 4.5vw;
+    }
+
+    .about-container-5 {
+        font-size: 4.5vw;
+    }
+
+    .about-container-5 .vegan-type-desc {
+        font-size: 2.5vw;
+    }
+
+    .about-container-6 {
+        font-size: 4.5vw;
+    }
+
+    .about-container-6 .about-veginner-box {
+        height: 25vh;
+    }
+
+    .about-container-6 .about-veginner {
+        font-size: 2vw;
+    }
+
+    .about-container-6 i.about-container-6-icons {
+        font-size: 5vw;
+    }
+
+    .about-container-7 {
+        font-size: 4.5vw;
+    }
+
+    .about-container-7 .member-intro {
+        font-size: 3vw;
+        width: 250px;
+        height: 60%;
+    }
+
+    .about-container-7 .member-intro .developer {
+        font-size: 2.2vw;
+    }
+
+    .about-container-7 .member-intro .developer-role,
+    .about-container-7 .member-intro .developer-email {
+        font-size: 1.8vw;
+    }
+
+    .about-container-7 .member-intro .developer-role::before {
+        font-size: 1.8vw;
+    }
+
+    .about-container-7 .member-intro .developer-email::before {
+        font-size: 1.8vw;
+    }
+
 }
