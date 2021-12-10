@@ -6,21 +6,98 @@
 <section class="container">
     <div class="mypage-header d-flex justify-content-between mt-5">
         <h3>COMMUNITY</h3>
+        {% if user.is_authenticated %}
         <button class="community-post-btn btn" data-bs-target="#exampleModal" data-bs-toggle="modal"
                 data-bs-whatever="@mdo"
                 type="button">글쓰기
         </button>
+        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header p-3 community_header text-white">
+                        <h5 class="modal-title" id="exampleModalLabel">내 식단 등록</h5>
+                        <button aria-label="Close" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                type="button"></button>
+                    </div>
+                    <div class="modal-body p-3">
+                        <h2>Veginner {{user.nickname}}</h2>
+                        <form action="{% url 'community' %}" enctype="multipart/form-data" id="post_submit" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-center flex-row align-items-center mb-4">
+                                    <div class="form-outline flex-fill mb-0 mt-3">
+                                        <i class="fas fa-calendar-check fa-lg me-1 fa-fw"></i>
+                                        <label class="form-label" for="floatingInput">날짜</label>
+                                        {{ form.date|attr:"class:floatingInput form-control"}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex flex-row align-items-center mb-4">
+                                    <div class="form-outline flex-fill mb-0 mt-2">
+                                        <i class="fas fa-utensils fa-lg me-1 fa-fw"></i>
+                                        <label class="form-label" for="floatingInput">음식 이름</label>
+                                        {{ form.food_name|attr:"class:floatingInput form-control"}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex flex-row align-items-center mb-4">
+                                    <div class="form-outline flex-fill mb-0">
+                                        <i class="fas fa-sticky-note fa-lg me-1 fa-fw"></i>
+                                        <label class="form-label" for="floatingInput">내용</label>
+                                        {{ form.content|attr:"class:floatingInput form-control"}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="row d-flex flex-row align-items-center mb-4">
+                                    <div class="col-6 form-outline">
+
+                                        <label class="form-label" for="floatingInput">
+                                            <i class="fas fa-leaf fa-lg me-1 fa-fw"></i>비건 유형
+                                            <span data-placement="top" data-toggle="tooltip"
+                                                  title="Vegan: 채소, Lacto: 우유, Ovo: 계란, Lacto-Ovo: 우유&계란, Pesco: 생선, Pollo: 닭, Flexitarian: 육식">
+                                            <i class="modal-info-icon fas fa-info-circle"></i>
+                                        </span>
+                                            <script>
+                                                $(function () {
+                                                    $('[data-toggle="tooltip"]').tooltip()
+                                                })
+                                            </script>
+                                        </label>
+                                        {{ form.post_vegan_type|attr:"class:floatingInput form-control"}}
+                                    </div>
+                                    <div class="col-6 form-outline">
+                                        <i class="fas fa-file fa-lg me-1 fa-fw"></i>
+                                        <label class="form-label" for="floatingInput">파일 선택</label>
+                                        {{ form.image|attr:"class:floatingInput form-control"}}
+                                    </div>
+                                </div>
+                                <input name="writer" type="hidden" value="{{user.nickname}}">
+                            </div>
+                            <div class="modal-footer p-2">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                                <button class="btn community_btn" id="post_btn" type="button">Add post</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <button class="community-post-btn btn login-required"
+                type="button">글쓰기
+        </button>
+        {% endif %}
     </div>
     <div class="d-flex justify-content-start mt-3">
-        <select id="order-select" onchange="location = this.value;" style="width: 100px; margin-right: 10px;">
+        <select id="order-select" style="width: 100px; margin-right: 10px;" onchange="urlChange(this)">
             <option class="order-Default" value="?">--정렬--</option>
             <option class="order-Recent" value="?order=Recent">최신순</option>
             <option class="order-Likes" value="?order=Likes">좋아요순</option>
-            <!--        {% if user.is_authenticated %}-->
-            <!--        <option class="sort-mypost" value="?sort=mypost">내가쓴글</option>-->
-            <!--        {% endif %}-->
         </select>
-        <select id="sort-select" onchange="location = this.value;" style="width: 100px;">
+        <select id="sort-select" style="width: 100px;" onchange="urlChange(this)">
             <option class="sort-Default" value="?">--분류--</option>
             <option class="sort-Vegan" value="?sort=Vegan">Vegan</option>
             <option class="sort-Lacto" value="?sort=Lacto">Lacto</option>
@@ -32,87 +109,6 @@
         </select>
     </div>
 
-
-    {% if user.is_authenticated %}
-    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header p-3 community_header text-white">
-                    <h5 class="modal-title" id="exampleModalLabel">내 식단 등록</h5>
-                    <button aria-label="Close" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            type="button"></button>
-                </div>
-                <div class="modal-body p-3">
-                    <h2>Veginner {{user.nickname}}</h2>
-                    <form action="{% url 'community' %}" enctype="multipart/form-data" id="post_submit" method="post">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-center flex-row align-items-center mb-4">
-                                <div class="form-outline flex-fill mb-0 mt-3">
-                                    <i class="fas fa-calendar-check fa-lg me-1 fa-fw"></i>
-                                    <label class="form-label" for="floatingInput">날짜</label>
-                                    {{ form.date|attr:"class:floatingInput form-control"}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <div class="form-outline flex-fill mb-0 mt-2">
-                                    <i class="fas fa-utensils fa-lg me-1 fa-fw"></i>
-                                    <label class="form-label" for="floatingInput">음식 이름</label>
-                                    {{ form.food_name|attr:"class:floatingInput form-control"}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <div class="form-outline flex-fill mb-0">
-                                    <i class="fas fa-sticky-note fa-lg me-1 fa-fw"></i>
-                                    <label class="form-label" for="floatingInput">내용</label>
-                                    {{ form.content|attr:"class:floatingInput form-control"}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row d-flex flex-row align-items-center mb-4">
-                                <div class="col-6 form-outline">
-
-                                    <label class="form-label" for="floatingInput">
-                                        <i class="fas fa-leaf fa-lg me-1 fa-fw"></i>비건 유형
-                                        <span data-placement="top" data-toggle="tooltip"
-                                              title="Vegan: 채소, Lacto: 우유, Ovo: 계란, Lacto-Ovo: 우유&계란, Pesco: 생선, Pollo: 닭, Flexitarian: 육식">
-                                            <i class="modal-info-icon fas fa-info-circle"></i>
-                                        </span>
-                                        <script>
-                                            $(function () {
-                                                $('[data-toggle="tooltip"]').tooltip()
-                                            })
-                                        </script>
-                                    </label>
-                                    {{ form.post_vegan_type|attr:"class:floatingInput form-control"}}
-                                </div>
-                                <div class="col-6 form-outline">
-                                    <i class="fas fa-file fa-lg me-1 fa-fw"></i>
-                                    <label class="form-label" for="floatingInput">파일 선택</label>
-                                    {{ form.image|attr:"class:floatingInput form-control"}}
-                                </div>
-                            </div>
-                            <input name="writer" type="hidden" value="{{user.nickname}}">
-                        </div>
-                        <div class="modal-footer p-2">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                            <button class="btn community_btn" id="post_btn" type="button">Add post</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% else %}
-    <!--login alert 창 띄워 주면 됨-->
-    <h3>(임시)너는 지금 글 쓸 권한이 없다/ 로그인해야만 포스팅할 수 있습니다 + 로그인 페이지로 redirect</h3>
-    {% endif %}
-
     <div class="album py-5">
         <div class="container">
             <div class="row">
@@ -120,9 +116,7 @@
                 {% for v in post %}
                 <div class="col-md-4 col-lg-3 All {{v.post_vegan_type.vegan_sort}}">
                     <div class="card-item card-item-main card mb-4 box-shadow">
-                        <img alt="Card image cap" class="card-img-top openmodal {{v.post_id}}"
-                             data-bs-target="#detailModal" data-bs-toggle="modal"
-                             data-bs-whatever="@mdo" data-holder-rendered="true" id="{{v.post_id}}"
+                        <img alt="Card image cap" id="{{v.post_id}}"
                              onclick="location.href='./community/detail/{{v.post_id}}'"
                              src="media/{{ v.image }}"
                              style="height: 225px; width: 100%; display: block;">
@@ -177,10 +171,10 @@
                     {% if post.has_previous %}
                     <span>
                         <span class="fs-5 mx-1">
-                            <a class="pagenation-icon" href="?page=1"><i class="fas fa-angle-double-left"></i></a>
+                            <a class="pagenation-icon" data-page="page=1"><i class="fas fa-angle-double-left"></i></a>
                         </span>
                         <span class="fs-5 mx-1">
-                            <a class="pagenation-icon" href="?page={{post.previous_page_number}}"><i
+                            <a class="pagenation-icon" data-page="page={{post.previous_page_number}}"><i
                                     class="fas fa-angle-left"></i></a>
                         </span>
                     </span>
@@ -197,11 +191,11 @@
                     {% if post.has_next %}
                     <span>
                         <span class="fs-5 mx-1">
-                            <a class="pagenation-icon" href="?page={{post.next_page_number}}"><i
+                            <a class="pagenation-icon" data-page="page={{post.next_page_number}}"><i
                                     class="fas fa-angle-right"></i></a>
                         </span>
                         <span class="fs-5 mx-1">
-                            <a class="pagenation-icon" href="?page={{post.paginator.num_pages}}"><i
+                            <a class="pagenation-icon" data-page="page={{post.paginator.num_pages}}"><i
                                     class="fas fa-angle-double-right"></i></a>
                         </span>
                     </span>
@@ -219,7 +213,6 @@
             referrerpolicy="no-referrer"
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script>
-        console.log("script 들어옴")
         $("#post_btn").click(function (e) {
             console.log("폼 전송 전");
             // validation();
@@ -247,77 +240,116 @@
                 });
             }
         });
-        $(".openmodal").click(function (e) {
-            const card_id = e.target.id;
-            $("#id_food_name").attr("value", $("h5." + card_id).html());
-            $("#id_date").attr("value", $("small." + card_id).siblings(".d-none").html());
-            $("#id_content").val($("p." + card_id).html());
-            $("#id_content").parents().siblings(".mb-3").find("img").attr("src", $("#" + card_id).attr("src"));
-            $("#id_post_vegan_type").val($("button." + card_id + ":last").html()).prop("selected", true);
-        });
-        $(".sortType").click(function (e) {
-            const sort_id = e.target.id;
-            console.log(sort_id);
-            if (sort_id == "V") {
-                console.log("V임");
-                $(".album").find(".SV").addClass("d-none");
-                if ($(".album").find(".V").hasClass("d-none")) {
-                    $(".album").find(".V").removeClass("d-none");
-                }
-            } else if (sort_id == "SV") {
-                console.log("SV임");
-                $(".album").find(".V").addClass("d-none");
-                if ($(".album").find(".SV").hasClass("d-none")) {
-                    $(".album").find(".SV").removeClass("d-none");
-                }
-            } else {
-                if ($(".album").find(".All").hasClass("d-none")) {
-                    $(".album").find(".All").removeClass("d-none");
-                }
-            }
-        });
 
         // get url query string
-        const url = new URL(window.location.href);
-        console.log(url);
-        const urlParams = url.searchParams;
-        console.log(urlParams);
-        // document.write(urlParams.get('sort'));
-        // document.write(urlParams.get('order'));
         var getUrlParameter = function getUrlParameter(sParam) {
             var sPageURL = decodeURIComponent(window.location.search.substring(1)),
                 sURLVariables = sPageURL.split('&'),
                 sParameterName,
                 i;
-
+            // console.log(sURLVariables);
             for (i = 0; i < sURLVariables.length; i++) {
                 sParameterName = sURLVariables[i].split('=');
-                console.log(sParameterName)
                 if (sParameterName[0] === sParam) {
                     return sParameterName[1] === undefined ? true : sParameterName[1];
                 }
             }
         };
+        var order = getUrlParameter('order');
+        var sort = getUrlParameter('sort');
+        var page = getUrlParameter('page');
+        var hosturl = window.location.href.split("?")[0]
         // 정렬방식 셀렉트 박스 유지
         $(document).ready(function () {
-            var order = getUrlParameter('order');
-            if (order == 'Likes') {
-                $('.order-Likes').prop('selected', 'selected')
-            } else if (order == "Recent") {
-                $('.order-Recent').prop('selected', 'selected')
-            } else {
-                $('.order-Default').prop('selected', 'selected')
+            if (order != ''){
+                $(".order-" + order).prop("selected", 'selected')
             }
-            var sort = getUrlParameter('sort');
-            if (sort == 'Vegan'){
-                $('.sort-Vegan').prop('selected', 'selected')
-            }else if(order == 'Lacto'){
-                $('.sort-Lacto').prop('selected', 'selected')
+            if (sort != '') {
+                $(".sort-" + sort).prop("selected", 'selected')
             }
-            var page = getUrlParameter('page');
-
         });
 
+        var urlChange = function urlChange(value){
+            const urlParams = new URLSearchParams(window.location.search);
+            var orderParam = urlParams.has('order');
+            var sortParam = urlParams.has('sort');
+            var pageParam = urlParams.has('page');
+            if (orderParam == true){// orderparam == true
+                if(sortParam == true){
+                    if(value.id == "order-select"){// order, sort 다 있는데 변경하고 싶은 값이 order일 때
+                        if(value.value != order){
+                            if(value.value == "?"){// order-Default 눌렀을 때
+                                location = hosturl +"?sort="+ sort;
+                            }else{
+                                location = hosturl + value.value +"&sort="+ sort;
+                            }
+                        }
+                    }else{// order, sort 다 있는데 변경하고 싶은 값이 sort일 때
+                        if(value.value != sort){
+                            if(value.value == "?"){// sort-Default 눌렀을 때
+                                location = hosturl +"?order="+ order;
+                            }else{
+                                location = hosturl + value.value +"&order="+ order;
+                            }
+                        }
+                    }
+                }else{// order 있고 sort 없을 때
+                    if(value.id == "order-select"){// order만 있을때 order 변경
+                        if(value.value != order){
+                            if(value.value == "?"){// order-Default 눌렀을 때
+                                location = hosturl;
+                            }else{
+                                location = hosturl + value.value;
+                            }
+                        }
+                    }else{
+                        if(value.value != sort){// order만 있을 때 sort 추가
+                            if(value.value != "?"){// sort-default 말고 다른 값들 눌렀을 때
+                                location = hosturl + value.value + "&order=" + order;
+                            }
+                        }
+                    }
+                }
+            }else{//orderparam == false
+                if(sortParam == true){// order 없고 sort만 있을 때.
+                    if(value.id == "sort-select"){// 이미 있는 sort값 변경
+                        location = hosturl + value.value;
+                    }else{//이미 있는 sort에 order 추가
+                        console.log(value.value);
+                        location = hosturl + value.value +"&sort="+sort;
+                    }
+                }else{//둘 다 없을 때
+                    if(value.id == "sort-select"){// sort 누르면 sort만 추가
+                        location = hosturl + value.value;
+                    }else{// order 누르면 order만 추가
+                        location = hosturl + value.value;
+                    }
+                }
+            }
+        }
+        $("a.pagenation-icon").on("click", function(){
+            if(page !== undefined){//현재 페이지에 있음
+                if(sort !== undefined && order !== undefined){
+                    location = hosturl + "?sort="+ sort + "&order="+ order+ "&" +$(this).data("page");
+                }else if(order !== undefined){
+                    location = hosturl + "?order="+ order + "&" +$(this).data("page");
+                }else if(sort != undefined) {
+                    location = hosturl + "?sort=" + sort + "&" + $(this).data("page");
+                }else{
+                    location = hosturl + "?" + $(this).data("page");
+                }
+            }else{// 1페이지에서
+                if(order != undefined && sort != undefined){
+                    location = hosturl + "?sort="+ sort + "&order="+ order+ "&" +$(this).data("page");
+                }else if(order !== undefined){
+                    location = window.location.href + "&" + $(this).data("page");
+                }else if (sort !== undefined){
+                    location = window.location.href + "&" + $(this).data("page");
+                }else{
+                    location = window.location.href + "?" + $(this).data("page");
+                }
+            }
+        });
         // 좋아요 버튼 처리
         // 버튼 클릭 > ajax통신 (like url로 전달) > views의 like 메소드에서 리턴하는 값 전달받기 > 성공시 콜백 호출
         $('.like').click(function () {
@@ -345,12 +377,29 @@
                     }
                 },
                 error: function (request, status, error) {
-                    alert("로그인이 필요합니다");
-                    window.location.replace("/login/");
-                    // alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    Swal.fire({
+                        text: '로그인이 필요합니다',
+                        icon: 'warning',
+                        showCancelButton: false,
+                        confirmButtonText: '확인',
+                        timer: 1600
+                    }).then((result)=>{
+                        window.location.replace("/login/");
+                    });
                 }
             });
-        })
+        });
+        $('.login-required').click(function () {
+            Swal.fire({
+                text: '로그인이 필요합니다',
+                icon: 'warning',
+                showCancelButton: false,
+                confirmButtonText: '확인',
+                timer: 1600
+            }).then((result)=>{
+                window.location.replace("/login/");
+            });
+        });
     </script>
 </section>
 {% endblock contents %}
