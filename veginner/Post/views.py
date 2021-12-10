@@ -53,7 +53,7 @@ def community(req):
 #         order_by_dict = {'Recent': '-write_time', 'Likes': '-like_count', '-write_time'}
         if sort != '' and order != '':
             if order == 'Likes':
-                posts = post_value.order_by('-like_count','-write_time')
+                posts = post_value.filter(post_vegan_type=vegan_type_dict[sort]).order_by('-like_count','-write_time')
             else:
                 posts = post_value.filter(post_vegan_type=vegan_type_dict[sort]).order_by('-write_time')
         elif sort != '' and order == '':
