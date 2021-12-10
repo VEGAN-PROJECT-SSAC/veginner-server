@@ -26,7 +26,9 @@
             qui repellendus voluptatum?
         </div>
         <div class="main-section1-contents scroll-action scroll-action-up">
-            <button class="main-section1-btn btn p-3">Get Started</button>
+            <button class="main-section1-btn btn p-3">
+                <a href="http://3.34.98.84:8000/community">Get Started</a>
+            </button>
         </div>
     </div>
 </section>
@@ -45,129 +47,65 @@
         <div class="main-section2-subtitle mb-5 mb-sm-3 mb-lg-5 scroll-action scroll-action-up">
             오늘의 인기 메뉴를 확인해보세요.
         </div>
+
         <div class="main-section2-contents scroll-action scroll-action-up">
             <div class="card-list-container row">
-                <div class="card-container col-md-6 col-lg-3 mb-2 scroll-action scroll-action-up">
+                {% for v in posts %}
+                <div class="card-container col-6 col-lg-3 mb-2 scroll-action scroll-action-up">
                     <div class="card-item card-item-main card box-shadow">
-                        <img alt="card image cap" class="card-img-top openmodal"
+                        <img alt="Card image cap" class="card-img-top openmodal "
                              data-bs-target="#detailModal" data-bs-toggle="modal"
                              data-bs-whatever="@mdo" data-holder-rendered="true"
-                             src="media/3Y5A6541.jpg"
+                             onclick="location.href='./community/detail/{{v.post_id}}'"
+                             src="media/{{ v.image }}"
                              style="height: 225px; width: 100%; display: block;">
                         <div class="card-body">
                             <div class="card-item-detail-1 d-flex justify-content-between align-items-start">
                                 <div class="card-item-detail-box">
-                                    <div class="card-item-title">맛있는게 제일 좋아아 dhowhgd askda el</div>
+                                    <div class="card-item-title">{{ v.food_name }}</div>
                                     <div class="mt-1">
-                                        <span class="card-item-type card-item-type-8"># Vegan</span>
+                                        {% if v.post_vegan_type__vegan_type == 'Vegan' %}
+                                        <span class="card-item-type card-item-type-8"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Lacto' %}
+                                        <span class="card-item-type card-item-type-9"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Ovo' %}
+                                        <span class="card-item-type card-item-type-10"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Lacto-Ovo' %}
+                                        <span class="card-item-type card-item-type-11"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Pesco' %}
+                                        <span class="card-item-type card-item-type-12"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Pollo' %}
+                                        <span class="card-item-type card-item-type-13"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% elif v.post_vegan_type__vegan_type == 'Flexitarian' %}
+                                        <span class="card-item-type card-item-type-14"># {{ v.post_vegan_type__vegan_type }}</span>
+                                        {% endif%}
                                     </div>
                                 </div>
-                                <button class="btn card-item-likeBtn p-0"><i class="fas fa-heart"></i>
-                                </button>
+                                {% if v.post_id in me_like_list %}
+                                <p class="bg-primary d-none d-sm-block card-item-likeBtn p-0 like"
+                                   name="{{ v.post_id }}"
+                                   value="Like"><i
+                                        class="fas fa-heart heart-click"></i>
+                                </p>
+                                {% else %}
+                                <p class="card-item-likeBtn p-0 like" name="{{ v.post_id }}" value="Like"><i
+                                        class="far fa-heart heart-cancel"></i>
+                                </p>
+                                {% endif %}
+                                <p class="ms-1" id="count_{{ v.post_id }}">{{ v.like_count }}</p>
                             </div>
                             <div class="card-item-detail-2 d-flex justify-content-between mt-3">
-                                <div class="card-item-nickname">
-                                    닉네임
+                                <div class="card-item-nickname {{v.post_id}}">
+                                    <span>{{ v.writer__nickname }}</span>님
                                 </div>
-                                <div class="card-item-date">
-                                    21.12.25
+                                <div class="d-none d-sm-block card-item-date {{v.post_id}}">
+                                    {{ v.date|date:"y.m.d" }}
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="card-container col-md-6 col-lg-3 mb-2 scroll-action scroll-action-up">
-                    <div class="card-item card-item-main card box-shadow">
-                        <img alt="Card image cap" class="card-img-top openmodal"
-                             data-bs-target="#detailModal" data-bs-toggle="modal"
-                             data-bs-whatever="@mdo" data-holder-rendered="true"
-                             src="media/3Y5A6541.jpg"
-                             style="height: 225px; width: 100%; display: block;">
-                        <div class="card-body">
-                            <div class="card-item-detail-1 d-flex justify-content-between align-items-start">
-                                <div>
-                                    <div class="card-item-title">토마토 스파게티</div>
-                                    <div class="mt-1">
-                                        <span class="card-item-type card-item-type-9"># Lacto</span>
-                                    </div>
-                                </div>
-                                <button class="btn card-item-likeBtn p-0"><i class="fas fa-heart"></i></button>
-                            </div>
-                            <div class="card-item-detail-2 d-flex justify-content-between mt-3">
-                                <div class="card-item-nickname">
-                                    닉네임
-                                </div>
-                                <div class="card-item-date">
-                                    21.12.25
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-container d-none d-md-block col-md-6 col-lg-3 mb-2 scroll-action scroll-action-up">
-                    <div class="card-item card-item-main card box-shadow">
-                        <img alt="Card image cap" class="card-img-top openmodal"
-                             data-bs-target="#detailModal" data-bs-toggle="modal"
-                             data-bs-whatever="@mdo" data-holder-rendered="true"
-                             src="media/3Y5A6541.jpg"
-                             style="height: 225px; width: 100%; display: block;">
-                        <div class="card-body">
-                            <div class="card-item-detail-1 d-flex justify-content-between align-items-start">
-                                <div>
-                                    <div class="card-item-title">맛있는게 제일 좋아</div>
-                                    <div class="mt-1">
-                                        <span class="card-item-type card-item-type-10"># Ovo</span>
-                                    </div>
-                                </div>
-                                <button class="btn card-item-likeBtn p-0"><i class="fas fa-heart"></i></button>
-                            </div>
-                            <div class="card-item-detail-2 d-flex justify-content-between mt-3">
-                                <div class="card-item-nickname">
-                                    닉네임
-                                </div>
-                                <div class="card-item-date">
-                                    21.12.25
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-container d-none d-md-block col-md-6 col-lg-3 mb-2 scroll-action scroll-action-up">
-                    <div class="card-item card-item-main card box-shadow">
-                        <img alt="Card image cap" class="card-img-top openmodal"
-                             data-bs-target="#detailModal" data-bs-toggle="modal"
-                             data-bs-whatever="@mdo" data-holder-rendered="true"
-                             src="media/3Y5A6541.jpg"
-                             style="height: 225px; width: 100%; display: block;">
-                        <div class="card-body">
-                            <div class="card-item-detail-1 d-flex justify-content-between align-items-start">
-                                <div>
-                                    <div class="card-item-title">맛있는게 제일 좋아</div>
-                                    <div class="mt-1">
-                                        <span class="card-item-type card-item-type-4"># Locto-Ovo</span>
-                                    </div>
-                                </div>
-                                <button class="btn card-item-likeBtn p-0"><i class="fas fa-heart"></i></button>
-                            </div>
-                            <div class="card-item-detail-2 d-flex justify-content-between mt-3">
-                                <div class="card-item-nickname">
-                                    닉네임
-                                </div>
-                                <div class="card-item-date">
-                                    21.12.25
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -175,18 +113,58 @@
 
 <section class="main-section main-section3">
     <div class="container">
-        여기는 메인 섹션3
+        <div class="about-container about-container-5">
+            <div class="d-flex flex-column align-items-center justify-content-center h-100 scroll-action scroll-action-up">
+                <div>베지테리언에는 다양한 유형이 있다는 사실,</div>
+                <div>알고 계신가요?</div>
+                <div class="vegan-type-desc mt-2 text-center">
+                    <div>
+                        Vegetarian은 여러 유형으로 나뉘어져 있고, veginner의 캘린더 서비스를 통해 이달의 내 채식주의 현황을 살펴보세요.
+                    </div>
+                    <div>
+                        커뮤니티에 공유하고 글들을 살펴보면서 자연스럽게 채식 위주의 식단을 익히고, 실천할 수 있게 합니다.
+                    </div>
+                    <div>(프루테리언 등 세부적인 타 분류가 있을 수 있습니다)</div>
+                </div>
+                <div class="vegan-type-desc mt-5">
+                    <img alt="article1" class="vegan-type-img mx-3" src="{% static 'image/vegan-type.png' %}">
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
 <section class="main-section main-section4">
     <div class="container">
-        여기는 메인 섹션4
+        <div class="about-container about-container-6">
+            <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                <div class="scroll-action scroll-action-up mb-5">Veginner와 함께</div>
+
+                <div class="d-flex justify-content-evenly w-100 mt-5">
+                    <div class="about-veginner-box mx-lg-4 mx-1 p-lg-5 p-3 scroll-action scroll-action-up">
+                        <div><i class="about-container-6-icons fas fa-leaf"></i></div>
+                        <div class="about-veginner">Vegetarian의 다양한 종류에 대해 알아보세요</div>
+                    </div>
+                    <div class="about-veginner-box mx-lg-4 mx-1 p-lg-5 p-3 scroll-action scroll-action-up">
+                        <div><i class="about-container-6-icons fas fa-utensils"></i></div>
+                        <div class="about-veginner">커뮤니티에 다른 사용자들과 함께 식단을 공유해보세요</div>
+                    </div>
+                    <div class="about-veginner-box mx-lg-4 mx-1 p-lg-5 p-3 scroll-action scroll-action-up">
+                        <div><i class="about-container-6-icons far fa-calendar-check"></i></div>
+                        <div class="about-veginner">나의 일상 식단이 어떤 유형인지 스스로 체크해보세요</div>
+                    </div>
+                    <div class="about-veginner-box mx-lg-4 mx-1 p-lg-5 p-3 scroll-action scroll-action-up">
+                        <div><i class="about-container-6-icons fas fa-chart-bar"></i></div>
+                        <div class="about-veginner">Veginner만을 위한 월별 개인 리포트를 받아 보세요</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
 <script>
-    const saTriggerMargin = 100;
+    const saTriggerMargin = 300;
     const saElementList = document.querySelectorAll('.scroll-action');
 
     const saFunc = function () {

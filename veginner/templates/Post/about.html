@@ -13,10 +13,10 @@
 
     <div class="about-container about-container-1">
         <div class="d-flex flex-column align-items-center justify-content-center h-100">
-            <div>
+            <div class="scroll-action scroll-action-up">
                 Veginner와 함께
             </div>
-            <div>
+            <div class="scroll-action scroll-action-up">
                 매일 Vegan에 가까워져 보세요
             </div>
             <!--            <div>-->
@@ -26,10 +26,10 @@
 
     </div>
     <div class="about-container about-container-2">
-        <div class="d-flex flex-column align-items-start justify-content-center h-100">
+        <div class="d-flex flex-column align-items-start justify-content-center h-100 scroll-action scroll-action-up">
             <div>Veginner는</div>
             <div>
-                <span class="about-start-msg">완전한 비건 한 명보다 불완전한 비건 지향인들이 100명이 더 가치 있다</span>
+                <span class="about-start-msg">한 명의 완벽한 채식주의자보다<br/>백 명의 불완전한 채식주의자가 필요하다</span>
             </div>
             <div>
                 는 말에서 시작되었습니다.
@@ -39,112 +39,148 @@
         </div>
     </div>
     <div class="about-container about-container-3">
-        <div class="d-flex flex-column align-items-end justify-content-center h-100">
-            <div>
-                사용자들이 모든 일상 식단을 채식으로 돌연 바꾸기보다
-            </div>
-            <div>
-                채식 위주 식단을 <span class="about-start-import">지향</span>하고
-            </div>
-            <div>
-                차근차근 <span class="about-start-import">실천</span>할 수 있도록 돕습니다.
-            </div>
+        <div class="d-flex flex-column align-items-end justify-content-center h-100 scroll-action scroll-action-up">
+            <div>사용자들이 모든 일상 식단을</div>
+            <div>채식으로 돌연 바꾸기보다</div>
+            <div>채식 위주 식단을 <span class="about-start-import">지향</span>하고</div>
+            <div>차근차근 <span class="about-start-import">실천</span>할 수 있도록 돕습니다.</div>
         </div>
     </div>
     <div class="about-container about-container-4">
         <div class="d-flex flex-column align-items-center justify-content-center h-100 w-100">
-            <div>증가하는 채식주의 지향 수요</div>
-            <div class="text-center mt-5">
-                <img alt="article1" class="mx-3" src="{% static 'image/article1.png' %}" style="width: 25%;">
-                <img alt="article1" class="mx-3" src="{% static 'image/article2.png' %}" style="width: 25%">
+            <div class="article-maintitle mb-5 scroll-action scroll-action-up mb-5">증가하는 채식주의 지향 수요</div>
+
+            <div class="article-title-box text-start my-2 my-lg-3">
+                <img alt="article1" class="article-title mx-3 scroll-action scroll-action-right"
+                     src="{% static 'image/article-title1.png' %}"
+                     style="width: 30vw;">
+            </div>
+            <div class="article-title-box text-end my-2 my-lg-3">
+                <img alt="article1" class="article-title mx-3 scroll-action scroll-action-left"
+                     src="{% static 'image/article-title2.png' %}"
+                     style="width: 30vw">
+            </div>
+            <div class="article-title-box text-start my-2 my-lg-3">
+                <img alt="article1" class="article-title mx-3 scroll-action scroll-action-right"
+                     src="{% static 'image/article-title3.png' %}"
+                     style="width: 30vw;">
+            </div>
+            <div class="article-title-box text-end my-2 my-lg-3">
+                <img alt="article1" class="article-title mx-3 scroll-action scroll-action-left"
+                     src="{% static 'image/article-title4.png' %}"
+                     style="width: 30vw;">
+            </div>
+            <div class="article-title-box text-start my-2 my-lg-3 d-xxl-none">
+                <img alt="article1" class="article-title mx-3 scroll-action scroll-action-right"
+                     src="{% static 'image/article-title5.png' %}"
+                     style="width: 30vw;">
+            </div>
+            <div class="article-title-box text-end my-2 my-lg-3 d-xxl-none">
+                <img alt="article1" class="article-title mx-3 scroll-action scroll-action-left"
+                     src="{% static 'image/article-title6.png' %}"
+                     style="width: 30vw;">
+            </div>
+            <div class="article-title-box text-start my-2 my-lg-3 d-xxl-none">
+                <img alt="article1" class="article-title mx-3 scroll-action scroll-action-right"
+                     src="{% static 'image/article-title7.png' %}"
+                     style="width: 30vw;">
             </div>
         </div>
     </div>
     <div class="about-container about-container-5">
-        <div class="d-flex flex-column align-items-center justify-content-center h-100">
-            <div>비건에는 다양한 유형이 있다는 사실,</div>
+        <div class="d-flex flex-column align-items-center justify-content-center h-100 scroll-action scroll-action-up">
+            <div>베지테리언에는 다양한 유형이 있다는 사실,</div>
             <div>알고 계신가요?</div>
-            <div class="vegan-type-desc">
-                비건 유형 설명 (이미지 삽입)
-
-                비건
-                락토
-                오보
-                락토 오보
-                페스코
-                폴로
-                플렉시테리언
-
-            </div>
-            <div class="vegan-type-desc">
-                <div>*프루테리언 등 세부적인 타 분류가 있을 수 있음*</div>
+            <div class="vegan-type-desc mt-2 text-center">
                 <div>
                     Vegetarian은 여러 유형으로 나뉘어져 있고, veginner의 캘린더 서비스를 통해 이달의 내 채식주의 현황을 살펴보세요.
                 </div>
                 <div>
                     커뮤니티에 공유하고 글들을 살펴보면서 자연스럽게 채식 위주의 식단을 익히고, 실천할 수 있게 합니다.
                 </div>
+                <div>(프루테리언 등 세부적인 타 분류가 있을 수 있습니다)</div>
+            </div>
+            <div class="vegan-type-desc mt-5">
+                <img alt="article1" class="vegan-type-img mx-3" src="{% static 'image/vegan-type.png' %}">
             </div>
         </div>
     </div>
     <div class="about-container about-container-6">
         <div class="d-flex flex-column align-items-center justify-content-center h-100">
-            <div>Veginner와 함께</div>
-            <div class="about-veginner">Vegetarian의 다양한 종류에 대해 알아보고,</div>
-            <div class="about-veginner">커뮤니티에 다른 사용자들과 함께 식단을 공유하고,</div>
-            <div class="about-veginner">나의 일상 식단이 어떤 VG type에 해당되는지 스스로 체크해 보고,</div>
-            <div class="about-veginner">이를 수집하여 veginner만을 위한 월별 개인 report를 받아 보세요</div>
+            <div class="scroll-action scroll-action-up mb-5">Veginner와 함께</div>
+
+            <div class="d-flex justify-content-evenly w-100 mt-5">
+                <div class="about-veginner-box mx-lg-4 mx-1 p-xl-4 p-2 scroll-action scroll-action-up">
+                    <div><i class="about-container-6-icons fas fa-leaf"></i></div>
+                    <div class="about-veginner">Vegetarian의 다양한 종류에 대해 알아보세요</div>
+                </div>
+                <div class="about-veginner-box mx-lg-4 mx-1 p-xl-4 p-2 scroll-action scroll-action-up">
+                    <div><i class="about-container-6-icons fas fa-utensils"></i></div>
+                    <div class="about-veginner">커뮤니티에 다른 사용자들과 함께 식단을 공유해보세요</div>
+                </div>
+                <div class="about-veginner-box mx-lg-4 mx-1 p-xl-4 p-2 scroll-action scroll-action-up">
+                    <div><i class="about-container-6-icons far fa-calendar-check"></i></div>
+                    <div class="about-veginner">나의 일상 식단이 어떤 유형인지 스스로 체크해보세요</div>
+                </div>
+                <div class="about-veginner-box mx-lg-4 mx-1 p-xl-4 p-2 scroll-action scroll-action-up">
+                    <div><i class="about-container-6-icons fas fa-chart-bar"></i></div>
+                    <div class="about-veginner">Veginner만을 위한 월별 개인 리포트를 받아 보세요</div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="about-container about-container-7">
         <div class="d-flex flex-column align-items-center justify-content-center h-100 w-100">
-            <div>
+            <div class="scroll-action scroll-action-up">
                 Veginner는 누가 만들었나요?
             </div>
             <div class="member-intro-box row w-100 h-50 d-flex align-items-center">
-                <div class="member-intro col-2 col-xl-4 text-center my-3">
+                <div class="member-intro col-2 col-xl-4 text-center my-3 scroll-action scroll-action-up">
                     <div class="d-flex flex-column justify-content-center h-100">
                         <div>
-                            <img alt="logo" src="{% static 'image/logo-green.png' %}">
+                            <img alt="logo" src="{% static 'image/member-dy.png' %}" style="width: 75%;">
                         </div>
                         <div class="d-flex flex-column align-items-center ">
-                            <div class="developer my-3">고다영</div>
-                            <div class="developer-role">Backend & Frontend</div>
+                            <div class="developer my-1">고다영</div>
+                            <div class="developer-role">Backend</div>
                             <div class="developer-email">kodayoung1@gmail.com</div>
                         </div>
                     </div>
                 </div>
-                <div class="member-intro col-2 col-xl-4 text-center my-3">
+                <div class="member-intro col-2 col-xl-4 text-center my-3 scroll-action scroll-action-up">
                     <div class="d-flex flex-column justify-content-center h-100">
                         <div>
-                            <img alt="logo" src="{% static 'image/logo-green.png' %}">
+                            <img alt="logo" src="{% static 'image/member-sy.png' %}"
+                                 style="width: 75%;">
                         </div>
                         <div class="d-flex flex-column align-items-center ">
-                            <div class="developer my-3">고서연</div>
+                            <div class="developer my-1">고서연</div>
                             <div class="developer-role">Frontend</div>
                             <div class="developer-email">seoyeon99o@naver.com</div>
                         </div>
                     </div>
                 </div>
-                <div class="member-intro col-2 col-xl-4 text-center my-3">
+                <div class="member-intro col-2 col-xl-4 text-center my-3 scroll-action scroll-action-up">
                     <div class="d-flex flex-column justify-content-center h-100">
                         <div>
-                            <img alt="logo" src="{% static 'image/logo-green.png' %}">
+                            <img alt="logo" src="{% static 'image/member-ej.png' %}"
+                                 style="width: 75%;">
                         </div>
                         <div class="d-flex flex-column align-items-center ">
-                            <div class="developer my-3">김은지</div>
+                            <div class="developer my-1">김은지</div>
                             <div class="developer-role">Backend & Frontend</div>
                             <div class="developer-email">go.gett2r@gmail.com</div>
                         </div>
                     </div>
                 </div>
-                <div class="member-intro col-2 col-xl-4 text-center my-3">
+                <div class="member-intro col-2 col-xl-4 text-center my-3 scroll-action scroll-action-up">
                     <div class="d-flex flex-column justify-content-center h-100">
                         <div>
-                            <img alt="logo" src="{% static 'image/logo-green.png' %}">
+                            <img alt="logo" src="{% static 'image/member-dh.png' %}"
+                                 style="width: 75%;">
                         </div>
                         <div class="d-flex flex-column align-items-center ">
-                            <div class="developer my-3">오동화</div>
+                            <div class="developer my-1">오동화</div>
                             <div class="developer-role">Backend</div>
                             <div class="developer-email">odhlmj@naver.com</div>
                         </div>
@@ -154,6 +190,24 @@
         </div>
     </div>
 </section>
+
+<script>
+    const saTriggerMargin = 100;
+    const saElementList = document.querySelectorAll('.scroll-action');
+
+    const saFunc = function () {
+        for (const element of saElementList) {
+            if (!element.classList.contains('show')) { // show 클래스가 없으면
+                if (window.innerHeight > element.getBoundingClientRect().top + saTriggerMargin) {
+                    element.classList.add('show'); // show 클래스를 더함
+                }
+            }
+        }
+    }
+
+    window.addEventListener('load', saFunc);
+    window.addEventListener('scroll', saFunc);
+</script>
 
 
 {% endblock contents %}
