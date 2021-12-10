@@ -1,5 +1,9 @@
 @import url('./base.css');
 
+.main-section1-btn > a:link, .main-section1-btn > a:visited, .main-section1-btn > a:active, .main-section1-btn > a:hover {
+    color: var(--green1-900)
+}
+
 .main-section {
     height: 1000px;
 }
@@ -74,6 +78,7 @@
 /* Main Section2 */
 .main-section2 {
     background-color: #fff;
+    height: 1200px;
 }
 
 .main-section2-container {
@@ -143,11 +148,14 @@
 /* Main Section3 */
 .main-section3 {
     background-color: var(--green2-50);
+    height: 100vh;
 }
 
 /* Main Section4 */
 .main-section4 {
     background-color: #fff;
+    height: 100vh;
+
 }
 
 @keyframes typing {
@@ -277,17 +285,26 @@
     transition: all 2s ease;
 }
 
+
 .scroll-action.show {
     opacity: 1;
     transform: none;
 }
 
 .scroll-action-up {
-    transform: translateY(200px);
+    transform: translateY(100px);
 }
 
 .scroll-action-down {
     transform: translateY(-100px);
+}
+
+.scroll-action-right {
+    transform: translateX(100px);
+}
+
+.scroll-action-left {
+    transform: translateX(-100px);
 }
 
 
