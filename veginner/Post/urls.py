@@ -1,5 +1,6 @@
 from . import views
 from django.urls import path
+import django.views.defaults
 
 urlpatterns = [
     path('about', views.about, name='about'),
@@ -9,5 +10,6 @@ urlpatterns = [
     path('community/update/<int:post_id>/', views.update, name='update'),
     path('community/delete/<int:post_id>/', views.delete, name='delete'),
     path('ajaxlike', views.ajaxlike, name='ajaxlike'),
-    path('posting', views.posting, name='posting'),
+    path('posting', views.posting, name='posting')
+#     path('404', django.views.defaults.page_not_found),
 ]
