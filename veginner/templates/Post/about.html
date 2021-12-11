@@ -34,16 +34,21 @@
             <div>
                 는 말에서 시작되었습니다.
             </div>
-
-
         </div>
+
     </div>
     <div class="about-container about-container-3">
-        <div class="d-flex flex-column align-items-end justify-content-center h-100 scroll-action scroll-action-up">
-            <div>사용자들이 모든 일상 식단을</div>
-            <div>채식으로 돌연 바꾸기보다</div>
-            <div>채식 위주 식단을 <span class="about-start-import">지향</span>하고</div>
-            <div>차근차근 <span class="about-start-import">실천</span>할 수 있도록 돕습니다.</div>
+        <div class="d-flex flex-column-reverse justify-content-center flex-lg-row justify-content-lg-between align-items-center h-100 scroll-action scroll-action-up">
+            <div>
+                <img src="{% static 'image/about-veginner-1.png' %}" alt="about-veginner1">
+            </div>
+            <div class="d-flex flex-column align-items-center align-items-lg-end justify-content-center">
+                <div>사용자들이 모든 일상 식단을</div>
+                <div>채식으로 돌연 바꾸기보다</div>
+                <div>채식 위주 식단을 <span class="about-start-import">지향</span>하고</div>
+                <div>차근차근 <span class="about-start-import">실천</span>할 수 있도록 돕습니다.</div>
+            </div>
+
         </div>
     </div>
     <div class="about-container about-container-4">
@@ -192,7 +197,7 @@
 </section>
 
 <script>
-    const saTriggerMargin = 100;
+    const saTriggerMargin = 300;
     const saElementList = document.querySelectorAll('.scroll-action');
 
     const saFunc = function () {

@@ -19,8 +19,9 @@
 
 /* container-2 */
 .about-container-2 {
+    border: 2px solid blue;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .about-container-2 .about-start-msg {
@@ -50,13 +51,18 @@
 
 /* container-3 */
 .about-container-3 {
+    border: 2px solid blue;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .about-container-3 .about-start-import {
     color: var(--green2-900);
     text-shadow: 0px 0px 2px var(--green2-100);
+}
+
+.about-container-3 img {
+    width: 40vw;
 }
 
 /* container-4 */
@@ -209,6 +215,10 @@
 
     .about-container-3 {
         font-size: 3vw;
+    }
+
+    .about-container-3 img {
+        width: 60vw;
     }
 
     .about-container-4 {
