@@ -21,7 +21,8 @@
                     </div>
                     <div class="modal-body p-3">
                         <h2>Veginner {{user.nickname}}</h2>
-                        <form action="{% url 'community' %}" enctype="multipart/form-data" id="post_submit" method="post">
+                        <form action="{% url 'community' %}" enctype="multipart/form-data" id="post_submit"
+                              method="post">
                             {% csrf_token %}
                             <div class="mb-3">
                                 <div class="d-flex justify-content-center flex-row align-items-center mb-4">
@@ -57,13 +58,33 @@
                                         <label class="form-label" for="floatingInput">
                                             <i class="fas fa-leaf fa-lg me-1 fa-fw"></i>비건 유형
                                             <span data-placement="top" data-toggle="tooltip"
-                                                  title="Vegan: 채소, Lacto: 우유, Ovo: 계란, Lacto-Ovo: 우유&계란, Pesco: 생선, Pollo: 닭, Flexitarian: 육식">
-                                            <i class="modal-info-icon fas fa-info-circle"></i>
-                                        </span>
+                                                  title="Vegan: 채소,<br/> Lacto: 우유, Ovo: 계란, Lacto-Ovo: 우유&계란, Pesco: 생선, Pollo: 닭, Flexitarian: 육식 !!!<a href='www.naver.com'>link</a>>">
+                                                <i class="modal-info-icon fas fa-info-circle"></i>
+                                            </span>
+
+                                            <!--                                            <i aria-hidden="true" class="fas fa-exclamation-circle"-->
+                                            <!--                                               style="cursor:pointer;"-->
+                                            <!--                                               title="어쩌구 저쩌구 <br />설명이 주르륵"></i>-->
+
                                             <script>
                                                 $(function () {
-                                                    $('[data-toggle="tooltip"]').tooltip()
-                                                })
+                                                    $('[data-toggle="tooltip"]').tooltip({
+                                                        content: function () {
+                                                            return $(this).prop('title');
+                                                        }
+                                                    });
+                                                });
+
+                                                //
+                                                // $(function () {
+                                                //     $(".fa-exclamation-circle").tooltip({
+                                                //         content: function () {
+                                                //             return $(this).attr("title");
+                                                //         }
+                                                //     });
+                                                // });
+
+
                                             </script>
                                         </label>
                                         {{ form.post_vegan_type|attr:"class:floatingInput form-control"}}
@@ -92,12 +113,12 @@
         {% endif %}
     </div>
     <div class="d-flex justify-content-start mt-3">
-        <select id="order-select" style="width: 100px; margin-right: 10px;" onchange="urlChange(this)">
+        <select id="order-select" onchange="urlChange(this)" style="width: 100px; margin-right: 10px;">
             <option class="order-Default" value="?">--정렬--</option>
             <option class="order-Recent" value="?order=Recent">최신순</option>
             <option class="order-Likes" value="?order=Likes">좋아요순</option>
         </select>
-        <select id="sort-select" style="width: 100px;" onchange="urlChange(this)">
+        <select id="sort-select" onchange="urlChange(this)" style="width: 100px;">
             <option class="sort-Default" value="?">--분류--</option>
             <option class="sort-Vegan" value="?sort=Vegan">Vegan</option>
             <option class="sort-Lacto" value="?sort=Lacto">Lacto</option>
@@ -261,7 +282,7 @@
         var hosturl = window.location.href.split("?")[0]
         // 정렬방식 셀렉트 박스 유지
         $(document).ready(function () {
-            if (order != ''){
+            if (order != '') {
                 $(".order-" + order).prop("selected", 'selected')
             }
             if (sort != '') {
@@ -269,83 +290,83 @@
             }
         });
 
-        var urlChange = function urlChange(value){
+        var urlChange = function urlChange(value) {
             const urlParams = new URLSearchParams(window.location.search);
             var orderParam = urlParams.has('order');
             var sortParam = urlParams.has('sort');
             var pageParam = urlParams.has('page');
-            if (orderParam == true){// orderparam == true
-                if(sortParam == true){
-                    if(value.id == "order-select"){// order, sort 다 있는데 변경하고 싶은 값이 order일 때
-                        if(value.value != order){
-                            if(value.value == "?"){// order-Default 눌렀을 때
-                                location = hosturl +"?sort="+ sort;
-                            }else{
-                                location = hosturl + value.value +"&sort="+ sort;
+            if (orderParam == true) {// orderparam == true
+                if (sortParam == true) {
+                    if (value.id == "order-select") {// order, sort 다 있는데 변경하고 싶은 값이 order일 때
+                        if (value.value != order) {
+                            if (value.value == "?") {// order-Default 눌렀을 때
+                                location = hosturl + "?sort=" + sort;
+                            } else {
+                                location = hosturl + value.value + "&sort=" + sort;
                             }
                         }
-                    }else{// order, sort 다 있는데 변경하고 싶은 값이 sort일 때
-                        if(value.value != sort){
-                            if(value.value == "?"){// sort-Default 눌렀을 때
-                                location = hosturl +"?order="+ order;
-                            }else{
-                                location = hosturl + value.value +"&order="+ order;
+                    } else {// order, sort 다 있는데 변경하고 싶은 값이 sort일 때
+                        if (value.value != sort) {
+                            if (value.value == "?") {// sort-Default 눌렀을 때
+                                location = hosturl + "?order=" + order;
+                            } else {
+                                location = hosturl + value.value + "&order=" + order;
                             }
                         }
                     }
-                }else{// order 있고 sort 없을 때
-                    if(value.id == "order-select"){// order만 있을때 order 변경
-                        if(value.value != order){
-                            if(value.value == "?"){// order-Default 눌렀을 때
+                } else {// order 있고 sort 없을 때
+                    if (value.id == "order-select") {// order만 있을때 order 변경
+                        if (value.value != order) {
+                            if (value.value == "?") {// order-Default 눌렀을 때
                                 location = hosturl;
-                            }else{
+                            } else {
                                 location = hosturl + value.value;
                             }
                         }
-                    }else{
-                        if(value.value != sort){// order만 있을 때 sort 추가
-                            if(value.value != "?"){// sort-default 말고 다른 값들 눌렀을 때
+                    } else {
+                        if (value.value != sort) {// order만 있을 때 sort 추가
+                            if (value.value != "?") {// sort-default 말고 다른 값들 눌렀을 때
                                 location = hosturl + value.value + "&order=" + order;
                             }
                         }
                     }
                 }
-            }else{//orderparam == false
-                if(sortParam == true){// order 없고 sort만 있을 때.
-                    if(value.id == "sort-select"){// 이미 있는 sort값 변경
+            } else {//orderparam == false
+                if (sortParam == true) {// order 없고 sort만 있을 때.
+                    if (value.id == "sort-select") {// 이미 있는 sort값 변경
                         location = hosturl + value.value;
-                    }else{//이미 있는 sort에 order 추가
+                    } else {//이미 있는 sort에 order 추가
                         console.log(value.value);
-                        location = hosturl + value.value +"&sort="+sort;
+                        location = hosturl + value.value + "&sort=" + sort;
                     }
-                }else{//둘 다 없을 때
-                    if(value.id == "sort-select"){// sort 누르면 sort만 추가
+                } else {//둘 다 없을 때
+                    if (value.id == "sort-select") {// sort 누르면 sort만 추가
                         location = hosturl + value.value;
-                    }else{// order 누르면 order만 추가
+                    } else {// order 누르면 order만 추가
                         location = hosturl + value.value;
                     }
                 }
             }
         }
-        $("a.pagenation-icon").on("click", function(){
-            if(page !== undefined){//현재 페이지에 있음
-                if(sort !== undefined && order !== undefined){
-                    location = hosturl + "?sort="+ sort + "&order="+ order+ "&" +$(this).data("page");
-                }else if(order !== undefined){
-                    location = hosturl + "?order="+ order + "&" +$(this).data("page");
-                }else if(sort != undefined) {
+        $("a.pagenation-icon").on("click", function () {
+            if (page !== undefined) {//현재 페이지에 있음
+                if (sort !== undefined && order !== undefined) {
+                    location = hosturl + "?sort=" + sort + "&order=" + order + "&" + $(this).data("page");
+                } else if (order !== undefined) {
+                    location = hosturl + "?order=" + order + "&" + $(this).data("page");
+                } else if (sort != undefined) {
                     location = hosturl + "?sort=" + sort + "&" + $(this).data("page");
-                }else{
+                } else {
                     location = hosturl + "?" + $(this).data("page");
                 }
-            }else{// 1페이지에서
-                if(order != undefined && sort != undefined){
-                    location = hosturl + "?sort="+ sort + "&order="+ order+ "&" +$(this).data("page");
-                }else if(order !== undefined){
+            } else {// 1페이지에서
+                if (order != undefined && sort != undefined) {
+                    location = hosturl + "?sort=" + sort + "&order=" + order + "&" + $(this).data("page");
+                } else if (order !== undefined) {
                     location = window.location.href + "&" + $(this).data("page");
-                }else if (sort !== undefined){
+                } else if (sort !== undefined) {
                     location = window.location.href + "&" + $(this).data("page");
-                }else{
+                } else {
                     location = window.location.href + "?" + $(this).data("page");
                 }
             }
@@ -383,7 +404,7 @@
                         showCancelButton: false,
                         confirmButtonText: '확인',
                         timer: 1600
-                    }).then((result)=>{
+                    }).then((result) => {
                         window.location.replace("/login/");
                     });
                 }
@@ -396,7 +417,7 @@
                 showCancelButton: false,
                 confirmButtonText: '확인',
                 timer: 1600
-            }).then((result)=>{
+            }).then((result) => {
                 window.location.replace("/login/");
             });
         });

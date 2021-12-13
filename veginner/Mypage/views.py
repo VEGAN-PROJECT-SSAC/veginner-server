@@ -10,6 +10,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.sessions.models import Session
 from django.utils.safestring import mark_safe
+from django.views.generic import DeleteView
 from django.core.paginator import Paginator
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.views import generic
@@ -37,6 +38,16 @@ def myinfo(req):
             'form': form
         }
         return render(req, 'Mypage/myinfo.html', context)
+
+class account_delete_view(DeleteView):
+    model = User
+    context_object_name = 'user'
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('about')
 
 def myposting(req):
     mySession = Session.objects.get(pk=req.session.session_key).get_decoded()["_auth_user_id"]
