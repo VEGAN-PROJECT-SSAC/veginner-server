@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=Veginner&fontSize=90&animation=fadeIn&fontAlignY=38&desc=%20easily%20start%20Vegan%20and%20Begin&descAlignY=51&descAlign=62)
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=Veginner&fontSize=90&animation=fadeIn&fontAlignY=38&desc=%20easily%20Begin%20&%20Vegan&descAlignY=51&descAlign=62)
 <p align='center'>
   <a href="https://github.com/VEGAN-PROJECT-SSAC/veginner-ssac/">
     <img src="https://img.shields.io/badge/IDEA%20ISSUE%20-%23F7DF1E.svg?&style=for-the-badge&&logoColor=white"/>
@@ -66,5 +66,4 @@ You can see the documentation over at Read the Docs:
 - Firefox
 
 ## Debug
-- [ ] ㅜㅜ
-- [x] 이슈 해결 안 된 거 어쩌궞
+- [x] 1.1.0 버전 업데이트
