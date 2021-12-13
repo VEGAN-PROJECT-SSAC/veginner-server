@@ -79,9 +79,14 @@ div.calendar-li {
 
 div.clearfix > .btn {
     outline: none;
-    color: black;
+    color: var(--green1-900);
     background-color: transparent;
     box-shadow: 0 0 0 0;
+    font-size: 1.2rem;
+}
+
+div.clearfix > .prev-month-btn:hover, div.clearfix > .next-month-btn:hover {
+    background-color: var(--green2-200);
 }
 
 .clearfix {

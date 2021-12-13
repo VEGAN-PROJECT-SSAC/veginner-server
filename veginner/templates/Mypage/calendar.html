@@ -22,9 +22,13 @@
         </div>
     </div>
     <div class="container">
-        <div class="clearfix">
-            <a class="btn btn-info left" href="{'% url 'cal:calendar' %}?{'{ prev_month }}"> Previous Month </a>
-            <a class="btn btn-info right" href="{'% url 'cal:calendar' %}?{'{ next_month }}"> Next Month </a>
+        <div class="clearfix mt-5">
+            <a class="prev-month-btn btn left" href="{% url 'calendar' %}?{{ prev_month }}">
+                <i class="fas fa-caret-left me-3"></i>{{prev_month|slice:"6:"}}
+            </a>
+            <a class="next-month-btn btn right" href="{% url 'calendar' %}?{{ next_month }}">
+                {{next_month|slice:"6:"}}<i class="fas fa-caret-right ms-3"></i>
+            </a>
         </div>
 
         {{calendar}}
