@@ -57,6 +57,10 @@ div.card-item-date {
     font-size: 0.8rem;
 }
 
+a.pagenation-icon {
+    color: var(--navy-900);
+}
+
 /* pagenation */
 a.pagenation-icon:link > i, a.pagenation-icon:visited > i, a.pagenation-icon:active > i {
     text-decoration: none;
@@ -81,6 +85,23 @@ span.card-item-type {
     cursor: pointer;
 }
 
-textarea:read-only{
+textarea:read-only {
     background-color: white !important;
 }
+
+/* Detail html */
+.detail-edit-btn {
+    background-color: var(--green2-800);
+    color: var(--green2-50);
+}
+
+.detail-delete-btn {
+    background-color: var(--green2-700);
+    color: var(--green2-50);
+}
+
+.detail-edit-btn:hover, .detail-delete-btn:hover {
+    color: var(--green2-50);
+    opacity: 0.9;
+}
+
