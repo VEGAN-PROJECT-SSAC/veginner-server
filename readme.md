@@ -17,6 +17,7 @@
 - Styling with **Bootstrap v5**
 - **Jquery 3.6**
 - Python **Highchart**
+- Alert with **sweetalert2 & sweetify-django**
 
 ## Installation
 Clone this repo, install Django
@@ -59,6 +60,8 @@ You can see the documentation over at Read the Docs:
 <br>
 - <a href="">django</a>
 - <a href="">highcharts</a>
+- <a href="https://github.com/Atrox/sweetify-django">sweetify-django</a>
+- <a href="https://sweetalert2.github.io/">sweetalert2</a>
 
 
 ## Browser Support
