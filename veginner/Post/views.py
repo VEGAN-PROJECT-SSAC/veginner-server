@@ -6,6 +6,7 @@ from User.models import User
 from .forms import PostForm
 import sweetify
 import datetime
+import os
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.contrib.sessions.models import Session
@@ -21,9 +22,7 @@ except ImportError:
 # Create your views here.
 def community(req):
     if req.method == 'POST':
-#         nickname=req.POST.get("username")
         print("community post 들어옴")
-#         form.instance.writer = User.objects.get(nickname=form["writer"].value)
         form = PostForm(req.POST, req.FILES)
         if form.is_valid():
             post = Post()
@@ -50,7 +49,6 @@ def community(req):
         vegan_type_dict = dict()
         for obj in Vegan_type.objects.all():
             vegan_type_dict[obj.vegan_type] = obj.vegan_id
-#         order_by_dict = {'Recent': '-write_time', 'Likes': '-like_count', '-write_time'}
         if sort != '' and order != '':
             if order == 'Likes':
                 posts = post_value.filter(post_vegan_type=vegan_type_dict[sort]).order_by('-like_count','-write_time')
@@ -79,12 +77,6 @@ def community(req):
             "me_like_list": me_like_list
         }
         return render(req, 'Post/community.html', context)
-
-def posting(req):
-    form = PostForm()
-    form.save()
-    sweetify.info(req, "성공적으로 보내졌습니다.", timer=1200)
-    return redirect("community")
 
 # 좋아요 뷰
 @require_POST
