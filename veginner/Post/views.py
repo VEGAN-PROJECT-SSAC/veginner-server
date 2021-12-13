@@ -123,8 +123,13 @@ def detail(req,post_id):
 # 게시글 삭제
 def delete(req,post_id):
     selected_post = Post.objects.get(post_id=post_id)
-    selected_post.delete()
-    return redirect("community")
+    if os.path.join(selected_post.image.path):
+        os.remove(os.path.join(selected_post.image.path))
+        selected_post.delete()
+        return redirect("community")
+    else:
+        print("The file does not exist")
+        return redirect("detail",post_id)
 
 # 게시글 수정
 def update(req,post_id):
