@@ -4,6 +4,10 @@
     color: var(--green1-900)
 }
 
+.main-section1-btn:hover {
+    opacity: 0.9;
+}
+
 .main-section {
     height: 1000px;
 }
