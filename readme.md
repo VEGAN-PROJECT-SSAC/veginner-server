@@ -35,15 +35,26 @@ Find the app running at http://localhost:8000/
 ```angular2html
 ㅇ웅얼웅얼
 ```
-캡처 1 : main 화면 today hot posting
+1) MAIN 화면 Today Hot Posting - community 내 좋아요 수가 많은 포스팅 게재
+<img width="1654" alt="스크린샷 2021-12-13 오후 3 26 39" src="https://user-images.githubusercontent.com/86637046/145763514-d3293724-32d8-4cc3-9313-c4e107fa6ef4.png">
+<img width="1654" alt="스크린샷 2021-12-13 오후 3 26 49" src="https://user-images.githubusercontent.com/86637046/145763533-ce87c7a6-8b06-4f46-9781-dc686d4e72f6.png">
+
 <br>
-캡처 2: community 글쓰기 후 sharing +  order, sort
+2) Community 화면 로그인 화면 글쓰기 기능
+<img width="1654" alt="스크린샷 2021-12-13 오후 3 27 31" src="https://user-images.githubusercontent.com/86637046/145763559-c453fab7-29d0-4478-a220-f382871f85f7.png">
+
 <br>
-캡처 3: community like fn
+3) Community 화면 좋아요-최신순 ordering, Vegan type별 sorting, 좋아요 추천 기능
+<img width="1654" alt="스크린샷 2021-12-13 오후 3 28 17" src="https://user-images.githubusercontent.com/86637046/145763594-5870c8f0-544d-48be-964a-df56a8467c3c.png">
+
 <br>
-캡처 4: my page monthly calendar(traffic light 같은..)
+4) Mypage 화면 월별 개인 유저만의 vegan calendar 제공. vege-semi vege 간 다른 색상으로 구별
+<img width="1654" alt="스크린샷 2021-12-13 오후 3 28 42" src="https://user-images.githubusercontent.com/86637046/145763607-3f024f85-04a9-4c6b-bd2e-355d06787f93.png">
+
 <br>
-캡처 5: mypage 내 글 보기
+5) Mypage 화면 현재까지 작성한 내 글 보기 및 글의 vegan type 유형 비율 파이그래프 제공 
+<img width="1654" alt="스크린샷 2021-12-13 오후 3 29 07" src="https://user-images.githubusercontent.com/86637046/145763618-cf3df14d-c1d7-4fd4-a11a-f9bc7da9b705.png">
+
 
 ## Documentation
 You can see the documentation over at Read the Docs:
