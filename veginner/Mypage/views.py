@@ -20,12 +20,15 @@ from Post.models import Vegan_type, Post
 from User.models import User
 from Mypage.utils import Calendar
 from .forms import UserChangeForm
+from User.forms import CheckPasswordForm
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.hashers import check_password
 
 # Create your views here.
 def myinfo(req):
     mySession = Session.objects.get(pk=req.session.session_key).get_decoded()["_auth_user_id"]
     user = User.objects.filter(user_id=mySession)
-
     if req.method == 'POST':
         form = UserChangeForm(req.POST, instance=req.user)
         if form.is_valid():
@@ -39,15 +42,35 @@ def myinfo(req):
         }
         return render(req, 'Mypage/myinfo.html', context)
 
-class account_delete_view(DeleteView):
-    model = User
-    context_object_name = 'user'
+def withdrawal(req):
+    print("ajaxajajajajaajaj")
+    mySession = Session.objects.get(pk=req.session.session_key).get_decoded()["_auth_user_id"]
+    session_user = User.objects.get(user_id=mySession)
+    session_user.delete()
+    Session.objects.get(pk=req.session.session_key).delete()
+    return redirect("/")
+# class account_delete_view(DeleteView):
+#     model = User
+#     context_object_name = 'user'
+#
+#     def get(self, request, *args, **kwargs):
+#         return self.post(request, *args, **kwargs)
+#
+#     def get_success_url(self):
+#         return reverse('about')
 
-    def get(self, request, *args, **kwargs):
-        return self.post(request, *args, **kwargs)
-
-    def get_success_url(self):
-        return reverse('about')
+# class Multiple_forms_view(MultiFormsView):
+#     template_name = "Mypage/myinfo.html"
+#     form_classes = {
+#         'edit_info': UserChangeForm,
+#         'delete_account': CheckPasswordForm
+#     }
+#     success_url ={
+#         'edit_info': reverse('myinfo'),
+#         'delete_account': reverse('about')
+#     }
+#     def User_Change_form_valid(self, form):
+#         return pass
 
 def myposting(req):
     mySession = Session.objects.get(pk=req.session.session_key).get_decoded()["_auth_user_id"]
