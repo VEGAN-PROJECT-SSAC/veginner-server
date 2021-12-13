@@ -19,7 +19,6 @@
 
 /* container-2 */
 .about-container-2 {
-    border: 2px solid blue;
     font-weight: 600;
     font-size: 1.8rem;
 }
@@ -51,7 +50,6 @@
 
 /* container-3 */
 .about-container-3 {
-    border: 2px solid blue;
     font-weight: 600;
     font-size: 1.8rem;
 }
@@ -63,6 +61,12 @@
 
 .about-container-3 img {
     width: 40vw;
+}
+
+@media (min-width: 2000px) {
+    .about-container-3 img {
+        width: 30vw;
+    }
 }
 
 /* container-4 */
@@ -138,8 +142,7 @@
 .about-container-6 .about-veginner {
     height: 40%;
     font-weight: 400;
-    font-size: 1.4rem;
-    /*background-color: pink;*/
+    font-size: 1rem;
 }
 
 
@@ -185,12 +188,6 @@
     font-family: FontAwesome;
     font-size: 1rem;
     margin-right: 5px;
-}
-
-@media (max-width: 1199px) {
-    .about-container-6 .about-veginner {
-        font-size: 1.8vw;
-    }
 }
 
 @media (max-width: 991px) {
