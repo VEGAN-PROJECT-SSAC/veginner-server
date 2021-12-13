@@ -64,14 +64,14 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
                 <div class="d-flex justify-content-center mt-4">
                     <button class="btn myinfo-btn" type="submit">정보 변경하기</button>
-                    <button class="myinfo-btn btn ms-2" data-bs-target="#deleteModal" data-bs-toggle="modal"
-                            data-bs-whatever="@mdo"
-                            type="button">회원 탈퇴하기
-                    </button>
+<!--                    <button class="myinfo-btn btn ms-2" data-bs-target="#deleteModal" data-bs-toggle="modal"-->
+<!--                            data-bs-whatever="@mdo"-->
+<!--                            type="button">회원 탈퇴하기-->
+<!--                    </button>-->
+                    <button class="btn myinfo-btn ms-2" type="button" onclick="withdrawal()">회원 탈퇴하기</button>
                 </div>
             </form>
 
@@ -82,8 +82,8 @@
                         <div class="modal-header">
                             <h4 class="modal-title" id="deleteModalLabel">회원 탈퇴</h4>
                         </div>
-                        <form method="POST" action="{% url 'account_delete' pk=user.pk %}">
-                        {% csrf_token %}
+                        <form method="POST" action="{% url 'withdrawal'%}">
+                            {% csrf_token %}
                             <div class="modal-body">
                                 Veginner 웹 사이트에서 {{user.nickname}}님의 계정이 삭제됩니다.
                                 <br>
@@ -91,20 +91,51 @@
                                 <br>
                                 현재 계정의 비밀번호로 인증해 주세요.
                                 <br>
+                                <input type="password" name="ajax_pw" class="form-control" id="ajax_pw">
                             </div>
                             <div class="modal-footer">
-                                <a href="{% url 'account_delete' pk=user.pk %}"><button type="button" class="btn btn-light">탈퇴하기</button></a>
+                                <a href="{% url 'withdrawal'%}">
+                                    <button type="button" class="btn btn-light" id="delete_btn">탈퇴하기</button>
+                                </a>
                                 <button type="button" class="btn btn-success" id="closeModalBtn">돌아가기</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            <!--                sweetalert2 CDN-->
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
             <script>
+
                 // 모달 안의 취소 버튼에 이벤트를 건다.
                 $('#closeModalBtn').on('click', function(){
                     $('#deleteModal').modal('hide');
                 });
+                function withdrawal() {
+                    Swal.fire({
+                        title: '회원 탈퇴',
+                        html: `
+                        Veginner 웹 사이트에서 {{user.nickname}}님의 계정이 삭제됩니다.
+                        <br>
+                        탈퇴 시 모든 개인정보 및 이용정보가 삭제되며 복구할 수 없습니다.
+                        `,
+                        inputAttributes: {
+                            autocapitalize: 'off'
+                        },
+                        showCancelButton: true,
+                        cancelButtonText: '돌아가기',
+                        confirmButtonText: '정말 탈퇴하기',
+                        allowOutsideClick: true,
+                        backdrop: true,
+                        cancelButtonColor:'#224735',
+                        confirmButtonColor: '#b2d0b1'
+                    }).then(function(wd){
+                        if (wd.isConfirmed){
+                            window.location = `{% url "withdrawal" %}`
+                        }
+                    });
+                }
             </script>
 
         </div>
