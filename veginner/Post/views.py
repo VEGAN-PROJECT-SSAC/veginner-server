@@ -44,7 +44,7 @@ def community(req):
         sort = req.GET.get('sort', '')# sorting
         order = req.GET.get('order', '')# ordering
         page = req.GET.get('page', '')# pagination
-        post_value = Post.objects.values('post_id', 'writer__nickname', 'food_name', 'post_vegan_type__vegan_type', 'date', 'image', 'content').annotate(like_count=Count('like'))
+        post_value = Post.objects.values('post_id', 'writer__nickname', 'food_name', 'post_vegan_type__vegan_type', 'write_time', 'image', 'content').annotate(like_count=Count('like'))
         posts = post_value.annotate(like_count=Count('like')).order_by('-write_time')# default posts
         vegan_type_dict = dict()
         for obj in Vegan_type.objects.all():
