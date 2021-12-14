@@ -6,8 +6,16 @@
     color: var(--navy-900);
 }
 
-.calendar tr, .calendar td {
-    border: 1px solid black;
+.calendar td > div {
+    background-color: var(--green2-50);
+    border-radius: 5px;
+    margin: 3px;
+    height: 95%;
+}
+
+.calendar td > div:hover {
+    background-color: var(--green2-100);
+    transition: all 1s;
 }
 
 .calendar th {
@@ -26,8 +34,15 @@
 }
 
 .date {
-    font-size: 55px;
+    font-size: 40px;
     text-align: center;
+}
+
+@media (max-width: 991px) {
+    /* width < lg */
+    .date {
+        font-size: 4vw;
+    }
 }
 
 div.calendar-ul {
@@ -68,6 +83,20 @@ div.calendar-li {
     background-color: var(--red-500);
 }
 
+.calendar-legend {
+    width: 60vw;
+    margin: 0 auto;
+    font-size: 0.8rem;
+    background-color: rgba(207, 226, 206, 0.15);
+    padding: 10px 5px;
+    border-radius: 3px;
+}
+@media (max-width: 991px) {
+    .calendar-legend {
+        width: 80vw;
+        font-size: 1.3vw;
+    }
+}
 
 .left {
     float: left;
@@ -86,7 +115,16 @@ div.clearfix > .btn {
 }
 
 div.clearfix > .prev-month-btn:hover, div.clearfix > .next-month-btn:hover {
-    background-color: var(--green2-200);
+    font-weight: 500;
+}
+
+div.clearfix > .prev-month-btn:hover > i, div.clearfix > .next-month-btn:hover > i {
+     animation: calendar-btn 0.3s linear 0s infinite alternate;
+}
+
+@keyframes calendar-btn {
+    0% {transform: translateX(2px);}
+    100% {transform: translateX(-2px);}
 }
 
 .clearfix {

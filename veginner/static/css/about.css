@@ -48,6 +48,16 @@
     color: var(--green2-900);
 }
 
+.about-container-2 img {
+    width: 40vw;
+}
+
+@media (min-width: 2000px) {
+    .about-container-2 img {
+        width: 30vw;
+    }
+}
+
 /* container-3 */
 .about-container-3 {
     font-weight: 600;
@@ -111,6 +121,7 @@
     box-shadow: 0 0 10px rgb(0 0 0 / 10%);
     border-radius: 5px;
     width: 35vw;
+    padding: 20px;
 }
 
 .about-container-5 .vegan-type-desc {
@@ -140,11 +151,28 @@
 }
 
 .about-container-6 .about-veginner {
-    height: 40%;
+    height: 35%;
     font-weight: 400;
     font-size: 1rem;
 }
+.about-container-6 .about-veginner-link {
+    height: 15%;
+    font-weight: 500;
+    font-size: 1rem;
+}
 
+.about-container-6 .about-veginner-link a {
+    color: var(--green1-900);
+}
+
+.about-container-6 .about-veginner-link > i {
+    animation: motion 0.5s linear 0s infinite alternate;
+}
+
+@keyframes motion {
+    0% {transform: translateX(3px);}
+    100% {transform: translateX(-3px);}
+}
 
 /* container-7 */
 .about-container-7 {
@@ -239,11 +267,11 @@
     }
 
     .about-container-6 .about-veginner {
-        font-size: 2vw;
+        font-size: 1.6vw;
     }
 
     .about-container-6 i.about-container-6-icons {
-        font-size: 5vw;
+        font-size: 3vw;
     }
 
     .about-container-7 {

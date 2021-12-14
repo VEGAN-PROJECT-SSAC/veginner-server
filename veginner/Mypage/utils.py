@@ -61,7 +61,7 @@ class Calendar(HTMLCalendar):
             d += f'<div class="{event.post_vegan_type.vegan_type} mx-1 calendar-li"> </div>'
 
         if day != 0:
-            return f"<td><div class='date'>{day}</div><div class='calendar-ul px-1 d-flex flex-wrap justify-content-center'> {d} </div></td>"
+            return f"<td><div><div class='date'>{day}</div><div class='calendar-ul px-1 d-flex flex-wrap justify-content-center'> {d} </div></div></td>"
         return '<td></td>'
 
     # formats a week as a tr
@@ -79,7 +79,7 @@ class Calendar(HTMLCalendar):
         All = Post.objects.values('date').all().order_by('date')
         print("모두", All)
 #         events = Post.objects.filter(date__year=self.year, date__month=self.month)
-        cal = f'<table border="1" cellpadding="0" cellspacing="0" class="calendar table-bordered">\n'
+        cal = f'<table cellpadding="0" cellspacing="0" class="calendar">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
         cal += f'{self.formatweekheader()}\n'
         for week in self.monthdays2calendar(self.year, self.month):

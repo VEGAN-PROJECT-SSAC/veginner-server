@@ -22,7 +22,14 @@
         </div>
     </div>
     <div class="container">
-        <div class="clearfix mt-5">
+        <div class="my-4 row calendar-legend">
+            {% for legend in vege_legend %}
+            <div class="col d-flex">
+                <div class="{{legend.vegan_type}} calendar-li me-2"></div><div>{{legend.vegan_type}}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="clearfix mt-3">
             <a class="prev-month-btn btn left" href="{% url 'calendar' %}?{{ prev_month }}">
                 <i class="fas fa-caret-left me-3"></i>{{prev_month|slice:"6:"}}
             </a>
@@ -30,11 +37,10 @@
                 {{next_month|slice:"6:"}}<i class="fas fa-caret-right ms-3"></i>
             </a>
         </div>
-
-        {{calendar}}
-
-    </div>
+        <div class="mb-5">
+            {{calendar}}
+        </div>
     </div>
 </section>
-
 {% endblock contents %}
+
