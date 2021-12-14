@@ -156,7 +156,11 @@
                         <div class="about-veginner">나의 일상 식단이 어떤 유형인지 스스로 체크해보세요</div>
                         <div class="about-veginner-link text-end">
                             <i class="me-1 fas fa-arrow-right"></i>
-                            <a href="{% url 'myposting' %}">GO</a>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'myposting' %}">GO</a>
+                            {% else %}
+                                <a href="{% url 'account_login' %}">GO</a>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="about-veginner-box mx-lg-4 mx-1 p-xl-5 p-4 scroll-action scroll-action-up">
@@ -164,7 +168,11 @@
                         <div class="about-veginner">Veginner만을 위한 월별 개인 리포트를 받아 보세요</div>
                         <div class="about-veginner-link text-end">
                             <i class="me-1 fas fa-arrow-right"></i>
-                            <a href="{% url 'calendar' %}">GO</a>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'calendar' %}">GO</a>
+                            {% else %}
+                                <a href="{% url 'account_login' %}">GO</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
