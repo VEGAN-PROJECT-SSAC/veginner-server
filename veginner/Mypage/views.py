@@ -24,6 +24,8 @@ from User.forms import CheckPasswordForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.hashers import check_password
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 def myinfo(req):
@@ -73,15 +75,17 @@ def withdrawal(req):
 #         return pass
 
 def myposting(req):
+    page = req.GET.get('page', '')# pagination
     mySession = Session.objects.get(pk=req.session.session_key).get_decoded()["_auth_user_id"]
     posts = Post.objects.filter(writer=mySession).all().order_by('-write_time') # 내가 쓴글만
 
     my_posts = list()
     for my_post in posts:
         my_posts.append(my_post)
-    print(my_posts)
+    paginator = Paginator(my_posts, 10)
+    post_list = paginator.get_page(page)
 
-    return render(req, 'Mypage/myposting.html', {'my_posts' : my_posts})
+    return render(req, 'Mypage/myposting.html', {'my_posts' : post_list})
 
 def monthlyreport(req):
     return render(req, 'Mypage/monthlyreport.html')
