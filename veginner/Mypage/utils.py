@@ -58,7 +58,7 @@ class Calendar(HTMLCalendar):
         d = ''
         # 문자열{변수}문자열 사용할 때 쓰는 파이썬 f-string 함수입니다
         for event in events_per_day:
-            d += f'<div class="{event.post_vegan_type.vegan_type} mx-1 calendar-li"> </div>'
+            d += f'<div class="{event.post_vegan_type.vegan_type} m-1 calendar-li"><span class="{event.post_vegan_type.vegan_type}_legend">{event.post_vegan_type.vegan_type}</span></div>'
 
         if day != 0:
             return f"<td><div><div class='date'>{day}</div><div class='calendar-ul px-1 d-flex flex-wrap justify-content-center'> {d} </div></div></td>"

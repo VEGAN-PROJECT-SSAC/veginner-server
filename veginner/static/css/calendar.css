@@ -57,30 +57,129 @@ div.calendar-li {
 
 .Vegan {
     background-color: var(--green2-900);
+    display: inline-block;
+}
+.Vegan_legend{
+    display: none;
+    position: absolute;
+    max-width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.8em;
+    color: white;
+    background: var(--green2-900);
+}
+.Vegan:hover .Vegan_legend{
+    display: block;
 }
 
 .Lacto {
     background-color: var(--green2-800);
+    display: inline-block;
+}
+.Lacto_legend{
+    display: none;
+    position: absolute;
+    max-width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.8em;
+    color: white;
+    background: var(--green2-800);
+}
+.Lacto:hover .Lacto_legend{
+    display: block;
 }
 
 .Ovo {
     background-color: var(--green2-700);
+    display: inline-block;
 }
+.Ovo_legend{
+    display: none;
+    position: absolute;
+    max-width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.8em;
+    color: white;
+    background: var(--green2-700);
+}
+.Ovo:hover .Ovo_legend{
+    display: block;
+}
+
 
 .Lacto-Ovo {
     background-color: var(--green2-600);
+    display: inline-block;
+}
+.Lacto-Ovo_legend{
+    display: none;
+    position: absolute;
+    max-width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.8em;
+    color: white;
+    background: var(--green2-600);
+}
+.Lacto-Ovo:hover .Lacto-Ovo_legend{
+    display: block;
 }
 
 .Pesco {
     background-color: var(--yellow-300);
+    display: inline-block;
+}
+.Pesco_legend{
+    display: none;
+    position: absolute;
+    max-width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.8em;
+    color: white;
+    background: var(--yellow-300);
+}
+.Pesco:hover .Pesco_legend{
+    display: block;
 }
 
 .Pollo {
     background-color: var(--yellow-400);
+    display: inline-block;
+}
+.Pollo_legend{
+    display: none;
+    position: absolute;
+    max-width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.8em;
+    color: white;
+    background: var(--yellow-400);
+}
+.Pollo:hover .Pollo_legend{
+    display: block;
 }
 
 .Flexitarian {
     background-color: var(--red-500);
+    display: inline-block;
+}
+.Flexitarian_legend{
+    display: none;
+    position: absolute;
+    max-width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.8em;
+    color: white;
+    background: var(--red-500);
+}
+.Flexitarian:hover .Flexitarian_legend{
+    display: block;
 }
 
 .calendar-legend {
