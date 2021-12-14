@@ -48,14 +48,16 @@ def community(req):
         posts = post_value.annotate(like_count=Count('like')).order_by('-write_time')# default posts
         vegan_type_dict = dict()
         for obj in Vegan_type.objects.all():
-            vegan_type_dict[obj.vegan_type] = obj.vegan_id
+            vegan_type_dict[obj.vegan_type] = [obj.vegan_id]
+            if obj.vegan_type == "Lacto-Ovo":
+                vegan_type_dict[obj.vegan_type] = [9, 10, 11]
         if sort != '' and order != '':
             if order == 'Likes':
-                posts = post_value.filter(post_vegan_type=vegan_type_dict[sort]).order_by('-like_count','-write_time')
+                posts = post_value.filter(post_vegan_type__in=vegan_type_dict[sort]).order_by('-like_count','-write_time')
             else:
-                posts = post_value.filter(post_vegan_type=vegan_type_dict[sort]).order_by('-write_time')
+                posts = post_value.filter(post_vegan_type__in=vegan_type_dict[sort]).order_by('-write_time')
         elif sort != '' and order == '':
-            posts = post_value.filter(post_vegan_type=vegan_type_dict[sort]).order_by('-write_time')
+            posts = post_value.filter(post_vegan_type__in=vegan_type_dict[sort]).order_by('-write_time')
         elif sort == '' and order != '':
             if order == 'Likes':
                 posts = post_value.order_by('-like_count','-write_time')
