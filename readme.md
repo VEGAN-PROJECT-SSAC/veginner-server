@@ -44,15 +44,17 @@ Find the app running at http://localhost:8000/
 
 <br>
 3) *COMMUNITY* 좋아요-최신순 ordering, Vegan type별 sorting, 좋아요 추천 기능
-<img width="1654" alt="스크린샷 2021-12-13 오후 3 28 17" src="https://user-images.githubusercontent.com/86637046/145763594-5870c8f0-544d-48be-964a-df56a8467c3c.png">
+<img width="2551" alt="스크린샷 2021-12-14 오후 6 05 28" src="https://user-images.githubusercontent.com/86637046/145967366-70a5b37c-a12a-4b32-9878-692e3d63834c.png">
 
 <br>
 4) *MYPAGE* 월별 개인 유저만의 vegan calendar 제공. vege-semi vege 간 다른 색상으로 구별
-<img width="1654" alt="스크린샷 2021-12-13 오후 3 28 42" src="https://user-images.githubusercontent.com/86637046/145763607-3f024f85-04a9-4c6b-bd2e-355d06787f93.png">
+<img width="2551" alt="스크린샷 2021-12-14 오후 6 05 37" src="https://user-images.githubusercontent.com/86637046/145967481-33ee28ac-98c9-4733-ae18-d25ce11b9a29.png">
 
 <br>
 5) *MYPAGE* 현재까지 작성한 내 글 보기 및 글의 vegan type 유형 비율 파이그래프 제공 
-<img width="1654" alt="스크린샷 2021-12-13 오후 3 29 07" src="https://user-images.githubusercontent.com/86637046/145763618-cf3df14d-c1d7-4fd4-a11a-f9bc7da9b705.png">
+<img width="2551" alt="스크린샷 2021-12-14 오후 6 05 46" src="https://user-images.githubusercontent.com/86637046/145967519-8d30eb28-9e81-4e34-ad9b-e04681f4cca9.png">
+
+
 
 
 ## Documentation
