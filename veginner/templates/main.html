@@ -81,17 +81,11 @@
                                         {% endif%}
                                     </div>
                                 </div>
-                                {% if v.post_id in me_like_list %}
-                                <p class="bg-primary d-none d-sm-block card-item-likeBtn p-0 like"
+                                <p class="d-none d-sm-block card-item-likeBtn p-0 like"
                                    name="{{ v.post_id }}"
                                    value="Like"><i
                                         class="fas fa-heart heart-click"></i>
                                 </p>
-                                {% else %}
-                                <p class="card-item-likeBtn p-0 like" name="{{ v.post_id }}" value="Like"><i
-                                        class="far fa-heart heart-cancel"></i>
-                                </p>
-                                {% endif %}
                                 <p class="ms-1" id="count_{{ v.post_id }}">{{ v.like_count }}</p>
                             </div>
                             <div class="card-item-detail-2 d-flex justify-content-between mt-3">
@@ -111,7 +105,7 @@
     </div>
 </section>
 
-<section class="main-section main-section3">
+<section class="main-section main-section3" id="main-section3">
     <div class="container">
         <div class="about-container about-container-5">
             <div class="d-flex flex-column align-items-center justify-content-center h-100 scroll-action scroll-action-up">
@@ -141,24 +135,39 @@
                 <div class="scroll-action scroll-action-up mb-5">Veginner와 함께</div>
 
                 <div class="d-flex justify-content-evenly w-100 mt-5">
-                    <div class="about-veginner-box mx-lg-4 mx-1 p-lg-5 p-3 scroll-action scroll-action-up">
+                    <div class="about-veginner-box mx-lg-4 mx-1 p-xl-5 p-4 scroll-action scroll-action-up">
                         <div><i class="about-container-6-icons fas fa-leaf"></i></div>
                         <div class="about-veginner">Vegetarian의 다양한 종류에 대해 알아보세요</div>
+                        <div class="about-veginner-link text-end">
+                            <i class="me-1 fas fa-arrow-right"></i>
+                            <a href="#main-section3">GO</a>
+                        </div>
                     </div>
-                    <div class="about-veginner-box mx-lg-4 mx-1 p-lg-5 p-3 scroll-action scroll-action-up">
+                    <div class="about-veginner-box mx-lg-4 mx-1 p-xl-5 p-4 scroll-action scroll-action-up">
                         <div><i class="about-container-6-icons fas fa-utensils"></i></div>
                         <div class="about-veginner">커뮤니티에 다른 사용자들과 함께 식단을 공유해보세요</div>
+                        <div class="about-veginner-link text-end">
+                            <i class="me-1 fas fa-arrow-right"></i>
+                            <a href="{% url 'community' %}">GO</a>
+                        </div>
                     </div>
-                    <div class="about-veginner-box mx-lg-4 mx-1 p-lg-5 p-3 scroll-action scroll-action-up">
+                    <div class="about-veginner-box mx-lg-4 mx-1 p-xl-5 p-4 scroll-action scroll-action-up">
                         <div><i class="about-container-6-icons far fa-calendar-check"></i></div>
                         <div class="about-veginner">나의 일상 식단이 어떤 유형인지 스스로 체크해보세요</div>
+                        <div class="about-veginner-link text-end">
+                            <i class="me-1 fas fa-arrow-right"></i>
+                            <a href="{% url 'myposting' %}">GO</a>
+                        </div>
                     </div>
-                    <div class="about-veginner-box mx-lg-4 mx-1 p-lg-5 p-3 scroll-action scroll-action-up">
+                    <div class="about-veginner-box mx-lg-4 mx-1 p-xl-5 p-4 scroll-action scroll-action-up">
                         <div><i class="about-container-6-icons fas fa-chart-bar"></i></div>
                         <div class="about-veginner">Veginner만을 위한 월별 개인 리포트를 받아 보세요</div>
+                        <div class="about-veginner-link text-end">
+                            <i class="me-1 fas fa-arrow-right"></i>
+                            <a href="{% url 'calendar' %}">GO</a>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </section>

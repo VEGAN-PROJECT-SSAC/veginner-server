@@ -218,6 +218,15 @@
     margin-right: 5px;
 }
 
+@media (max-width: 575px) {
+    .about-container-7 {
+        margin-bottom: 600px;
+    }
+    .about-container-5 img.vegan-type-img {
+        width: 90vw;
+    }
+}
+
 @media (max-width: 991px) {
     /* width < lg */
     .about-container-1 {
@@ -258,6 +267,10 @@
         font-size: 2.5vw;
     }
 
+    .about-container-5 img.vegan-type-img {
+        width: 65vw;
+    }
+
     .about-container-6 {
         font-size: 4.5vw;
     }
@@ -272,6 +285,9 @@
 
     .about-container-6 i.about-container-6-icons {
         font-size: 3vw;
+    }
+    .about-container-6 .about-veginner-link {
+        font-size: 0.8rem;
     }
 
     .about-container-7 {
